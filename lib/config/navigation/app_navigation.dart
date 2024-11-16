@@ -13,11 +13,22 @@ class AppNavigation {
     navigatorKey: _parrentNavigatorKey,
     initialLocation: Routes.home.path,
     debugLogDiagnostics: true,
+    routerNeglect: true,
     routes: [
       GoRoute(
         path: Routes.home.path,
         name: Routes.home.name,
         builder: (context, state) => const Home(),
+      ),
+      GoRoute(
+        path: Routes.works.path,
+        name: Routes.works.name,
+        builder: (context, state) => const Works(),
+      ),
+      GoRoute(
+        path: Routes.contact.path,
+        name: Routes.contact.name,
+        builder: (context, state) => const Contact(),
       ),
     ],
     errorBuilder: (context, state) {

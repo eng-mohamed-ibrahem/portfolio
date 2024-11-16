@@ -1,5 +1,7 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:portfolio/config/navigation/routes_enum.dart';
 import 'package:portfolio/model/work_model/work_model.dart';
 import 'package:portfolio/view/widgtes/work_card.dart';
 
@@ -21,7 +23,11 @@ class WorksSection extends StatelessWidget {
     return LiveList.options(
       shrinkWrap: true,
       itemBuilder: (context, index, animation) {
-        return _buildAnimatedItem(context, index, animation);
+        return InkWell(
+            onTap: () {
+              context.push(Routes.works.path);
+            },
+            child: _buildAnimatedItem(context, index, animation));
       },
       itemCount: 5,
       options: options,
