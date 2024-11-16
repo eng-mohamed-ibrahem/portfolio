@@ -4,5 +4,14 @@
         "personal_info": {
             "download_resume": "Download Resume"
         }
+    },
+    "skills": {
+        "title": "Skills"
+    },
+    "works": {
+        "title": "Works"
+    },
+    "contact": {
+        "title": "Contact"
     }
 }

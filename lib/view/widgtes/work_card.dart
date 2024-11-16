@@ -11,85 +11,131 @@ class WorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        bool isWideScreen = constraints.maxWidth > 600;
-        return Padding(
-          padding: const EdgeInsets.all(10),
-          child: isWideScreen
-              ? Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ..._displayWorkDetails(isWideScreen),
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ..._displayWorkDetails(isWideScreen),
-                  ],
-                ),
-        );
-      },
+    return DecoratedBox(
+      decoration: BoxDecoration(
+          border: Border.all(
+        color: AppColors.primary,
+      )),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          bool isWideScreen = constraints.maxWidth > 600;
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _displayWorkDetails(isWideScreen),
+              const SizedBox(height: 20),
+              Text(
+                work.description,
+                style: AppTextStyles.bodyMedium,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 5,
+                softWrap: true,
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 
-  List<Widget> _displayWorkDetails(
+  Widget _displayWorkDetailsMobile(
     bool isWideScreen,
+    List<Widget> children,
   ) {
-    return [
-      Card(
-        clipBehavior: Clip.antiAlias,
-        child: Image.asset(
-          work.thumbnail!,
-          fit: BoxFit.fill,
-          height: isWideScreen ? 200 : 250,
-          width: isWideScreen ? 200 : double.infinity,
-        ),
-      ),
-      ConditionallyWrapper(
-        condition: isWideScreen,
-        wrapper: (child) => Expanded(
-          child: child,
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
+    return Column(
+      children: [
+        children[0],
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(
-              work.title,
-              style: AppTextStyles.bodyMedium,
-            ),
+            children[1],
             Row(
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 3.w),
-                  decoration: BoxDecoration(
-                    color: AppColors.dark,
-                    borderRadius: BorderRadius.circular(5.r),
-                  ),
-                  child: Text(
-                    work.date.year.toString(),
-                    style: AppTextStyles.textButton,
-                  ),
-                ),
-                SizedBox(width: 10.w),
-                Text(
-                  work.type,
-                  style: AppTextStyles.light,
-                ),
+                children[2],
+                const SizedBox(width: 10),
+                children[3],
               ],
-            ),
-            const SizedBox(height: 20),
-            Text(
-              work.description,
-              style: AppTextStyles.bodySmall,
-              overflow: TextOverflow.ellipsis,
-              maxLines: 2,
             ),
           ],
         ),
-      ),
-    ];
+      ],
+    );
+  }
+
+  Widget _displayWorkDetailsDesktop(
+    bool isWideScreen,
+    List<Widget> children,
+  ) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        children[0],
+        const SizedBox(width: 20),
+        Expanded(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              children[1],
+              // const SizedBox(width: 10),
+              children[2],
+              // const SizedBox(width: 10),
+              children[3],
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _displayWorkDetails(
+    bool isWideScreen,
+  ) {
+    return ConditionallyWrapper(
+      wrapper: (children, condition) {
+        if (isWideScreen) {
+          return _displayWorkDetailsDesktop(isWideScreen, children);
+        } else {
+          return _displayWorkDetailsMobile(isWideScreen, children);
+        }
+      },
+      condition: isWideScreen,
+      children: [
+        Card(
+          clipBehavior: Clip.antiAlias,
+          child: Image.asset(
+            work.thumbnail!,
+            fit: BoxFit.fill,
+            height: isWideScreen ? 200 : 250,
+            width: isWideScreen ? 200 : double.infinity,
+          ),
+        ),
+        Text(
+          work.title,
+          style: AppTextStyles.bodyMedium,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 3.w),
+          decoration: BoxDecoration(
+            color: AppColors.dark,
+            borderRadius: BorderRadius.circular(5.r),
+          ),
+          child: Text(
+            work.date.year.toString(),
+            style: AppTextStyles.textButton,
+          ),
+        ),
+        Text(
+          work.type,
+          style: AppTextStyles.light,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+        ),
+      ],
+    );
   }
 }

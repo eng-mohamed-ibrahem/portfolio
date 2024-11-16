@@ -4,5 +4,14 @@
         "personal_info": {
             "download_resume": "تحميل السيرة الذاتية"
         }
+    },
+    "skills": {
+        "title": "المهارات"
+    },
+    "works": {
+        "title": "العمل"
+    },
+    "contact": {
+        "title": "اتصل بي"
     }
 }

@@ -24,11 +24,13 @@ class WorksSection extends StatelessWidget {
       shrinkWrap: true,
       itemBuilder: (context, index, animation) {
         return InkWell(
-            onTap: () {
-              context.push(Routes.works.path);
-            },
-            child: _buildAnimatedItem(context, index, animation));
+          onTap: () {
+            context.pushNamed(Routes.works.name);
+          },
+          child: _buildAnimatedItem(context, index, animation),
+        );
       },
+      separatorBuilder: (context, index) => const SizedBox(height: 15),
       itemCount: 5,
       options: options,
     );
