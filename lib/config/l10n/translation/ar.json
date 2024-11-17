@@ -1,15 +1,18 @@
 {
     "name": "الملف الشخصي",
     "home": {
+        "title": "الرئيسية",
         "personal_info": {
             "download_resume": "تحميل السيرة الذاتية"
         }
     },
     "skills": {
-        "title": "المهارات"
+        "title": "المهارات التقنية",
+        "header": "المهارات"
     },
     "works": {
-        "title": "العمل"
+        "title": "أعمال مميزة",
+        "header": "المشاريع"
     },
     "contact": {
         "title": "اتصل بي"

@@ -1,15 +1,18 @@
 {
     "name": "Portfolio",
     "home": {
+        "title": "Home",
         "personal_info": {
             "download_resume": "Download Resume"
         }
     },
     "skills": {
-        "title": "Skills"
+        "title": "Technical Skills",
+        "header": "Skills"
     },
     "works": {
-        "title": "Works"
+        "title": "Featured works",
+        "header": "Works"
     },
     "contact": {
         "title": "Contact"

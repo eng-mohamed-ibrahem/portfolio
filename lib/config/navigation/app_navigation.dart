@@ -1,34 +1,50 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import "package:go_router/go_router.dart";
 import 'package:portfolio/config/navigation/pages.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
+import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
 
 class AppNavigation {
   AppNavigation._();
 
-  static final GlobalKey<NavigatorState> _parrentNavigatorKey =
-      GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> _rootNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'root');
+  static final GlobalKey<NavigatorState> _shellNavigatorKey =
+      GlobalKey<NavigatorState>(debugLabel: 'shell');
+
   static String activeRoute = Routes.home.path;
   static final GoRouter config = GoRouter(
-    navigatorKey: _parrentNavigatorKey,
+    navigatorKey: _rootNavigatorKey,
     initialLocation: Routes.home.path,
     debugLogDiagnostics: true,
     routerNeglect: true,
     routes: [
-      GoRoute(
-        path: Routes.home.path,
-        name: Routes.home.name,
-        builder: (context, state) => const Home(),
-      ),
-      GoRoute(
-        path: Routes.works.path,
-        name: Routes.works.name,
-        builder: (context, state) => const Works(),
-      ),
-      GoRoute(
-        path: Routes.contact.path,
-        name: Routes.contact.name,
-        builder: (context, state) => const Contact(),
+      ShellRoute(
+        navigatorKey: _shellNavigatorKey,
+        builder: (BuildContext context, GoRouterState state, Widget child) {
+          return MainScreen(body: child);
+        },
+        routes: [
+          GoRoute(
+            path: Routes.home.path,
+            name: Routes.home.name,
+            builder: (context, state) => BlocProvider(
+              create: (context) => SkillsViewModel(),
+              child: const Home(),
+            ),
+          ),
+          GoRoute(
+            path: Routes.works.path,
+            name: Routes.works.name,
+            builder: (context, state) => const Works(),
+          ),
+          GoRoute(
+            path: Routes.contact.path,
+            name: Routes.contact.name,
+            builder: (context, state) => const Contact(),
+          ),
+        ],
       ),
     ],
     errorBuilder: (context, state) {

@@ -11,11 +11,14 @@ class WorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-          border: Border.all(
-        color: AppColors.primary,
-      )),
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.r),
+      ),
+      color: AppColors.secondaryLight,
+      margin: const EdgeInsets.all(10),
+      elevation: 3,
       child: LayoutBuilder(
         builder: (context, constraints) {
           bool isWideScreen = constraints.maxWidth > 600;
@@ -24,12 +27,15 @@ class WorkCard extends StatelessWidget {
             children: [
               _displayWorkDetails(isWideScreen),
               const SizedBox(height: 20),
-              Text(
-                work.description,
-                style: AppTextStyles.bodyMedium,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 5,
-                softWrap: true,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 5),
+                child: Text(
+                  work.description,
+                  style: AppTextStyles.bodyMedium,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 4,
+                  softWrap: true,
+                ),
               ),
             ],
           );
@@ -45,19 +51,22 @@ class WorkCard extends StatelessWidget {
     return Column(
       children: [
         children[0],
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            children[1],
-            Row(
-              children: [
-                children[2],
-                const SizedBox(width: 10),
-                children[3],
-              ],
-            ),
-          ],
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              children[1],
+              Row(
+                children: [
+                  children[2],
+                  const SizedBox(width: 10),
+                  children[3],
+                ],
+              ),
+            ],
+          ),
         ),
       ],
     );

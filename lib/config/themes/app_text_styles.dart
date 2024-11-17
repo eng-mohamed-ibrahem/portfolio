@@ -15,7 +15,7 @@ class AppTextStyles {
       );
   static TextStyle get textButton => TextStyle(
         color: AppColors.wight,
-        fontSize: 16.sp,
+        fontSize: 14.sp,
         fontWeight: FontWeight.w300,
       );
 

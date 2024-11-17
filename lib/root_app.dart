@@ -15,9 +15,11 @@ class RootApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp.router(
           builder: (context, child) {
+            var mediaData = MediaQuery.of(context);
             return MediaQuery(
-              data: MediaQuery.of(context)
-                  .copyWith(textScaler: const TextScaler.linear(1)),
+              data: mediaData.copyWith(
+                textScaler: const TextScaler.linear(1),
+              ),
               child: child!,
             );
           },
