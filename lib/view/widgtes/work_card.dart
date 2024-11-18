@@ -11,46 +11,34 @@ class WorkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.r),
-      ),
-      color: AppColors.secondaryLight,
-      margin: const EdgeInsets.all(10),
-      elevation: 3,
-      child: LayoutBuilder(
-        builder: (context, constraints) {
-          bool isWideScreen = constraints.maxWidth > 600;
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _displayWorkDetails(isWideScreen),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 5),
-                child: Text(
-                  work.description,
-                  style: AppTextStyles.bodyMedium,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 4,
-                  softWrap: true,
-                ),
-              ),
-            ],
-          );
-        },
-      ),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        bool isWideScreen = MediaQuery.sizeOf(context).width > 600;
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _displayWorkDetails(isWideScreen),
+            Divider(
+              thickness: 1,
+              height: 50.h,
+              color: const Color.fromRGBO(224, 224, 224, 1),
+            ),
+          ],
+        );
+      },
     );
   }
 
   Widget _displayWorkDetailsMobile(
-    bool isWideScreen,
     List<Widget> children,
   ) {
     return Column(
       children: [
-        children[0],
+        SizedBox(
+          height: 230,
+          width: double.infinity,
+          child: children[0],
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 5),
           child: Column(
@@ -65,6 +53,8 @@ class WorkCard extends StatelessWidget {
                   children[3],
                 ],
               ),
+              const SizedBox(height: 10),
+              children[4],
             ],
           ),
         ),
@@ -73,25 +63,34 @@ class WorkCard extends StatelessWidget {
   }
 
   Widget _displayWorkDetailsDesktop(
-    bool isWideScreen,
     List<Widget> children,
   ) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        children[0],
+        SizedBox(
+          height: 180,
+          width: 245,
+          child: children[0],
+        ),
         const SizedBox(width: 20),
         Expanded(
           child: Column(
-            mainAxisSize: MainAxisSize.max,
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               children[1],
-              // const SizedBox(width: 10),
-              children[2],
-              // const SizedBox(width: 10),
-              children[3],
+              const SizedBox(height: 10),
+              Row(
+                children: [
+                  children[2],
+                  const SizedBox(width: 10),
+                  children[3],
+                ],
+              ),
+              const SizedBox(height: 10),
+              children[4],
             ],
           ),
         ),
@@ -105,9 +104,9 @@ class WorkCard extends StatelessWidget {
     return ConditionallyWrapper(
       wrapper: (children, condition) {
         if (isWideScreen) {
-          return _displayWorkDetailsDesktop(isWideScreen, children);
+          return _displayWorkDetailsDesktop(children);
         } else {
-          return _displayWorkDetailsMobile(isWideScreen, children);
+          return _displayWorkDetailsMobile(children);
         }
       },
       condition: isWideScreen,
@@ -117,8 +116,6 @@ class WorkCard extends StatelessWidget {
           child: Image.asset(
             work.thumbnail!,
             fit: BoxFit.fill,
-            height: isWideScreen ? 200 : 250,
-            width: isWideScreen ? 200 : double.infinity,
           ),
         ),
         Text(
@@ -128,10 +125,10 @@ class WorkCard extends StatelessWidget {
           maxLines: 1,
         ),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 3.w),
+          padding: EdgeInsets.symmetric(horizontal: 5.w),
           decoration: BoxDecoration(
             color: AppColors.dark,
-            borderRadius: BorderRadius.circular(5.r),
+            borderRadius: BorderRadius.circular(15.r),
           ),
           child: Text(
             work.date.year.toString(),
@@ -143,6 +140,16 @@ class WorkCard extends StatelessWidget {
           style: AppTextStyles.light,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: Text(
+            work.description,
+            style: AppTextStyles.bodyMedium,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 3,
+            softWrap: true,
+          ),
         ),
       ],
     );

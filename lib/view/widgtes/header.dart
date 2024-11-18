@@ -1,7 +1,6 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
@@ -87,7 +86,6 @@ class _HeaderState extends State<Header> {
           setState(() {
             selectedTabIndex = index;
             widget.onTap(selectedTabIndex);
-            Navigator.pop(context);
             context.go(Routes.values[selectedTabIndex].path);
           });
         },
@@ -95,7 +93,6 @@ class _HeaderState extends State<Header> {
           titles[index],
           style: AppTextStyles.bodySmall.copyWith(
             fontWeight: FontWeight.bold,
-            fontSize: 10.sp,
             color: selectedTabIndex == index ? AppColors.primary : null,
           ),
         ),
@@ -104,65 +101,65 @@ class _HeaderState extends State<Header> {
     return children;
   }
 
-  void _showDrawerDialog(BuildContext context, List<Widget> children) async {
-    var result = await showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return Align(
-          alignment:
-              AlignmentDirectional.centerEnd, // Align dialog like a drawer
-          child: Padding(
-            padding: EdgeInsets.only(top: 10.h),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Card(
-                  child: InkWell(
-                    onTap: () {
-                      drawerOpened = false;
-                      Navigator.pop(context);
-                    },
-                    child: CircleAvatar(
-                      radius: 10.r,
-                      backgroundColor: AppColors.wight,
-                      child: Icon(
-                        FontAwesomeIcons.xmark,
-                        color: AppColors.dark,
-                        size: 10.r,
-                      ),
-                    ),
-                  ),
-                ),
-                Material(
-                  elevation: 8,
-                  color: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                    ),
-                  ),
-                  child: Container(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                    // Width of the drawer
-                    width: MediaQuery.sizeOf(context).width * 0.4,
-                    height: double.infinity,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: children,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-    drawerOpened = result ?? false;
-  }
+  // void _showDrawerDialog(BuildContext context, List<Widget> children) async {
+  //   var result = await showDialog(
+  //     context: context,
+  //     barrierDismissible: true,
+  //     builder: (BuildContext context) {
+  //       return Align(
+  //         alignment:
+  //             AlignmentDirectional.centerEnd, // Align dialog like a drawer
+  //         child: Padding(
+  //           padding: EdgeInsets.only(top: 10.h),
+  //           child: Row(
+  //             mainAxisAlignment: MainAxisAlignment.end,
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Card(
+  //                 child: InkWell(
+  //                   onTap: () {
+  //                     drawerOpened = false;
+  //                     Navigator.pop(context);
+  //                   },
+  //                   child: CircleAvatar(
+  //                     radius: 10.r,
+  //                     backgroundColor: AppColors.wight,
+  //                     child: Icon(
+  //                       FontAwesomeIcons.xmark,
+  //                       color: AppColors.dark,
+  //                       size: 10.r,
+  //                     ),
+  //                   ),
+  //                 ),
+  //               ),
+  //               Material(
+  //                 elevation: 8,
+  //                 color: Colors.white,
+  //                 shape: const RoundedRectangleBorder(
+  //                   borderRadius: BorderRadius.only(
+  //                     topLeft: Radius.circular(20),
+  //                     bottomLeft: Radius.circular(20),
+  //                   ),
+  //                 ),
+  //                 child: Container(
+  //                   padding:
+  //                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+  //                   // Width of the drawer
+  //                   width: MediaQuery.sizeOf(context).width * 0.4,
+  //                   height: double.infinity,
+  //                   child: Column(
+  //                     mainAxisSize: MainAxisSize.max,
+  //                     crossAxisAlignment: CrossAxisAlignment.end,
+  //                     children: children,
+  //                   ),
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ),
+  //       );
+  //     },
+  //   );
+  //   drawerOpened = result ?? false;
+  // }
 }

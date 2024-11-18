@@ -1,6 +1,5 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
 import 'package:portfolio/model/work_model/work_model.dart';
@@ -31,7 +30,6 @@ class WorksSection extends StatelessWidget {
           child: _buildAnimatedItem(context, index, animation),
         );
       },
-      separatorBuilder: (context, index) => SizedBox(height: 15.h),
       itemCount: 5,
       options: options,
     );

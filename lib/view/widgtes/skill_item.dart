@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +25,9 @@ class SkillItem extends StatelessWidget {
               MouseRegion(
                 onEnter: kIsWeb
                     ? (event) {
-                        context.read<SkillsViewModel>().setSelectedSkill(skill);
+                        context
+                            .read<SkillsViewModel>()
+                            .setSelectedSkill(skill, isHover: true);
                       }
                     : null,
                 cursor: SystemMouseCursors.click,
@@ -38,10 +41,16 @@ class SkillItem extends StatelessWidget {
                               .setSelectedSkill(skill);
                         },
                   child: Chip(
-                    avatar: CircleAvatar(
-                      radius: 5.r,
-                      backgroundColor:
+                    avatar: AvatarGlow(
+                      glowColor:
                           expand ? AppColors.secondary : AppColors.primary,
+                      glowRadiusFactor: .5,
+                      glowCount: 3,
+                      child: CircleAvatar(
+                        radius: 4.r,
+                        backgroundColor:
+                            expand ? AppColors.secondary : AppColors.primary,
+                      ),
                     ),
                     padding: EdgeInsets.symmetric(horizontal: 5.h),
                     elevation: 3,
@@ -64,9 +73,7 @@ class SkillItem extends StatelessWidget {
                             return Chip(
                               elevation: 3,
                               shadowColor: AppColors.wight,
-                              labelStyle: AppTextStyles.bodySmall.copyWith(
-                                fontSize: 10.sp,
-                              ),
+                              labelStyle: AppTextStyles.bodySmall,
                               label: Text(
                                 subSkill,
                               ),
@@ -76,7 +83,6 @@ class SkillItem extends StatelessWidget {
                       )
                     : const SizedBox(),
               ),
-              const SizedBox(height: 5),
             ],
           ),
         );

@@ -46,11 +46,24 @@ class _HomeState extends State<Home> {
             const SizedBox(height: 5),
             const SkillsSection(),
             SizedBox(height: 20.h),
-            Text(
-              "works.title".tr(),
-              style: AppTextStyles.bodySmall,
+            Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: MediaQuery.sizeOf(context).width > 600
+                    ? MediaQuery.sizeOf(context).width * 0.1
+                    : 10.w,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "works.title".tr(),
+                    style: AppTextStyles.bodySmall,
+                  ),
+                  const SizedBox(height: 5),
+                  const WorksSection(),
+                ],
+              ),
             ),
-            const WorksSection(),
           ],
         ),
       ),

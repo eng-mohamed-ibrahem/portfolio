@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 
 class AppTextStyles {
-  static TextStyle get bodyLarge => TextStyle(
+  static TextStyle get bodyLarge => const TextStyle(
         color: AppColors.dark,
-        fontSize: 18.sp,
+        fontSize: 18,
         fontWeight: FontWeight.bold,
       );
-  static TextStyle get bodySmall => TextStyle(
+  static TextStyle get bodySmall => const TextStyle(
         color: AppColors.dark,
-        fontSize: 14.sp,
+        fontSize: 14,
         fontWeight: FontWeight.normal,
       );
-  static TextStyle get textButton => TextStyle(
+  static TextStyle get textButton => const TextStyle(
         color: AppColors.wight,
-        fontSize: 14.sp,
+        fontSize: 14,
         fontWeight: FontWeight.w300,
       );
 
-  static TextStyle get bodyMedium => TextStyle(
+  static TextStyle get bodyMedium => const TextStyle(
         color: AppColors.dark,
-        fontSize: 16.sp,
+        fontSize: 16,
         fontWeight: FontWeight.normal,
       );
-  static TextStyle get light => TextStyle(
+  static TextStyle get light => const TextStyle(
         color: AppColors.light,
-        fontSize: 16.sp,
+        fontSize: 16,
         fontWeight: FontWeight.normal,
       );
 }

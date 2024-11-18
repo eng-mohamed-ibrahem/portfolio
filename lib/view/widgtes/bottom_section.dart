@@ -9,64 +9,61 @@ class BottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 3,
-      margin: EdgeInsets.zero,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              IconButton(
-                onPressed: () {
-                  WebsitesLauncher.launchWebsite('https://wa.me/+201275314934');
-                },
-                icon: const Icon(
-                  FontAwesomeIcons.whatsapp,
-                  color: Colors.green,
-                ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            IconButton(
+              onPressed: () {
+                WebsitesLauncher.launchWebsite('https://wa.me/+201275314934');
+              },
+              icon: const Icon(
+                FontAwesomeIcons.whatsapp,
+                color: Colors.green,
               ),
-              IconButton(
-                onPressed: () {
-                  WebsitesLauncher.launchWebsite(
-                      'https://www.facebook.com/mohamed.data13');
-                },
-                icon: const Icon(
-                  FontAwesomeIcons.facebook,
-                  color: Colors.blue,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  WebsitesLauncher.launchWebsite(
-                      'https://www.linkedin.com/in/mohamed-ibrahem13/');
-                },
-                icon: const Icon(
-                  FontAwesomeIcons.linkedin,
-                  color: Colors.blue,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  WebsitesLauncher.launchWebsite(
-                      'https://github.com/eng-mohamed-ibrahem');
-                },
-                icon: const Icon(
-                  FontAwesomeIcons.github,
-                  color: Colors.black,
-                ),
-              ),
-            ],
-          ),
-          Text(
-            'Made with Flutter',
-            style: AppTextStyles.bodySmall.copyWith(
-              fontSize: 12.sp,
             ),
+            IconButton(
+              onPressed: () {
+                WebsitesLauncher.launchWebsite(
+                    'https://www.facebook.com/mohamed.data13');
+              },
+              icon: const Icon(
+                FontAwesomeIcons.facebook,
+                color: Colors.blue,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                WebsitesLauncher.launchWebsite(
+                    'https://www.linkedin.com/in/mohamed-ibrahem13/');
+              },
+              icon: const Icon(
+                FontAwesomeIcons.linkedin,
+                color: Colors.blue,
+              ),
+            ),
+            IconButton(
+              onPressed: () {
+                WebsitesLauncher.launchWebsite(
+                    'https://github.com/eng-mohamed-ibrahem');
+              },
+              icon: const Icon(
+                FontAwesomeIcons.github,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        Text(
+          'Made with Flutter',
+          style: AppTextStyles.bodySmall.copyWith(
+            fontSize: 12.sp,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

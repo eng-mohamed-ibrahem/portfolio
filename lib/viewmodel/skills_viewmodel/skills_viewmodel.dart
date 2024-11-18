@@ -6,8 +6,11 @@ class SkillsViewModel extends Cubit<SkillsViewModelState> {
   SkillsViewModel() : super(SkillsViewModelInitial());
   SkillModel? selectedSkill;
 
-  void setSelectedSkill(SkillModel? skill) {
-    if (selectedSkill == skill || skill == null) {
+  void setSelectedSkill(
+    SkillModel? skill, {
+    bool isHover = false,
+  }) {
+    if (!isHover && selectedSkill == skill || skill == null) {
       selectedSkill = null;
     } else {
       selectedSkill = skill;
