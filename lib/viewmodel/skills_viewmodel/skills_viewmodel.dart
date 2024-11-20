@@ -56,6 +56,7 @@ class SkillsViewModel extends Cubit<SkillsViewModelState> {
         'Payment Gateway',
         'Socket IO',
         'Go_Router',
+        "FVM"
       ],
     ),
     SkillModel(

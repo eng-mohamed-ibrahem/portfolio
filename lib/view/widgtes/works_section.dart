@@ -30,7 +30,7 @@ class WorksSection extends StatelessWidget {
           child: _buildAnimatedItem(context, index, animation),
         );
       },
-      itemCount: 5,
+      itemCount: works.length,
       options: options,
     );
   }
@@ -51,15 +51,7 @@ class WorksSection extends StatelessWidget {
             end: Offset.zero,
           ).animate(animation),
           child: WorkCard(
-            work: WorkModel(
-              title: 'Better One',
-              thumbnail: 'assets/images/thumnail.png',
-              date: DateTime(2018),
-              type: "Mobile Application",
-              links: [],
-              description:
-                  '''give me descrption of flutter developer A Flutter Developer specializes in creating mobile applications using the Flutter framework developed by Google. Flutter developers are skilled in Dart programming language and possess a deep understanding of the entire mobile app development lifecycle. Their primary responsibilities include designing and developing user-friendly applications, implementing various functionalities, and ensuring the performance, quality, and responsiveness of applications. ''',
-            ),
+            work: works[index],
           ),
         ),
       );
@@ -174,13 +166,13 @@ List<WorkModel> works = [
     ],
   ),
   // agency
-  WorkModel(
-    title: "",
-    description: "",
-    date: DateTime(2023),
-    type: "",
-    thumbnail: "",
-    links: [],
-    idDid: [],
-  ),
+  // WorkModel(
+  //   title: "",
+  //   description: "",
+  //   date: DateTime(2023),
+  //   type: "",
+  //   thumbnail: "",
+  //   links: [],
+  //   idDid: [],
+  // ),
 ];

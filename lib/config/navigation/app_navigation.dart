@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import "package:go_router/go_router.dart";
 import 'package:portfolio/config/navigation/pages.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
+import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
 
 class AppNavigation {
@@ -23,7 +24,10 @@ class AppNavigation {
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (BuildContext context, GoRouterState state, Widget child) {
-          return MainScreen(body: child);
+          return BlocProvider(
+            create: (context) => MainViewmodel(),
+            child: MainScreen(body: child),
+          );
         },
         routes: [
           GoRoute(

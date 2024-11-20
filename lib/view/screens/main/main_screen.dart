@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
@@ -8,6 +9,7 @@ import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/view/widgtes/bottom_section.dart';
 import 'package:portfolio/view/widgtes/header.dart';
+import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key, required this.body});
@@ -27,17 +29,12 @@ class _MainScreenState extends State<MainScreen> {
       'contact.title'.tr(),
     ];
     return Scaffold(
-      body: Column(
-        children: [
-          Header(
-            onTap: (selectedTabIndex) {
-              selectedTab = selectedTabIndex;
-            },
-          ),
-          Expanded(child: widget.body),
-          const BottomSection(),
-        ],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.h),
+        child: const Header(),
       ),
+      body: widget.body,
+      bottomNavigationBar: const BottomSection(),
       endDrawer: MediaQuery.sizeOf(context).width > 600
           ? null
           : Padding(
@@ -73,16 +70,21 @@ class _MainScreenState extends State<MainScreen> {
                           titles.length,
                           (index) => TextButton(
                             onPressed: () {
-                              selectedTab = index;
+                              context
+                                  .read<MainViewmodel>()
+                                  .setSelectedTab(index);
                               Navigator.pop(context);
-                              context.go(Routes.values[selectedTab].path);
+                              context.go(Routes.values[index].path);
                             },
                             child: Text(
                               titles[index],
                               style: AppTextStyles.bodySmall.copyWith(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 10.sp,
-                                color: selectedTab == index
+                                color: context
+                                            .read<MainViewmodel>()
+                                            .currentTapIndex ==
+                                        index
                                     ? AppColors.primary
                                     : null,
                               ),
