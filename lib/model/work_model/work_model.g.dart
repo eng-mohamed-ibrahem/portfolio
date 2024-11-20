@@ -13,7 +13,11 @@ _$WorkModelImpl _$$WorkModelImplFromJson(Map<String, dynamic> json) =>
       date: DateTime.parse(json['date'] as String),
       type: json['type'] as String,
       thumbnail: json['thumbnail'] as String?,
-      link: json['link'] as String?,
+      links: (json['links'] as List<dynamic>)
+          .map((e) => LinkModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      idDid:
+          (json['idDid'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$WorkModelImplToJson(_$WorkModelImpl instance) =>
@@ -23,5 +27,24 @@ Map<String, dynamic> _$$WorkModelImplToJson(_$WorkModelImpl instance) =>
       'date': instance.date.toIso8601String(),
       'type': instance.type,
       'thumbnail': instance.thumbnail,
-      'link': instance.link,
+      'links': instance.links,
+      'idDid': instance.idDid,
     };
+
+_$LinkModelImpl _$$LinkModelImplFromJson(Map<String, dynamic> json) =>
+    _$LinkModelImpl(
+      link: json['link'] as String,
+      type: $enumDecode(_$LinkTypeEnumMap, json['type']),
+    );
+
+Map<String, dynamic> _$$LinkModelImplToJson(_$LinkModelImpl instance) =>
+    <String, dynamic>{
+      'link': instance.link,
+      'type': _$LinkTypeEnumMap[instance.type]!,
+    };
+
+const _$LinkTypeEnumMap = {
+  LinkType.github: 'github',
+  LinkType.drive: 'drive',
+  LinkType.apk: 'apk',
+};

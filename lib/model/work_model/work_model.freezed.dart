@@ -25,7 +25,8 @@ mixin _$WorkModel {
   DateTime get date => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String? get thumbnail => throw _privateConstructorUsedError;
-  String? get link => throw _privateConstructorUsedError;
+  List<LinkModel> get links => throw _privateConstructorUsedError;
+  List<String>? get idDid => throw _privateConstructorUsedError;
 
   /// Serializes this WorkModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -48,7 +49,8 @@ abstract class $WorkModelCopyWith<$Res> {
       DateTime date,
       String type,
       String? thumbnail,
-      String? link});
+      List<LinkModel> links,
+      List<String>? idDid});
 }
 
 /// @nodoc
@@ -71,7 +73,8 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
     Object? date = null,
     Object? type = null,
     Object? thumbnail = freezed,
-    Object? link = freezed,
+    Object? links = null,
+    Object? idDid = freezed,
   }) {
     return _then(_value.copyWith(
       title: null == title
@@ -94,10 +97,14 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
+      links: null == links
+          ? _value.links
+          : links // ignore: cast_nullable_to_non_nullable
+              as List<LinkModel>,
+      idDid: freezed == idDid
+          ? _value.idDid
+          : idDid // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ) as $Val);
   }
 }
@@ -116,7 +123,8 @@ abstract class _$$WorkModelImplCopyWith<$Res>
       DateTime date,
       String type,
       String? thumbnail,
-      String? link});
+      List<LinkModel> links,
+      List<String>? idDid});
 }
 
 /// @nodoc
@@ -137,7 +145,8 @@ class __$$WorkModelImplCopyWithImpl<$Res>
     Object? date = null,
     Object? type = null,
     Object? thumbnail = freezed,
-    Object? link = freezed,
+    Object? links = null,
+    Object? idDid = freezed,
   }) {
     return _then(_$WorkModelImpl(
       title: null == title
@@ -160,10 +169,14 @@ class __$$WorkModelImplCopyWithImpl<$Res>
           ? _value.thumbnail
           : thumbnail // ignore: cast_nullable_to_non_nullable
               as String?,
-      link: freezed == link
-          ? _value.link
-          : link // ignore: cast_nullable_to_non_nullable
-              as String?,
+      links: null == links
+          ? _value._links
+          : links // ignore: cast_nullable_to_non_nullable
+              as List<LinkModel>,
+      idDid: freezed == idDid
+          ? _value._idDid
+          : idDid // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
     ));
   }
 }
@@ -177,7 +190,10 @@ class _$WorkModelImpl implements _WorkModel {
       required this.date,
       required this.type,
       this.thumbnail,
-      this.link});
+      required final List<LinkModel> links,
+      final List<String>? idDid})
+      : _links = links,
+        _idDid = idDid;
 
   factory _$WorkModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WorkModelImplFromJson(json);
@@ -192,12 +208,27 @@ class _$WorkModelImpl implements _WorkModel {
   final String type;
   @override
   final String? thumbnail;
+  final List<LinkModel> _links;
   @override
-  final String? link;
+  List<LinkModel> get links {
+    if (_links is EqualUnmodifiableListView) return _links;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_links);
+  }
+
+  final List<String>? _idDid;
+  @override
+  List<String>? get idDid {
+    final value = _idDid;
+    if (value == null) return null;
+    if (_idDid is EqualUnmodifiableListView) return _idDid;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'WorkModel(title: $title, description: $description, date: $date, type: $type, thumbnail: $thumbnail, link: $link)';
+    return 'WorkModel(title: $title, description: $description, date: $date, type: $type, thumbnail: $thumbnail, links: $links, idDid: $idDid)';
   }
 
   @override
@@ -212,13 +243,21 @@ class _$WorkModelImpl implements _WorkModel {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.thumbnail, thumbnail) ||
                 other.thumbnail == thumbnail) &&
-            (identical(other.link, link) || other.link == link));
+            const DeepCollectionEquality().equals(other._links, _links) &&
+            const DeepCollectionEquality().equals(other._idDid, _idDid));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, title, description, date, type, thumbnail, link);
+  int get hashCode => Object.hash(
+      runtimeType,
+      title,
+      description,
+      date,
+      type,
+      thumbnail,
+      const DeepCollectionEquality().hash(_links),
+      const DeepCollectionEquality().hash(_idDid));
 
   /// Create a copy of WorkModel
   /// with the given fields replaced by the non-null parameter values.
@@ -243,7 +282,8 @@ abstract class _WorkModel implements WorkModel {
       required final DateTime date,
       required final String type,
       final String? thumbnail,
-      final String? link}) = _$WorkModelImpl;
+      required final List<LinkModel> links,
+      final List<String>? idDid}) = _$WorkModelImpl;
 
   factory _WorkModel.fromJson(Map<String, dynamic> json) =
       _$WorkModelImpl.fromJson;
@@ -259,12 +299,180 @@ abstract class _WorkModel implements WorkModel {
   @override
   String? get thumbnail;
   @override
-  String? get link;
+  List<LinkModel> get links;
+  @override
+  List<String>? get idDid;
 
   /// Create a copy of WorkModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WorkModelImplCopyWith<_$WorkModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LinkModel _$LinkModelFromJson(Map<String, dynamic> json) {
+  return _LinkModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LinkModel {
+  String get link => throw _privateConstructorUsedError;
+  LinkType get type => throw _privateConstructorUsedError;
+
+  /// Serializes this LinkModel to a JSON map.
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $LinkModelCopyWith<LinkModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LinkModelCopyWith<$Res> {
+  factory $LinkModelCopyWith(LinkModel value, $Res Function(LinkModel) then) =
+      _$LinkModelCopyWithImpl<$Res, LinkModel>;
+  @useResult
+  $Res call({String link, LinkType type});
+}
+
+/// @nodoc
+class _$LinkModelCopyWithImpl<$Res, $Val extends LinkModel>
+    implements $LinkModelCopyWith<$Res> {
+  _$LinkModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? link = null,
+    Object? type = null,
+  }) {
+    return _then(_value.copyWith(
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as LinkType,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LinkModelImplCopyWith<$Res>
+    implements $LinkModelCopyWith<$Res> {
+  factory _$$LinkModelImplCopyWith(
+          _$LinkModelImpl value, $Res Function(_$LinkModelImpl) then) =
+      __$$LinkModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String link, LinkType type});
+}
+
+/// @nodoc
+class __$$LinkModelImplCopyWithImpl<$Res>
+    extends _$LinkModelCopyWithImpl<$Res, _$LinkModelImpl>
+    implements _$$LinkModelImplCopyWith<$Res> {
+  __$$LinkModelImplCopyWithImpl(
+      _$LinkModelImpl _value, $Res Function(_$LinkModelImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? link = null,
+    Object? type = null,
+  }) {
+    return _then(_$LinkModelImpl(
+      link: null == link
+          ? _value.link
+          : link // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as LinkType,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LinkModelImpl implements _LinkModel {
+  const _$LinkModelImpl({required this.link, required this.type});
+
+  factory _$LinkModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LinkModelImplFromJson(json);
+
+  @override
+  final String link;
+  @override
+  final LinkType type;
+
+  @override
+  String toString() {
+    return 'LinkModel(link: $link, type: $type)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LinkModelImpl &&
+            (identical(other.link, link) || other.link == link) &&
+            (identical(other.type, type) || other.type == type));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(runtimeType, link, type);
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LinkModelImplCopyWith<_$LinkModelImpl> get copyWith =>
+      __$$LinkModelImplCopyWithImpl<_$LinkModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LinkModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LinkModel implements LinkModel {
+  const factory _LinkModel(
+      {required final String link,
+      required final LinkType type}) = _$LinkModelImpl;
+
+  factory _LinkModel.fromJson(Map<String, dynamic> json) =
+      _$LinkModelImpl.fromJson;
+
+  @override
+  String get link;
+  @override
+  LinkType get type;
+
+  /// Create a copy of LinkModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$LinkModelImplCopyWith<_$LinkModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

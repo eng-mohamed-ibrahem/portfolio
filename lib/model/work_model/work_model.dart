@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'work_model.freezed.dart';
@@ -11,9 +13,45 @@ class WorkModel with _$WorkModel {
     required DateTime date,
     required String type,
     String? thumbnail,
-    String? link,
+    required List<LinkModel> links,
+    List<String>? idDid,
   }) = _WorkModel;
 
   factory WorkModel.fromJson(Map<String, dynamic> json) =>
       _$WorkModelFromJson(json);
+}
+
+enum LinkType {
+  github(
+    Icon(
+      FontAwesomeIcons.github,
+      color: Colors.black,
+    ),
+  ),
+  drive(
+    Icon(
+      FontAwesomeIcons.googleDrive,
+      color: Colors.blue,
+    ),
+  ),
+  apk(
+    Icon(
+      FontAwesomeIcons.android,
+      color: Colors.green,
+    ),
+  );
+
+  final Widget icon;
+  const LinkType(this.icon);
+}
+
+@freezed
+class LinkModel with _$LinkModel {
+  const factory LinkModel({
+    required String link,
+    required LinkType type,
+  }) = _LinkModel;
+
+  factory LinkModel.fromJson(Map<String, dynamic> json) =>
+      _$LinkModelFromJson(json);
 }
