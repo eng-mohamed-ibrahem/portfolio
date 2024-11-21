@@ -12,11 +12,11 @@ class Works extends StatelessWidget {
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.symmetric(
-        horizontal: MediaQuery.sizeOf(context).width > 600
-            ? MediaQuery.sizeOf(context).width * 0.1
-            : 10.w,
-        vertical: 5.h,
-      ),
+          horizontal: MediaQuery.sizeOf(context).width > 600
+              ? MediaQuery.sizeOf(context).width * 0.12
+              : 10.w,
+          vertical: 5.h,
+        ),
         children: [
           Text(
             "works.header".tr(),

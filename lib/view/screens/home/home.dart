@@ -49,7 +49,7 @@ class _HomeState extends State<Home> {
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: MediaQuery.sizeOf(context).width > 600
-                    ? MediaQuery.sizeOf(context).width * 0.1
+                    ? MediaQuery.sizeOf(context).width * 0.12
                     : 10.w,
               ),
               child: Column(

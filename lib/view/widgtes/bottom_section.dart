@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/utils/websites_laucnher/websites_launcher.dart';
@@ -59,9 +58,7 @@ class BottomSection extends StatelessWidget {
         ),
         Text(
           'Made with Flutter',
-          style: AppTextStyles.bodySmall.copyWith(
-            fontSize: 12.sp,
-          ),
+          style: AppTextStyles.bodySmall,
         ),
       ],
     );

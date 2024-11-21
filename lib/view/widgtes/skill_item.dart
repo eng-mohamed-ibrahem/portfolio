@@ -1,5 +1,4 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,42 +21,27 @@ class SkillItem extends StatelessWidget {
         return Material(
           child: Column(
             children: [
-              MouseRegion(
-                onEnter: kIsWeb
-                    ? (event) {
-                        context
-                            .read<SkillsViewModel>()
-                            .setSelectedSkill(skill, isHover: true);
-                      }
-                    : null,
-                cursor: SystemMouseCursors.click,
-                child: InkWell(
-                  mouseCursor: SystemMouseCursors.click,
-                  onTap: kIsWeb
-                      ? null
-                      : () {
-                          context
-                              .read<SkillsViewModel>()
-                              .setSelectedSkill(skill);
-                        },
-                  child: Chip(
-                    avatar: AvatarGlow(
-                      glowColor:
+              InkWell(
+                mouseCursor: SystemMouseCursors.click,
+                onTap: () {
+                  context.read<SkillsViewModel>().setSelectedSkill(skill);
+                },
+                child: Chip(
+                  avatar: AvatarGlow(
+                    glowColor: expand ? AppColors.secondary : AppColors.primary,
+                    glowRadiusFactor: .5,
+                    glowCount: 3,
+                    child: CircleAvatar(
+                      radius: 4.r,
+                      backgroundColor:
                           expand ? AppColors.secondary : AppColors.primary,
-                      glowRadiusFactor: .5,
-                      glowCount: 3,
-                      child: CircleAvatar(
-                        radius: 4.r,
-                        backgroundColor:
-                            expand ? AppColors.secondary : AppColors.primary,
-                      ),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 5.h),
-                    elevation: 3,
-                    shadowColor: AppColors.wight,
-                    labelStyle: AppTextStyles.bodySmall,
-                    label: Text(skill.title),
                   ),
+                  padding: EdgeInsets.symmetric(horizontal: 5.h),
+                  elevation: 3,
+                  shadowColor: AppColors.wight,
+                  labelStyle: AppTextStyles.bodySmall,
+                  label: Text(skill.title),
                 ),
               ),
               const SizedBox(height: 5),

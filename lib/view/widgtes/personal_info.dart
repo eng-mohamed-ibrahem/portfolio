@@ -1,7 +1,10 @@
+import 'dart:html' as html; // for web
+
 import 'package:auto_animated/auto_animated.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart' as http;
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/app_images/app_images.dart';
 
@@ -72,7 +75,13 @@ class PersonalInfo extends StatelessWidget {
         ),
         SizedBox(height: 25.h),
         ElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            _downloadLocaleResume(
+                'assets/files/mohamed_ibrahem_flutter_developer.pdf');
+            // _downloadResume(
+            //   'https://drive.google.com/uc?export=download&id=1nNK0Y8SRy1wXRrrgPX4kHt1gxzedXlgm',
+            // );
+          },
           child: Text(
             "home.personal_info.download_resume".tr(),
             style: AppTextStyles.textButton,
@@ -88,5 +97,24 @@ class PersonalInfo extends StatelessWidget {
       backgroundColor: Colors.transparent,
       backgroundImage: const AssetImage(AppImages.profile),
     );
+  }
+
+  void _downloadResume(String resumeUrl) async {
+    final response = await http.get(Uri.parse(resumeUrl));
+    final bytes = response.bodyBytes;
+    final blob = html.Blob([bytes]);
+    final blobUrl = html.Url.createObjectUrlFromBlob(blob);
+    final anchor = html.AnchorElement(href: blobUrl)
+      ..setAttribute('download', 'mohamed_ibrahem_flutter_developer.pdf')
+      ..click();
+    html.Url.revokeObjectUrl(blobUrl);
+    anchor.remove();
+  }
+
+  void _downloadLocaleResume(String url) {
+    var anchor = html.AnchorElement(href: url);
+    anchor.download = "mohamed_ibrahem_flutter_developer.pdf";
+    anchor.click();
+    anchor.remove();
   }
 }

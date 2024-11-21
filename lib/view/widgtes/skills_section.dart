@@ -1,5 +1,4 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
@@ -26,11 +25,11 @@ class _SkillsSectionState extends State<SkillsSection> {
     return AnimateIfVisibleWrapper(
       delay: const Duration(milliseconds: 150),
       child: MouseRegion(
-        onExit: kIsWeb
-            ? (event) {
-                context.read<SkillsViewModel>().setSelectedSkill(null);
-              }
-            : null,
+        onExit: (event) {
+          context.read<SkillsViewModel>().selectedSkill != null
+              ? context.read<SkillsViewModel>().setSelectedSkill(null)
+              : null;
+        },
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(

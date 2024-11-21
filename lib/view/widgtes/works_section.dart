@@ -60,7 +60,7 @@ class WorksSection extends StatelessWidget {
 List<WorkModel> works = [
   WorkModel(
     title: 'Hawkamah',
-    thumbnail: 'assets/images/thumnail.png',
+    thumbnail: 'assets/images/hawkamah.jpg',
     date: DateTime(2024),
     type: "Mobile Application",
     links: [
@@ -84,7 +84,7 @@ List<WorkModel> works = [
         "The \"Better One\" mobile application is designed to help users manage tasks, estimate time, and provide encouragement.",
     date: DateTime(2024),
     type: "Mobile Application",
-    thumbnail: "assets/images/thumnail.png",
+    thumbnail: "assets/images/better_one.jpg",
     links: [],
     idDid: [
       "Handle Background Service For Listening To User Interaction",
@@ -100,8 +100,14 @@ List<WorkModel> works = [
         "This project is a Flutter application for a transportation company. It includes a variety of features such as: \"Transport Furniture\", \"Cleaning After Transportation\", \"Carry it for me\", \"Remove Old Furniture\"",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/thumnail.png",
-    links: [],
+    thumbnail: "assets/images/huml.jpg",
+    links: [
+      const LinkModel(
+        link:
+            "https://drive.google.com/file/d/1YXHPdoYh4WZM5kjTvxFi8525qoN-mLtP/view?usp=sharing",
+        type: LinkType.drive,
+      ),
+    ],
     idDid: [
       "Build a tracking Driver and Provide Totoal Estimate Time",
       "Make App Responsive",
@@ -117,7 +123,7 @@ List<WorkModel> works = [
         "This project is a Driver application for a Hum-L. It includes a variety featues for driver and live orders requests",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/thumnail.png",
+    thumbnail: "assets/images/huml_provider.jpg",
     links: [],
     idDid: [
       "Improve UI Features",
@@ -130,7 +136,7 @@ List<WorkModel> works = [
         "E-Commerce Application, has Two Module Vendor and Supplier, all have product to sell and another to buy with provide Payment Gateway",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/thumnail.png",
+    thumbnail: "assets/images/echo.jpg",
     links: [
       const LinkModel(
         link:
@@ -151,7 +157,7 @@ List<WorkModel> works = [
         "RealState Application, Provide large Units from many Developers and customize them in Categoreis and Developers Company and Preview and Buy",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/thumnail.png",
+    thumbnail: "assets/images/b2b.jpg",
     links: [
       const LinkModel(
         link:

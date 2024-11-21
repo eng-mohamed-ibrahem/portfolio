@@ -29,6 +29,8 @@ dependencies:
   font_awesome_flutter: ^10.8.0
   url_launcher: ^6.3.1
   avatar_glow: ^3.0.1
+  http: ^1.2.2
+  html: ^0.15.5
   # auto_size_text: ^3.0.0
 
 dev_dependencies:
@@ -51,6 +53,7 @@ flutter:
     - lib/config/l10n/translation/
     - assets/images/
     - assets/data/
+    - assets/files/
   
   fonts:
     - family: Tajawal

@@ -29,9 +29,9 @@ class _MainScreenState extends State<MainScreen> {
       'contact.title'.tr(),
     ];
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.h),
-        child: const Header(),
+      appBar: const PreferredSize(
+        preferredSize: Size.fromHeight(70),
+        child: Header(),
       ),
       body: widget.body,
       bottomNavigationBar: const BottomSection(),
