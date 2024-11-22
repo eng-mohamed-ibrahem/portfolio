@@ -115,7 +115,7 @@ class WorkCard extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           child: Image.asset(
             work.thumbnail!,
-            fit: BoxFit.contain,
+            fit: isWideScreen ? BoxFit.cover : BoxFit.fill,
           ),
         ),
         Text(

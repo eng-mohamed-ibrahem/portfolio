@@ -19,6 +19,11 @@
         "name": "Name",
         "email": "Email",
         "message": "Enter your Message",
-        "send": "Send"
+        "send": "Send",
+        "message_sent": "Your message has been sent successfully",
+        "email_error": "Please enter a valid email address",
+        "email_req" : "Please enter your email",
+        "name_error": "Please enter your name",
+        "message_error": "Please enter your message"
     }
 }

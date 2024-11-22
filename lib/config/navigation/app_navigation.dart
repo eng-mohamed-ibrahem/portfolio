@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import "package:go_router/go_router.dart";
 import 'package:portfolio/config/navigation/pages.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
+import 'package:portfolio/viewmodel/contact_viewmodel/contact_viewmodel.dart';
 import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
 
@@ -46,7 +47,10 @@ class AppNavigation {
           GoRoute(
             path: Routes.contact.path,
             name: Routes.contact.name,
-            builder: (context, state) => const Contact(),
+            builder: (context, state) => BlocProvider(
+              create: (context) => ContactViewmodel(),
+              child: const Contact(),
+            ),
           ),
         ],
       ),

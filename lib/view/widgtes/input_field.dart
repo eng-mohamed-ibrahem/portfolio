@@ -8,23 +8,39 @@ class InputField extends StatelessWidget {
     required this.controller,
     this.icon,
     this.maxLines,
+    this.validator,
   });
   final String hintText;
   final TextEditingController controller;
   final Widget? icon;
   final int? maxLines;
+  final String? Function(String? text)? validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        // border: InputBorder.none,
-        // focusedBorder: InputBorder.none,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(
             color: Color.fromRGBO(224, 224, 224, 1),
+            width: 2,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(
+            color: Color.fromRGBO(224, 224, 224, 1),
+            width: 2,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.red[700]!,
             width: 2,
           ),
         ),
@@ -35,8 +51,6 @@ class InputField extends StatelessWidget {
             width: 2,
           ),
         ),
-        // errorBorder: InputBorder.none,
-        // disabledBorder: InputBorder.none,
         contentPadding: const EdgeInsets.only(
           left: 15,
           bottom: 11,
