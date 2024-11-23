@@ -14,6 +14,10 @@
         "title": "Featured works",
         "header": "Works"
     },
+    "work_details":{
+        "preview": "Project Preview Videos",
+        "what_i_did": "What I Did"
+    },
     "contact": {
         "title": "Contact",
         "name": "Name",

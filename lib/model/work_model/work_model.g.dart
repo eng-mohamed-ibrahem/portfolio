@@ -12,7 +12,7 @@ _$WorkModelImpl _$$WorkModelImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String,
       date: DateTime.parse(json['date'] as String),
       type: json['type'] as String,
-      thumbnail: json['thumbnail'] as String?,
+      thumbnailUrl: json['thumbnailUrl'] as String,
       links: (json['links'] as List<dynamic>)
           .map((e) => LinkModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -26,7 +26,7 @@ Map<String, dynamic> _$$WorkModelImplToJson(_$WorkModelImpl instance) =>
       'description': instance.description,
       'date': instance.date.toIso8601String(),
       'type': instance.type,
-      'thumbnail': instance.thumbnail,
+      'thumbnailUrl': instance.thumbnailUrl,
       'links': instance.links,
       'idDid': instance.idDid,
     };

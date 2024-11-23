@@ -25,7 +25,13 @@ class WorksSection extends StatelessWidget {
       itemBuilder: (context, index, animation) {
         return InkWell(
           onTap: () {
-            context.pushNamed(Routes.works.name);
+            context.pushNamed(
+              Routes.workDetails.name,
+              pathParameters: {
+                'id': works[index].title,
+              },
+              extra: works[index],
+            );
           },
           child: _buildAnimatedItem(context, index, animation),
         );
@@ -60,14 +66,17 @@ class WorksSection extends StatelessWidget {
 List<WorkModel> works = [
   WorkModel(
     title: 'Hawkamah',
-    thumbnail: 'assets/images/hawkamah.jpg',
+    thumbnailUrl: 'assets/images/hawkamah_home.jpg',
     date: DateTime(2024),
     type: "Mobile Application",
     links: [
       const LinkModel(
-        link:
-            "https://drive.google.com/drive/folders/1YiPVad2YlQln7-t08MeNYsCi-lX0r_A4?usp=sharing",
-        type: LinkType.drive,
+        link: "https://www.youtube.com/embed/bDIsDVGvb7A",
+        type: LinkType.youtube,
+      ),
+      const LinkModel(
+        link: "https://www.youtube.com/embed/36M1ttlVDn8",
+        type: LinkType.youtube,
       ),
     ],
     description:
@@ -84,7 +93,7 @@ List<WorkModel> works = [
         "The \"Better One\" mobile application is designed to help users manage tasks, estimate time, and provide encouragement.",
     date: DateTime(2024),
     type: "Mobile Application",
-    thumbnail: "assets/images/better_one.jpg",
+    thumbnailUrl: "assets/images/better_one.jpg",
     links: [],
     idDid: [
       "Handle Background Service For Listening To User Interaction",
@@ -100,12 +109,15 @@ List<WorkModel> works = [
         "This project is a Flutter application for a transportation company. It includes a variety of features such as: \"Transport Furniture\", \"Cleaning After Transportation\", \"Carry it for me\", \"Remove Old Furniture\"",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/huml.jpg",
+    thumbnailUrl: "assets/images/huml.jpg",
     links: [
       const LinkModel(
-        link:
-            "https://drive.google.com/file/d/1YXHPdoYh4WZM5kjTvxFi8525qoN-mLtP/view?usp=sharing",
-        type: LinkType.drive,
+        link: "https://www.youtube.com/embed/VGo2sCdrtBU",
+        type: LinkType.youtube,
+      ),
+      const LinkModel(
+        link: "https://www.youtube.com/embed/SQUulfX6OOo",
+        type: LinkType.youtube,
       ),
     ],
     idDid: [
@@ -123,8 +135,13 @@ List<WorkModel> works = [
         "This project is a Driver application for a Hum-L. It includes a variety featues for driver and live orders requests",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/huml_provider.jpg",
-    links: [],
+    thumbnailUrl: "assets/images/huml_provider.jpg",
+    links: [
+      const LinkModel(
+        link: "https://www.youtube.com/embed/SQUulfX6OOo",
+        type: LinkType.youtube,
+      ),
+    ],
     idDid: [
       "Improve UI Features",
       "Fix Issue of Live Location",
@@ -136,13 +153,16 @@ List<WorkModel> works = [
         "E-Commerce Application, has Two Module Vendor and Supplier, all have product to sell and another to buy with provide Payment Gateway",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/echo.jpg",
+    thumbnailUrl: "assets/images/echo.jpg",
     links: [
       const LinkModel(
-        link:
-            "https://drive.google.com/file/d/17GIDXu603VRLg2Vn2e49WLd7We0kas9E/view?usp=sharing",
-        type: LinkType.drive,
-      )
+        link: "https://www.youtube.com/embed/jjrlEVlSx3k",
+        type: LinkType.youtube,
+      ),
+      const LinkModel(
+        link: "https://www.youtube.com/embed/EJI2TOP2sIM",
+        type: LinkType.youtube,
+      ),
     ],
     idDid: [
       "Build Vendor Section Of The App",
@@ -157,13 +177,12 @@ List<WorkModel> works = [
         "RealState Application, Provide large Units from many Developers and customize them in Categoreis and Developers Company and Preview and Buy",
     date: DateTime(2023),
     type: "Mobile Application",
-    thumbnail: "assets/images/b2b.jpg",
+    thumbnailUrl: "assets/images/b2b.jpg",
     links: [
       const LinkModel(
-        link:
-            "https://drive.google.com/file/d/1Ya2onib9m4kiIZfIcR98GfTTWoyvHlae/view?usp=sharing",
-        type: LinkType.drive,
-      )
+        link: "https://www.youtube.com/embed/4wziI7TykkM",
+        type: LinkType.youtube,
+      ),
     ],
     idDid: [
       "Build From [A-Z] RealState APP",
@@ -177,7 +196,7 @@ List<WorkModel> works = [
   //   description: "",
   //   date: DateTime(2023),
   //   type: "",
-  //   thumbnail: "",
+  //   thumbnailUrl: "",
   //   links: [],
   //   idDid: [],
   // ),

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import "package:go_router/go_router.dart";
 import 'package:portfolio/config/navigation/pages.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
+import 'package:portfolio/model/work_model/work_model.dart';
 import 'package:portfolio/viewmodel/contact_viewmodel/contact_viewmodel.dart';
 import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
@@ -43,6 +44,17 @@ class AppNavigation {
             path: Routes.works.path,
             name: Routes.works.name,
             builder: (context, state) => const Works(),
+            routes: [
+              GoRoute(
+                path: Routes.workDetails.path,
+                name: Routes.workDetails.name,
+                builder: (context, state) {
+                  return WorkDetails(
+                    work: state.extra as WorkModel,
+                  );
+                },
+              ),
+            ],
           ),
           GoRoute(
             path: Routes.contact.path,

@@ -12,7 +12,7 @@ class WorkModel with _$WorkModel {
     required String description,
     required DateTime date,
     required String type,
-    String? thumbnail,
+    required String thumbnailUrl,
     required List<LinkModel> links,
     List<String>? idDid,
   }) = _WorkModel;
@@ -26,6 +26,12 @@ enum LinkType {
     Icon(
       FontAwesomeIcons.github,
       color: Colors.black,
+    ),
+  ),
+  youtube(
+    Icon(
+      FontAwesomeIcons.youtube,
+      color: Colors.red,
     ),
   ),
   drive(

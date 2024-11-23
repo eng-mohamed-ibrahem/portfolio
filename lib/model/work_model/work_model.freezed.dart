@@ -24,7 +24,7 @@ mixin _$WorkModel {
   String get description => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  String? get thumbnail => throw _privateConstructorUsedError;
+  String get thumbnailUrl => throw _privateConstructorUsedError;
   List<LinkModel> get links => throw _privateConstructorUsedError;
   List<String>? get idDid => throw _privateConstructorUsedError;
 
@@ -48,7 +48,7 @@ abstract class $WorkModelCopyWith<$Res> {
       String description,
       DateTime date,
       String type,
-      String? thumbnail,
+      String thumbnailUrl,
       List<LinkModel> links,
       List<String>? idDid});
 }
@@ -72,7 +72,7 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
     Object? description = null,
     Object? date = null,
     Object? type = null,
-    Object? thumbnail = freezed,
+    Object? thumbnailUrl = null,
     Object? links = null,
     Object? idDid = freezed,
   }) {
@@ -93,10 +93,10 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       links: null == links
           ? _value.links
           : links // ignore: cast_nullable_to_non_nullable
@@ -122,7 +122,7 @@ abstract class _$$WorkModelImplCopyWith<$Res>
       String description,
       DateTime date,
       String type,
-      String? thumbnail,
+      String thumbnailUrl,
       List<LinkModel> links,
       List<String>? idDid});
 }
@@ -144,7 +144,7 @@ class __$$WorkModelImplCopyWithImpl<$Res>
     Object? description = null,
     Object? date = null,
     Object? type = null,
-    Object? thumbnail = freezed,
+    Object? thumbnailUrl = null,
     Object? links = null,
     Object? idDid = freezed,
   }) {
@@ -165,10 +165,10 @@ class __$$WorkModelImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail: freezed == thumbnail
-          ? _value.thumbnail
-          : thumbnail // ignore: cast_nullable_to_non_nullable
-              as String?,
+      thumbnailUrl: null == thumbnailUrl
+          ? _value.thumbnailUrl
+          : thumbnailUrl // ignore: cast_nullable_to_non_nullable
+              as String,
       links: null == links
           ? _value._links
           : links // ignore: cast_nullable_to_non_nullable
@@ -189,7 +189,7 @@ class _$WorkModelImpl implements _WorkModel {
       required this.description,
       required this.date,
       required this.type,
-      this.thumbnail,
+      required this.thumbnailUrl,
       required final List<LinkModel> links,
       final List<String>? idDid})
       : _links = links,
@@ -207,7 +207,7 @@ class _$WorkModelImpl implements _WorkModel {
   @override
   final String type;
   @override
-  final String? thumbnail;
+  final String thumbnailUrl;
   final List<LinkModel> _links;
   @override
   List<LinkModel> get links {
@@ -228,7 +228,7 @@ class _$WorkModelImpl implements _WorkModel {
 
   @override
   String toString() {
-    return 'WorkModel(title: $title, description: $description, date: $date, type: $type, thumbnail: $thumbnail, links: $links, idDid: $idDid)';
+    return 'WorkModel(title: $title, description: $description, date: $date, type: $type, thumbnailUrl: $thumbnailUrl, links: $links, idDid: $idDid)';
   }
 
   @override
@@ -241,8 +241,8 @@ class _$WorkModelImpl implements _WorkModel {
                 other.description == description) &&
             (identical(other.date, date) || other.date == date) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.thumbnail, thumbnail) ||
-                other.thumbnail == thumbnail) &&
+            (identical(other.thumbnailUrl, thumbnailUrl) ||
+                other.thumbnailUrl == thumbnailUrl) &&
             const DeepCollectionEquality().equals(other._links, _links) &&
             const DeepCollectionEquality().equals(other._idDid, _idDid));
   }
@@ -255,7 +255,7 @@ class _$WorkModelImpl implements _WorkModel {
       description,
       date,
       type,
-      thumbnail,
+      thumbnailUrl,
       const DeepCollectionEquality().hash(_links),
       const DeepCollectionEquality().hash(_idDid));
 
@@ -281,7 +281,7 @@ abstract class _WorkModel implements WorkModel {
       required final String description,
       required final DateTime date,
       required final String type,
-      final String? thumbnail,
+      required final String thumbnailUrl,
       required final List<LinkModel> links,
       final List<String>? idDid}) = _$WorkModelImpl;
 
@@ -297,7 +297,7 @@ abstract class _WorkModel implements WorkModel {
   @override
   String get type;
   @override
-  String? get thumbnail;
+  String get thumbnailUrl;
   @override
   List<LinkModel> get links;
   @override
