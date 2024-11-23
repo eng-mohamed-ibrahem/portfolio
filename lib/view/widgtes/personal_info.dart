@@ -99,17 +99,17 @@ class PersonalInfo extends StatelessWidget {
     );
   }
 
-  void _downloadResume(String resumeUrl) async {
-    final response = await http.get(Uri.parse(resumeUrl));
-    final bytes = response.bodyBytes;
-    final blob = html.Blob([bytes]);
-    final blobUrl = html.Url.createObjectUrlFromBlob(blob);
-    final anchor = html.AnchorElement(href: blobUrl)
-      ..setAttribute('download', 'mohamed_ibrahem_flutter_developer.pdf')
-      ..click();
-    html.Url.revokeObjectUrl(blobUrl);
-    anchor.remove();
-  }
+  // void _downloadResume(String resumeUrl) async {
+  //   final response = await http.get(Uri.parse(resumeUrl));
+  //   final bytes = response.bodyBytes;
+  //   final blob = html.Blob([bytes]);
+  //   final blobUrl = html.Url.createObjectUrlFromBlob(blob);
+  //   final anchor = html.AnchorElement(href: blobUrl)
+  //     ..setAttribute('download', 'mohamed_ibrahem_flutter_developer.pdf')
+  //     ..click();
+  //   html.Url.revokeObjectUrl(blobUrl);
+  //   anchor.remove();
+  // }
 
   void _downloadLocaleResume(String url) {
     var anchor = html.AnchorElement(href: url);

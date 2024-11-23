@@ -44,6 +44,7 @@ class _ContactState extends State<Contact> {
       body: Form(
         key: formKey,
         child: ListView(
+          physics: const NeverScrollableScrollPhysics(),
           padding: EdgeInsets.symmetric(
             horizontal: MediaQuery.sizeOf(context).width > 600
                 ? MediaQuery.sizeOf(context).width * 0.12

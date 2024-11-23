@@ -26,7 +26,8 @@ class ContactViewmodel extends Cubit<ContactViewmodelState> {
             'user_name': message.name, // Sender's name
             'user_email': message.email, // Sender's email
             'user_message': message.message, // The message
-            // 'to_email': recipientEmail // Specific user to receive the email
+            'to_email':
+                "${message.email},mohamed.data13@gmail.com", // Specific user to receive the email
           },
         }),
       );

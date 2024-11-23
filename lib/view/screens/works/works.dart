@@ -10,21 +10,24 @@ class Works extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      body: Padding(
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.sizeOf(context).width > 600
               ? MediaQuery.sizeOf(context).width * 0.12
               : 10.w,
           vertical: 5.h,
         ),
-        children: [
-          Text(
-            "works.header".tr(),
-            style: AppTextStyles.bodyLarge,
-          ),
-          SizedBox(height: 30.h),
-          const WorksSection(),
-        ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "works.header".tr(),
+              style: AppTextStyles.bodyLarge,
+            ),
+            SizedBox(height: 30.h),
+            const Expanded(child: WorksSection()),
+          ],
+        ),
       ),
     );
   }

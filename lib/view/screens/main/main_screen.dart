@@ -69,6 +69,14 @@ class _MainScreenState extends State<MainScreen> {
                         children: List.generate(
                           titles.length,
                           (index) => TextButton(
+                            // take avilable space
+                            style: TextButton.styleFrom(
+                              alignment: AlignmentDirectional.centerStart,
+                              minimumSize: Size(
+                                double.infinity,
+                                30.h,
+                              ),
+                            ),
                             onPressed: () {
                               context
                                   .read<MainViewmodel>()

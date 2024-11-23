@@ -22,10 +22,11 @@ class WorksSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return LiveList.options(
       shrinkWrap: true,
+      // physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index, animation) {
         return InkWell(
           onTap: () {
-            context.pushNamed(
+            context.goNamed(
               Routes.workDetails.name,
               pathParameters: {
                 'id': works[index].title,
