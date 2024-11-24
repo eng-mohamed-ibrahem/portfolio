@@ -10,7 +10,8 @@ class Works extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
+      body: SingleChildScrollView(
+        restorationId: "works_scroll",
         padding: EdgeInsets.symmetric(
           horizontal: MediaQuery.sizeOf(context).width > 600
               ? MediaQuery.sizeOf(context).width * 0.12
@@ -25,7 +26,7 @@ class Works extends StatelessWidget {
               style: AppTextStyles.bodyLarge,
             ),
             SizedBox(height: 30.h),
-            const Expanded(child: WorksSection()),
+            const WorksSection(),
           ],
         ),
       ),

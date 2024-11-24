@@ -133,7 +133,7 @@ class _WorkDetailsState extends State<WorkDetails> {
           ListView.separated(
             itemCount: widget.work.links.length,
             shrinkWrap: true,
-            itemBuilder: (context, index) {
+            itemBuilder: (_, index) {
               return Container(
                 clipBehavior: Clip.antiAlias,
                 height: MediaQuery.sizeOf(context).height * 0.4,
@@ -150,7 +150,8 @@ class _WorkDetailsState extends State<WorkDetails> {
             padding: EdgeInsets.zero,
           ),
           SizedBox(height: 20.h),
-          // what i did
+
+          /// what i did
           Text(
             "work_details.what_i_did".tr(),
             style: AppTextStyles.bodyLarge,

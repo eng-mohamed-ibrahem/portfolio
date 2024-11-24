@@ -33,38 +33,41 @@ class _HomeState extends State<Home> {
       body: AnimateIfVisibleWrapper(
         // Show each item through
         showItemInterval: const Duration(milliseconds: 300),
-        child: ListView(
-          shrinkWrap: true,
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(10),
-          children: [
-            const PersonalInfo(),
-            SizedBox(height: 20.h),
-            Text(
-              "skills.title".tr(),
-              style: AppTextStyles.bodySmall,
-            ),
-            const SizedBox(height: 5),
-            const SkillsSection(),
-            SizedBox(height: 20.h),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.sizeOf(context).width > 600
-                    ? MediaQuery.sizeOf(context).width * 0.12
-                    : 10.w,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const PersonalInfo(),
+              SizedBox(height: 20.h),
+              Text(
+                "skills.title".tr(),
+                style: AppTextStyles.bodySmall,
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "works.title".tr(),
-                    style: AppTextStyles.bodySmall,
-                  ),
-                  const SizedBox(height: 5),
-                  const WorksSection(),
-                ],
+              const SizedBox(height: 5),
+              const SkillsSection(),
+              SizedBox(height: 20.h),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: MediaQuery.sizeOf(context).width > 600
+                      ? MediaQuery.sizeOf(context).width * 0.12
+                      : 10.w,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "works.title".tr(),
+                      style: AppTextStyles.bodySmall,
+                    ),
+                    const SizedBox(height: 5),
+                    const WorksSection(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

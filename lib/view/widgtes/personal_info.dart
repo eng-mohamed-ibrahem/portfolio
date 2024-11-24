@@ -4,7 +4,6 @@ import 'package:auto_animated/auto_animated.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:http/http.dart' as http;
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/app_images/app_images.dart';
 

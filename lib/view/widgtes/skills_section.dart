@@ -31,6 +31,7 @@ class _SkillsSectionState extends State<SkillsSection> {
               : null;
         },
         child: Container(
+          width: double.maxFinite,
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
