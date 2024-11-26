@@ -68,15 +68,16 @@ class PersonalInfo extends StatelessWidget {
         ),
         SizedBox(height: 15.h),
         Text(
-          "I'm a software engineer with a passion for creating innovative and user-friendly applications.",
+          "I'm a Software Engineer With a Passion For Creating Innovative And User-Friendly Applications.",
           textAlign: isWideScreen ? TextAlign.start : TextAlign.center,
           style: AppTextStyles.bodyMedium,
         ),
         SizedBox(height: 25.h),
         ElevatedButton(
           onPressed: () {
-            _downloadLocaleResume(
-                'assets/files/mohamed_ibrahem_flutter_developer.pdf');
+            openResume('assets/files/mohamed_ibrahem_flutter_developer.pdf');
+            // _downloadLocaleResume(
+            //     'assets/files/mohamed_ibrahem_flutter_developer.pdf');
             // _downloadResume(
             //   'https://drive.google.com/uc?export=download&id=1nNK0Y8SRy1wXRrrgPX4kHt1gxzedXlgm',
             // );
@@ -110,8 +111,13 @@ class PersonalInfo extends StatelessWidget {
   //   anchor.remove();
   // }
 
-  void _downloadLocaleResume(String url) {
-    var anchor = html.AnchorElement(href: url);
+  void openResume(String pathUrl) {
+    html.window.open(pathUrl, "mohamed_ibrahem_flutter_developer.pdf");
+  }
+
+  void _downloadLocaleResume(String pathUrl) async {
+    var anchor = html.AnchorElement(href: pathUrl);
+    anchor.target = 'blank';
     anchor.download = "mohamed_ibrahem_flutter_developer.pdf";
     anchor.click();
     anchor.remove();

@@ -49,6 +49,7 @@ class AppNavigation {
                 path: Routes.workDetails.path,
                 name: Routes.workDetails.name,
                 builder: (context, state) {
+                  context.read<MainViewmodel>().setSelectedTab(1);
                   return WorkDetails(
                     work: state.extra as WorkModel,
                   );

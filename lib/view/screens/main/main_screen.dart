@@ -63,42 +63,46 @@ class _MainScreenState extends State<MainScreen> {
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                           horizontal: 10.w, vertical: 10.h),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: List.generate(
-                          titles.length,
-                          (index) => TextButton(
-                            // take avilable space
-                            style: TextButton.styleFrom(
-                              alignment: AlignmentDirectional.centerStart,
-                              minimumSize: Size(
-                                double.infinity,
-                                30.h,
+                      child: BlocBuilder<MainViewmodel, MainViewModelState>(
+                        builder: (context, state) {
+                          return Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(
+                              titles.length,
+                              (index) => TextButton(
+                                // take avilable space
+                                style: TextButton.styleFrom(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  minimumSize: Size(
+                                    double.infinity,
+                                    30.h,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  context
+                                      .read<MainViewmodel>()
+                                      .setSelectedTab(index);
+                                  Navigator.pop(context);
+                                  context.go(Routes.values[index].path);
+                                },
+                                child: Text(
+                                  titles[index],
+                                  style: AppTextStyles.bodySmall.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10.sp,
+                                    color: context
+                                                .read<MainViewmodel>()
+                                                .currentTapIndex ==
+                                            index
+                                        ? AppColors.primary
+                                        : null,
+                                  ),
+                                ),
                               ),
                             ),
-                            onPressed: () {
-                              context
-                                  .read<MainViewmodel>()
-                                  .setSelectedTab(index);
-                              Navigator.pop(context);
-                              context.go(Routes.values[index].path);
-                            },
-                            child: Text(
-                              titles[index],
-                              style: AppTextStyles.bodySmall.copyWith(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 10.sp,
-                                color: context
-                                            .read<MainViewmodel>()
-                                            .currentTapIndex ==
-                                        index
-                                    ? AppColors.primary
-                                    : null,
-                              ),
-                            ),
-                          ),
-                        ),
+                          );
+                        },
                       ),
                     ),
                   ),
