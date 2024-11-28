@@ -154,25 +154,26 @@ class _WorkDetailsState extends State<WorkDetails> {
           ),
           SizedBox(height: 10.h),
           if (_work.idDid != null)
-            Container(
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                border: Border.all(color: AppColors.light),
-                borderRadius: BorderRadius.circular(10.r),
-              ),
-              child: Column(
-                children: List.generate(
-                  _work.idDid!.length,
-                  (index) => ListTile(
-                    leading: const Icon(Icons.check),
-                    title: Text(
-                      _work.idDid![index],
-                      style: AppTextStyles.bodyMedium,
+            if (_work.idDid != null)
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.light),
+                  borderRadius: BorderRadius.circular(10.r),
+                ),
+                child: Column(
+                  children: List.generate(
+                    _work.idDid!.length,
+                    (index) => ListTile(
+                      leading: const Icon(Icons.check),
+                      title: Text(
+                        _work.idDid![index],
+                        style: AppTextStyles.bodyMedium,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
           SizedBox(height: 20.h),
         ],
       ),

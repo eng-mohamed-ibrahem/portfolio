@@ -77,11 +77,6 @@ class PersonalInfo extends StatelessWidget {
           onPressed: () {
             openResume(
                 'https://drive.google.com/file/d/1iE5afYE0nIKZd7wdteuMnycwPWruYWK4/view?usp=drive_link');
-            // _downloadLocaleResume(
-            //     'assets/files/mohamed_ibrahem_flutter_developer.pdf');
-            // _downloadResume(
-            //   'https://drive.google.com/uc?export=download&id=1nNK0Y8SRy1wXRrrgPX4kHt1gxzedXlgm',
-            // );
           },
           child: Text(
             "home.personal_info.download_resume".tr(),
@@ -116,7 +111,7 @@ class PersonalInfo extends StatelessWidget {
     html.window.open(pathUrl, "mohamed_ibrahem_flutter_developer.pdf");
   }
 
-  void _downloadLocaleResume(String pathUrl) async {
+  void downloadLocaleResume(String pathUrl) async {
     var anchor = html.AnchorElement(href: pathUrl);
     anchor.target = 'blank';
     anchor.download = "mohamed_ibrahem_flutter_developer.pdf";
