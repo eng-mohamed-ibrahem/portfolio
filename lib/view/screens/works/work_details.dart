@@ -10,11 +10,11 @@ import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/utils/websites_laucnher/websites_launcher.dart';
 import 'package:portfolio/model/work_model/work_model.dart';
-import 'package:portfolio/viewmodel/work_details_viewmodel/work_details_viewmodel.dart';
+import 'package:portfolio/viewmodel/works_viewmodel/work_viewmodel.dart';
 
 class WorkDetails extends StatefulWidget {
-  const WorkDetails({super.key, required this.work});
-  final WorkModel work;
+  const WorkDetails({super.key, required this.id});
+  final String id;
 
   @override
   State<WorkDetails> createState() => _WorkDetailsState();
@@ -27,11 +27,8 @@ class _WorkDetailsState extends State<WorkDetails> {
 
   @override
   void initState() {
-    var cubit = context.read<WorkDetailsViewModel>();
-    context.read<WorkDetailsViewModel>().currentWorkDetails == null
-        ? cubit.currentWorkDetails = widget.work
-        : null;
-    _work = cubit.currentWorkDetails ?? widget.work;
+    var cubit = context.read<WorkViewModel>();
+    _work = cubit.works.firstWhere((element) => element.id == widget.id);
     super.initState();
   }
 
@@ -86,26 +83,6 @@ class _WorkDetailsState extends State<WorkDetails> {
             _work.description,
             style: AppTextStyles.bodyMedium,
           ),
-          // SizedBox(height: 10.h),
-          // Container(
-          //   clipBehavior: Clip.antiAlias,
-          //   padding: EdgeInsets.symmetric(horizontal: 5.w),
-          //   decoration: BoxDecoration(
-          //     border: Border.all(color: AppColors.light),
-          //     borderRadius: BorderRadius.circular(10.r),
-          //   ),
-          //   child: Row(
-          //     children: [
-          //       ...List.generate(
-          //         _work.links.length,
-          //         (index) => IconButton(
-          //           onPressed: () {},
-          //           icon: _work.links[index].type.icon,
-          //         ),
-          //       ),
-          //     ],
-          //   ),
-          // ),
           SizedBox(height: 20.h),
           Container(
             clipBehavior: Clip.antiAlias,
@@ -149,6 +126,7 @@ class _WorkDetailsState extends State<WorkDetails> {
                       : IconButton(
                           style: IconButton.styleFrom(
                             fixedSize: Size(65.w, 65.h),
+                            overlayColor: Colors.transparent,
                           ),
                           onPressed: () {
                             WebsitesLauncher.launchWebsite(
@@ -267,10 +245,12 @@ class IFrameEmbedded extends StatelessWidget {
           ),
 
           // Play Button Overlay
-          const Icon(
-            FontAwesomeIcons.youtube,
-            size: 50,
-            color: Colors.red,
+          const Center(
+            child: Icon(
+              FontAwesomeIcons.youtube,
+              size: 50,
+              color: Colors.red,
+            ),
           ),
         ],
       ),

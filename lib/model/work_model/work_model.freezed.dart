@@ -20,6 +20,7 @@ WorkModel _$WorkModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$WorkModel {
+  String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
@@ -44,7 +45,8 @@ abstract class $WorkModelCopyWith<$Res> {
       _$WorkModelCopyWithImpl<$Res, WorkModel>;
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String description,
       DateTime date,
       String type,
@@ -68,6 +70,7 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? date = null,
@@ -77,6 +80,10 @@ class _$WorkModelCopyWithImpl<$Res, $Val extends WorkModel>
     Object? idDid = freezed,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -118,7 +125,8 @@ abstract class _$$WorkModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {String id,
+      String title,
       String description,
       DateTime date,
       String type,
@@ -140,6 +148,7 @@ class __$$WorkModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? description = null,
     Object? date = null,
@@ -149,6 +158,10 @@ class __$$WorkModelImplCopyWithImpl<$Res>
     Object? idDid = freezed,
   }) {
     return _then(_$WorkModelImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -185,7 +198,8 @@ class __$$WorkModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WorkModelImpl implements _WorkModel {
   const _$WorkModelImpl(
-      {required this.title,
+      {required this.id,
+      required this.title,
       required this.description,
       required this.date,
       required this.type,
@@ -198,6 +212,8 @@ class _$WorkModelImpl implements _WorkModel {
   factory _$WorkModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WorkModelImplFromJson(json);
 
+  @override
+  final String id;
   @override
   final String title;
   @override
@@ -228,7 +244,7 @@ class _$WorkModelImpl implements _WorkModel {
 
   @override
   String toString() {
-    return 'WorkModel(title: $title, description: $description, date: $date, type: $type, thumbnailUrl: $thumbnailUrl, links: $links, idDid: $idDid)';
+    return 'WorkModel(id: $id, title: $title, description: $description, date: $date, type: $type, thumbnailUrl: $thumbnailUrl, links: $links, idDid: $idDid)';
   }
 
   @override
@@ -236,6 +252,7 @@ class _$WorkModelImpl implements _WorkModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorkModelImpl &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.description, description) ||
                 other.description == description) &&
@@ -251,6 +268,7 @@ class _$WorkModelImpl implements _WorkModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
       title,
       description,
       date,
@@ -277,7 +295,8 @@ class _$WorkModelImpl implements _WorkModel {
 
 abstract class _WorkModel implements WorkModel {
   const factory _WorkModel(
-      {required final String title,
+      {required final String id,
+      required final String title,
       required final String description,
       required final DateTime date,
       required final String type,
@@ -288,6 +307,8 @@ abstract class _WorkModel implements WorkModel {
   factory _WorkModel.fromJson(Map<String, dynamic> json) =
       _$WorkModelImpl.fromJson;
 
+  @override
+  String get id;
   @override
   String get title;
   @override

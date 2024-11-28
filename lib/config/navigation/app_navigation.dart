@@ -3,11 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import "package:go_router/go_router.dart";
 import 'package:portfolio/config/navigation/pages.dart';
 import 'package:portfolio/config/navigation/routes_enum.dart';
-import 'package:portfolio/model/work_model/work_model.dart';
 import 'package:portfolio/viewmodel/contact_viewmodel/contact_viewmodel.dart';
 import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
 import 'package:portfolio/viewmodel/work_details_viewmodel/work_details_viewmodel.dart';
+import 'package:portfolio/viewmodel/works_viewmodel/work_viewmodel.dart';
 
 class AppNavigation {
   AppNavigation._();
@@ -27,8 +27,15 @@ class AppNavigation {
       ShellRoute(
         navigatorKey: _shellNavigatorKey,
         builder: (BuildContext context, GoRouterState state, Widget child) {
-          return BlocProvider(
-            create: (context) => MainViewmodel(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => MainViewmodel(),
+              ),
+              BlocProvider(
+                create: (context) => WorkViewModel(),
+              ),
+            ],
             child: MainScreen(body: child),
           );
         },
@@ -54,7 +61,7 @@ class AppNavigation {
                   return BlocProvider(
                     create: (context) => WorkDetailsViewModel(),
                     child: WorkDetails(
-                      work: state.extra as WorkModel,
+                      id: state.pathParameters['id']!,
                     ),
                   );
                 },

@@ -8,6 +8,7 @@ part 'work_model.g.dart';
 @freezed
 class WorkModel with _$WorkModel {
   const factory WorkModel({
+    required String id,
     required String title,
     required String description,
     required DateTime date,

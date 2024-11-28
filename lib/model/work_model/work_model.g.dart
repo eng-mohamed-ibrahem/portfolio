@@ -8,6 +8,7 @@ part of 'work_model.dart';
 
 _$WorkModelImpl _$$WorkModelImplFromJson(Map<String, dynamic> json) =>
     _$WorkModelImpl(
+      id: json['id'] as String,
       title: json['title'] as String,
       description: json['description'] as String,
       date: DateTime.parse(json['date'] as String),
@@ -22,6 +23,7 @@ _$WorkModelImpl _$$WorkModelImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$WorkModelImplToJson(_$WorkModelImpl instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'description': instance.description,
       'date': instance.date.toIso8601String(),
@@ -45,6 +47,7 @@ Map<String, dynamic> _$$LinkModelImplToJson(_$LinkModelImpl instance) =>
 
 const _$LinkTypeEnumMap = {
   LinkType.github: 'github',
+  LinkType.youtube: 'youtube',
   LinkType.drive: 'drive',
   LinkType.apk: 'apk',
 };

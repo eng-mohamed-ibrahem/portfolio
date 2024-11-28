@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
                   Expanded(
                     child: Divider(
                       thickness: 2,
-                      height: 50.h,
+                      height: 10.h,
                       endIndent: 5.w,
                       indent: 5.w,
                       color: const Color.fromRGBO(224, 224, 224, 1),
@@ -79,7 +79,7 @@ class _HomeState extends State<Home> {
                         Expanded(
                           child: Divider(
                             thickness: 2,
-                            height: 50.h,
+                            height: 10.h,
                             endIndent: 5.w,
                             indent: 5.w,
                             color: const Color.fromRGBO(224, 224, 224, 1),
