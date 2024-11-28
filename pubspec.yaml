@@ -32,6 +32,8 @@ dependencies:
   http: ^1.2.2
   html: ^0.15.5
   flutter_inappwebview: ^6.1.5
+  youtube_player_iframe: ^5.2.1
+  sentry_flutter: ^8.10.1
   # auto_size_text: ^3.0.0
 
 dev_dependencies:

@@ -3,10 +3,12 @@ import 'dart:ui_web' as ui_web;
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
-import 'package:portfolio/model/work_model/work_model.dart'; // For HTML iframe
+import 'package:portfolio/model/work_model/work_model.dart';
+import 'package:portfolio/viewmodel/work_details_viewmodel/work_details_viewmodel.dart';
 
 class WorkDetails extends StatefulWidget {
   const WorkDetails({super.key, required this.work});
@@ -18,8 +20,16 @@ class WorkDetails extends StatefulWidget {
 
 class _WorkDetailsState extends State<WorkDetails> {
   final ScrollController scrollController = ScrollController();
+
+  late final WorkModel _work;
+
   @override
   void initState() {
+    var cubit = context.read<WorkDetailsViewModel>();
+    context.read<WorkDetailsViewModel>().currentWorkDetails == null
+        ? cubit.currentWorkDetails = widget.work
+        : null;
+    _work = cubit.currentWorkDetails ?? widget.work;
     super.initState();
   }
 
@@ -27,22 +37,6 @@ class _WorkDetailsState extends State<WorkDetails> {
   void dispose() {
     scrollController.dispose();
     super.dispose();
-  }
-
-  Widget _iframe(String url) {
-    final IFrameElement iFrameElement = IFrameElement();
-    iFrameElement.width = '100%';
-    iFrameElement.height = '100%';
-    iFrameElement.src = url;
-    iFrameElement.style.border = 'none';
-    ui_web.platformViewRegistry.registerViewFactory(
-      'iframeElement$url',
-      (int viewId) => iFrameElement,
-    );
-    return HtmlElementView(
-      viewType: 'iframeElement$url',
-      key: UniqueKey(),
-    );
   }
 
   @override
@@ -59,7 +53,7 @@ class _WorkDetailsState extends State<WorkDetails> {
         ),
         children: [
           Text(
-            widget.work.title,
+            _work.title,
             style: AppTextStyles.bodyLarge,
           ),
           SizedBox(height: 10.h),
@@ -72,13 +66,13 @@ class _WorkDetailsState extends State<WorkDetails> {
                   borderRadius: BorderRadius.circular(15.r),
                 ),
                 child: Text(
-                  widget.work.date.year.toString(),
+                  _work.date.year.toString(),
                   style: AppTextStyles.textButton,
                 ),
               ),
               SizedBox(width: 10.w),
               Text(
-                widget.work.type,
+                _work.type,
                 style: AppTextStyles.light,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
@@ -87,7 +81,7 @@ class _WorkDetailsState extends State<WorkDetails> {
           ),
           SizedBox(height: 20.h),
           Text(
-            widget.work.description,
+            _work.description,
             style: AppTextStyles.bodyMedium,
           ),
           // SizedBox(height: 10.h),
@@ -101,10 +95,10 @@ class _WorkDetailsState extends State<WorkDetails> {
           //   child: Row(
           //     children: [
           //       ...List.generate(
-          //         work.links.length,
+          //         _work.links.length,
           //         (index) => IconButton(
           //           onPressed: () {},
-          //           icon: work.links[index].type.icon,
+          //           icon: _work.links[index].type.icon,
           //         ),
           //       ),
           //     ],
@@ -118,7 +112,7 @@ class _WorkDetailsState extends State<WorkDetails> {
               borderRadius: BorderRadius.circular(10.r),
             ),
             child: Image.asset(
-              widget.work.thumbnailUrl,
+              _work.thumbnailUrl,
               fit: BoxFit.contain,
               isAntiAlias: true,
               height: MediaQuery.sizeOf(context).height * 0.3,
@@ -130,24 +124,26 @@ class _WorkDetailsState extends State<WorkDetails> {
             style: AppTextStyles.bodyLarge,
           ),
           SizedBox(height: 10.h),
-          ListView.separated(
-            itemCount: widget.work.links.length,
-            shrinkWrap: true,
-            itemBuilder: (_, index) {
-              return Container(
-                clipBehavior: Clip.antiAlias,
-                height: MediaQuery.sizeOf(context).height * 0.4,
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.light),
-                  borderRadius: BorderRadius.circular(10.r),
-                ),
-                child: _iframe(widget.work.links[index].link),
-              );
-            },
-            separatorBuilder: (context, index) {
-              return SizedBox(height: 20.h);
-            },
-            padding: EdgeInsets.zero,
+          SizedBox(
+            height: 65.h,
+            child: ListView.separated(
+              itemCount: _work.links.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (_, index) {
+                // if (_work.links[index].type == LinkType.youtube) {
+                //   return IFrameEmbedded(
+                //     url: _work.links[index].link,
+                //   );
+                // }
+                return IFrameEmbedded(
+                  url: _work.links[index].link,
+                );
+              },
+              separatorBuilder: (context, index) {
+                return SizedBox(width: 10.w);
+              },
+              padding: EdgeInsets.zero,
+            ),
           ),
           SizedBox(height: 20.h),
 
@@ -157,7 +153,7 @@ class _WorkDetailsState extends State<WorkDetails> {
             style: AppTextStyles.bodyLarge,
           ),
           SizedBox(height: 10.h),
-          if (widget.work.idDid != null)
+          if (_work.idDid != null)
             Container(
               clipBehavior: Clip.antiAlias,
               decoration: BoxDecoration(
@@ -166,11 +162,11 @@ class _WorkDetailsState extends State<WorkDetails> {
               ),
               child: Column(
                 children: List.generate(
-                  widget.work.idDid!.length,
+                  _work.idDid!.length,
                   (index) => ListTile(
                     leading: const Icon(Icons.check),
                     title: Text(
-                      widget.work.idDid![index],
+                      _work.idDid![index],
                       style: AppTextStyles.bodyMedium,
                     ),
                   ),
@@ -179,6 +175,88 @@ class _WorkDetailsState extends State<WorkDetails> {
             ),
           SizedBox(height: 20.h),
         ],
+      ),
+    );
+  }
+}
+
+class IFrameEmbedded extends StatelessWidget {
+  const IFrameEmbedded({super.key, required this.url});
+
+  final String url;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        String viewType = 'iframeElement$url';
+        IFrameElement iFrameElement = IFrameElement();
+        iFrameElement.width = '100%';
+        iFrameElement.height = '100%';
+        iFrameElement.src = url;
+        iFrameElement.style.border = 'none';
+        iFrameElement.allowFullscreen = true;
+        // iFrameElement.style.pointerEvents = 'none';
+        viewType = 'iframeElement$url';
+        ui_web.platformViewRegistry.registerViewFactory(
+          viewType,
+          (int viewId) => iFrameElement,
+        );
+        showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            content: SizedBox(
+              height: MediaQuery.sizeOf(context).height * 0.4,
+              width: MediaQuery.sizeOf(context).width * 0.4,
+              child: HtmlElementView(
+                viewType: viewType,
+                key: UniqueKey(),
+              ),
+            ),
+          ),
+        );
+      },
+      child: Container(
+        constraints: BoxConstraints.tight(
+          Size(65.w, 65.h),
+        ),
+        clipBehavior: Clip.antiAlias,
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          border: Border.all(color: AppColors.light),
+          borderRadius: BorderRadius.circular(10.r),
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // YouTube Thumbnail
+            Image.network(
+              "https://i.ytimg.com/vi/${url.split("/").last}/sddefault.jpg",
+              fit: BoxFit.contain,
+              height: 65.h,
+              width: 65.w,
+              loadingBuilder: (context, child, loadingProgress) {
+                if (loadingProgress == null) return child;
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: AppColors.primary,
+                  ),
+                );
+              },
+              errorBuilder: (context, error, stackTrace) {
+                return const Center(child: Icon(Icons.broken_image, size: 50));
+              },
+            ),
+
+            // Play Button Overlay
+            const Icon(
+              Icons.play_circle_fill,
+              color: AppColors.primary,
+              size: 50,
+            ),
+          ],
+        ),
       ),
     );
   }

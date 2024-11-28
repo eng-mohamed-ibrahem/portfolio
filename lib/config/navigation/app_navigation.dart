@@ -7,6 +7,7 @@ import 'package:portfolio/model/work_model/work_model.dart';
 import 'package:portfolio/viewmodel/contact_viewmodel/contact_viewmodel.dart';
 import 'package:portfolio/viewmodel/main_viewmodel/main_viewmodel.dart';
 import 'package:portfolio/viewmodel/skills_viewmodel/skills_viewmodel.dart';
+import 'package:portfolio/viewmodel/work_details_viewmodel/work_details_viewmodel.dart';
 
 class AppNavigation {
   AppNavigation._();
@@ -49,8 +50,12 @@ class AppNavigation {
                 path: Routes.workDetails.path,
                 name: Routes.workDetails.name,
                 builder: (context, state) {
-                  return WorkDetails(
-                    work: state.extra as WorkModel,
+                  context.read<MainViewmodel>().setSelectedTab(1);
+                  return BlocProvider(
+                    create: (context) => WorkDetailsViewModel(),
+                    child: WorkDetails(
+                      work: state.extra as WorkModel,
+                    ),
                   );
                 },
               ),
