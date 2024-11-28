@@ -5,8 +5,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
+import 'package:portfolio/core/utils/websites_laucnher/websites_launcher.dart';
 import 'package:portfolio/model/work_model/work_model.dart';
 import 'package:portfolio/viewmodel/work_details_viewmodel/work_details_viewmodel.dart';
 
@@ -130,13 +132,31 @@ class _WorkDetailsState extends State<WorkDetails> {
               itemCount: _work.links.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (_, index) {
-                // if (_work.links[index].type == LinkType.youtube) {
-                //   return IFrameEmbedded(
-                //     url: _work.links[index].link,
-                //   );
-                // }
-                return IFrameEmbedded(
-                  url: _work.links[index].link,
+                return Container(
+                  constraints: BoxConstraints.tight(
+                    Size(65.w, 65.h),
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: AppColors.light),
+                    borderRadius: BorderRadius.circular(10.r),
+                  ),
+                  child: _work.links[index].type == LinkType.youtube
+                      ? IFrameEmbedded(
+                          url: _work.links[index].link,
+                        )
+                      : IconButton(
+                          style: IconButton.styleFrom(
+                            fixedSize: Size(65.w, 65.h),
+                          ),
+                          onPressed: () {
+                            WebsitesLauncher.launchWebsite(
+                              _work.links[index].link,
+                            );
+                          },
+                          icon: _work.links[index].type.icon,
+                        ),
                 );
               },
               separatorBuilder: (context, index) {
@@ -218,46 +238,41 @@ class IFrameEmbedded extends StatelessWidget {
           ),
         );
       },
-      child: Container(
-        constraints: BoxConstraints.tight(
-          Size(65.w, 65.h),
-        ),
-        clipBehavior: Clip.antiAlias,
+      child: Stack(
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          border: Border.all(color: AppColors.light),
-          borderRadius: BorderRadius.circular(10.r),
-        ),
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            // YouTube Thumbnail
-            Image.network(
-              "https://i.ytimg.com/vi/${url.split("/").last}/sddefault.jpg",
-              fit: BoxFit.contain,
-              height: 65.h,
-              width: 65.w,
-              loadingBuilder: (context, child, loadingProgress) {
-                if (loadingProgress == null) return child;
-                return const Center(
-                  child: CircularProgressIndicator(
-                    color: AppColors.primary,
-                  ),
-                );
-              },
-              errorBuilder: (context, error, stackTrace) {
-                return const Center(child: Icon(Icons.broken_image, size: 50));
-              },
-            ),
+        children: [
+          // YouTube Thumbnail
+          Image.network(
+            "https://i.ytimg.com/vi/${url.split("/").last}/sddefault.jpg",
+            fit: BoxFit.contain,
+            height: 65.h,
+            width: 65.w,
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.primary,
+                ),
+              );
+            },
+            errorBuilder: (context, error, stackTrace) {
+              return const Center(
+                child: Icon(
+                  FontAwesomeIcons.youtube,
+                  size: 50,
+                  color: Colors.red,
+                ),
+              );
+            },
+          ),
 
-            // Play Button Overlay
-            const Icon(
-              Icons.play_circle_fill,
-              color: AppColors.primary,
-              size: 50,
-            ),
-          ],
-        ),
+          // Play Button Overlay
+          const Icon(
+            FontAwesomeIcons.youtube,
+            size: 50,
+            color: Colors.red,
+          ),
+        ],
       ),
     );
   }

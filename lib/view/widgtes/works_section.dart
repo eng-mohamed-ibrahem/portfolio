@@ -95,7 +95,17 @@ List<WorkModel> works = [
     date: DateTime(2024),
     type: "Mobile Application",
     thumbnailUrl: "assets/images/better_one.jpg",
-    links: [],
+    links: [
+      const LinkModel(
+        link: "https://github.com/eng-mohamed-ibrahem/better_one",
+        type: LinkType.github,
+      ),
+      const LinkModel(
+        link:
+            "https://drive.google.com/file/d/1D5O9P18RARIhIMGy3bxNTpSFNFALq5uM/view?usp=sharing",
+        type: LinkType.apk,
+      ),
+    ],
     idDid: [
       "Handle Background Service For Listening To User Interaction",
       "Make Notification Avialable Even The App is Terminated",
@@ -119,6 +129,11 @@ List<WorkModel> works = [
       const LinkModel(
         link: "https://www.youtube.com/embed/SQUulfX6OOo",
         type: LinkType.youtube,
+      ),
+      const LinkModel(
+        link:
+            "https://drive.google.com/file/d/1kqREAtt2NFGm42etmBL_cSFGCCeNu82S/view?usp=drive_link",
+        type: LinkType.apk,
       ),
     ],
     idDid: [
@@ -164,6 +179,11 @@ List<WorkModel> works = [
         link: "https://www.youtube.com/embed/EJI2TOP2sIM",
         type: LinkType.youtube,
       ),
+      const LinkModel(
+        link:
+            "https://drive.google.com/file/d/17K-BLtNDx6F2IpaCSh32Vv-R_GDcw4uR/view?usp=drive_link",
+        type: LinkType.apk,
+      ),
     ],
     idDid: [
       "Build Vendor Section Of The App",
@@ -183,6 +203,11 @@ List<WorkModel> works = [
       const LinkModel(
         link: "https://www.youtube.com/embed/4wziI7TykkM",
         type: LinkType.youtube,
+      ),
+      const LinkModel(
+        link:
+            "https://drive.google.com/file/d/1InSIlOdGJ-FdBKlGdthnMW16ITEilu6x/view?usp=drive_link",
+        type: LinkType.apk,
       ),
     ],
     idDid: [

@@ -41,9 +41,22 @@ class _HomeState extends State<Home> {
             children: [
               const PersonalInfo(),
               SizedBox(height: 20.h),
-              Text(
-                "skills.title".tr(),
-                style: AppTextStyles.bodySmall,
+              Row(
+                children: [
+                  Text(
+                    "skills.title".tr(),
+                    style: AppTextStyles.bodySmall,
+                  ),
+                  Expanded(
+                    child: Divider(
+                      thickness: 2,
+                      height: 50.h,
+                      endIndent: 5.w,
+                      indent: 5.w,
+                      color: const Color.fromRGBO(224, 224, 224, 1),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 5),
               const SkillsSection(),
@@ -57,9 +70,22 @@ class _HomeState extends State<Home> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "works.title".tr(),
-                      style: AppTextStyles.bodySmall,
+                    Row(
+                      children: [
+                        Text(
+                          "works.title".tr(),
+                          style: AppTextStyles.bodySmall,
+                        ),
+                        Expanded(
+                          child: Divider(
+                            thickness: 2,
+                            height: 50.h,
+                            endIndent: 5.w,
+                            indent: 5.w,
+                            color: const Color.fromRGBO(224, 224, 224, 1),
+                          ),
+                        ),
+                      ],
                     ),
                     const SizedBox(height: 5),
                     const WorksSection(),
