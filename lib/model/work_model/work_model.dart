@@ -46,6 +46,12 @@ enum LinkType {
       FontAwesomeIcons.android,
       color: Colors.green,
     ),
+  ),
+  amazon(
+    Icon(
+      FontAwesomeIcons.amazon,
+      color: Colors.orange,
+    ),
   );
 
   final Widget icon;

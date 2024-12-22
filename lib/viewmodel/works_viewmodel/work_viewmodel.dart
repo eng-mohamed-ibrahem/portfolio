@@ -44,10 +44,20 @@ class WorkViewModel extends Cubit<WorkViewModelState> {
           link: "https://github.com/eng-mohamed-ibrahem/better_one",
           type: LinkType.github,
         ),
+        // upload video first to youtube then get the embed link
+        const LinkModel(
+          link: "https://www.youtube.com/embed/TYWcF-MRkig",
+          type: LinkType.youtube,
+        ),
+        // build apk and upload it to google drive then get the shareable link
         const LinkModel(
           link:
               "https://drive.google.com/file/d/1D5O9P18RARIhIMGy3bxNTpSFNFALq5uM/view?usp=sharing",
           type: LinkType.apk,
+        ),
+        const LinkModel(
+          link: "https://www.amazon.com/dp/B0DR69JTFZ/ref=apps_sf_sta",
+          type: LinkType.amazon,
         ),
       ],
       idDid: [
