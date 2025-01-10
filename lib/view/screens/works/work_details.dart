@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:go_router/go_router.dart';
+import 'package:portfolio/config/navigation/routes_enum.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_colors.dart';
 import 'package:portfolio/core/utils/websites_laucnher/websites_launcher.dart';
@@ -41,7 +43,14 @@ class _WorkDetailsState extends State<WorkDetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: BackButton(
+          onPressed: () {
+            context.go(Routes.works.path);
+            // context.pop();
+          },
+        ),
+      ),
       body: ListView(
         controller: scrollController,
         padding: EdgeInsets.symmetric(

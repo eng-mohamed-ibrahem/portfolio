@@ -5,7 +5,7 @@ enum Routes {
   contact("/contact", "contact"),
 
   /// can be any routes after
-  workDetails("works/:id", "work_details");
+  workDetails("/:id", "work_details");
 
   final String path;
   final String name;
