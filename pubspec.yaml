@@ -1,5 +1,5 @@
 name: portfolio
-description: "This is a Flutter-based portfolio application that showcases projects, skills, and personal information. It is designed to be Web Application."
+description: "Mohamed Ibrahem Portfolio Project is a Flutter-based portfolio application that showcases projects, skills, and personal information. It is designed to be Web Application."
 
 
 publish_to: 'none' 
@@ -36,6 +36,12 @@ dependencies:
   flutter_inappwebview: ^6.1.5
   youtube_player_iframe: ^5.2.1
   sentry_flutter: ^8.10.1
+  visibility_detector: ^0.4.0+2
+  flutter_staggered_animations: ^1.1.1
+  percent_indicator: ^4.2.4
+  file_saver: ^0.2.14
+  flutter_svg: ^2.0.17
+  animate_do: ^3.3.4
   # auto_size_text: ^3.0.0
 
 dev_dependencies:
@@ -55,10 +61,11 @@ flutter:
 
   uses-material-design: true
   assets:
-    - lib/config/l10n/translation/
+    # - lib/config/l10n/translation/
     - assets/images/
     - assets/data/
     - assets/files/
+    - assets/svgs/
   
   fonts:
     - family: Tajawal

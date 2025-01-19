@@ -1,8 +1,10 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/config/navigation/app_navigation.dart';
-import 'package:portfolio/config/themes/app_themes.dart';
+import 'package:portfolio/core/themes/app_themes.dart';
+import 'package:portfolio/core/utils/app_strings.dart';
+import 'package:portfolio/cubit/landing_cubit.dart';
+import 'package:portfolio/features/main_navigation/landing_view.dart';
 
 class RootApp extends StatelessWidget {
   const RootApp({super.key});
@@ -10,28 +12,19 @@ class RootApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
-      useInheritedMediaQuery: true,
-      builder: (context, child) {
-        return MaterialApp.router(
-          builder: (context, child) {
-            var mediaData = MediaQuery.of(context);
-            return MediaQuery(
-              data: mediaData.copyWith(
-                textScaler: const TextScaler.linear(1),
-              ),
-              child: child!,
-            );
-          },
+      designSize: const Size(1440, 944),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, __) => BlocProvider<LandingCubit>(
+        create: (_) => LandingCubit(),
+        child: MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'Portfolio',
-          routerConfig: AppNavigation.config,
-          theme: AppThemes.theme,
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: context.locale,
-        );
-      },
+          title: AppStrings.appTitle,
+          theme: AppThemes.dark,
+          themeMode: ThemeMode.dark,
+          home: const LandingView(),
+        ),
+      ),
     );
   }
 }

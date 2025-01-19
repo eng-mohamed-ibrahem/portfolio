@@ -1,0 +1,64 @@
+class Assets {
+  Assets._();
+
+  static const String cv = "assets/files/mohamed_ibrahem_flutter_developer.pdf";
+
+  static const String imagesBackgroundGridPattern =
+      "assets/images/background_grid-pattern.png";
+
+  static const String imagesCentricGridPattern =
+      "assets/images/centric-grid-pattern.png";
+
+  static const String imagesCopyEmailAddressBackground =
+      "assets/images/copy_email_address_background.png";
+
+  static const String imagesEndSpotlight = "assets/images/end_spotlight.png";
+
+  static const String imagesFooterGridPattern =
+      "assets/images/footer-grid-pattern.png";
+
+  static const String imagesIcareIcon = "assets/images/icare_icon.png";
+
+  static const String svgsExperience = "assets/svgs/experience.svg";
+
+  static const String imagesLinkupIcon = "assets/images/linkup_icon.png";
+
+  static const String imagesMobileGridPattern =
+      "assets/images/mobile-grid-pattern.png";
+
+  static const String imagesPrioritizeImage =
+      "assets/images/prioritize-image.png";
+
+  static const String imagesProjectItemBackground =
+      "assets/images/project-item-background.png";
+
+  static const String imagesRoomeIcon = "assets/images/roome_icon.png";
+
+  static const String imagesStartSpotlight =
+      "assets/images/start_spotlight.png";
+
+  static const String imagesStoreifyIcon = "assets/images/storeify_icon.png";
+
+  static const String imagesTechEnthusiastBackground =
+      "assets/images/tech-enthusiast-background.png";
+
+  static const String imagesTechEnthusiastBoxImg =
+      "assets/images/tech-enthusiast-box-img.png";
+
+  static const String svgsCopyIcon = "assets/svgs/copy-icon.svg";
+
+  static const String svgsDownloadIcon = "assets/svgs/download-icon.svg";
+
+  static const String svgsGithubIcon = "assets/svgs/github-icon.svg";
+
+  static const String svgsInstagramIcon = "assets/svgs/instagram-icon.svg";
+
+  static const String svgsLinkArrow = "assets/svgs/link_arrow.svg";
+
+  static const String svgsLinkedInIcon = "assets/svgs/linkedIn-icon.svg";
+
+  static const String svgsMediumIcon = "assets/svgs/medium-icon.svg";
+  static const String svgsWhatsappIcon = "assets/svgs/whatsapp.svg";
+
+  static const String svgsPlay = "assets/svgs/play.svg";
+}
