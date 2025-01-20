@@ -11,7 +11,8 @@ class AppStrings {
   static const String home = "Home";
   static const String experience = "Experience";
   static const String skills = "Skills";
-  static const String dynamicAppMagic = "Dynamic App Mastery with Flutter";
+  static const String dynamicAppMagic =
+      "Mastering dynamic app development with Flutter";
   static const String transformingConceptsInto = "Transforming Concepts into";
   static const String seamless = 'Seamless';
   static const String userExperience = 'User Experiences';
@@ -20,7 +21,7 @@ class AppStrings {
   static const String seeMyWork = 'See my work';
   static const String downloadCV = 'Download CV';
   static const String iPrioritizeClient =
-      "I prioritize client\ncollaboration, fostering\nopen communication";
+      "I focus on \ncollaborating with clients, \nmaintaining clear communication.";
   static const String iAmVeryFlexible =
       "I’m very flexible with time\nzone communications";
   static const String usa = 'USA';
@@ -33,7 +34,8 @@ class AppStrings {
       "Do you want to start\na project together?";
   static const String copyMyEmailAddress = 'Copy my email address';
   static const String smallSelectionOf = 'A small selection of';
-  static const String recentProjects = 'recent projects';
+  static const String recentProjects = 'Recent Projects';
+  static const String myProjects = 'Work Projects';
   static const String viewOnGitHub = 'View on GitHub';
   static const String downloadApp = 'Download App';
   static const String my = 'My';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/widgets/desktop_projects_sliver_grid.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
+import 'package:portfolio/features/experience/widget/desktop_projects_sliver_grid.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 
 class LandingViewDesktopExperienceTab extends StatelessWidget {
   const LandingViewDesktopExperienceTab({

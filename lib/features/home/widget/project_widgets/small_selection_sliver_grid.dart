@@ -18,8 +18,9 @@ class SmallSelectionSliverGrid extends StatelessWidget {
       crossAxisCount: 2,
       crossAxisSpacing: 40.w,
       childAspectRatio: tabletLayoutChildAspectRatio ?? 1,
+      mainAxisSpacing: 32.h,
       children: List.generate(
-        2,
+        4,
         (index) => AnimatedProjectItem(
           project: inject<RuntimeCache>().myProjects[index],
           index: index,

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
-import 'package:portfolio/models/experience_model.dart';
+import 'package:portfolio/features/home/model/experience_model.dart';
 
 class ExperienceItem extends StatelessWidget {
   const ExperienceItem({super.key, required this.experience});

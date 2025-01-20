@@ -5,7 +5,7 @@ import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/shared_widgets/my_sized_box.dart';
-import 'package:portfolio/models/approach.dart';
+import 'package:portfolio/features/home/model/approach.dart';
 
 class ApproachItem extends StatefulWidget {
   const ApproachItem({

@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/widget/experience_item.dart';
-import 'package:portfolio/features/home/widget/approch_widgets/my_approach_sliver_grid.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/project_widgets/small_selection_sliver_grid.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
+import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
-import 'package:portfolio/widgets/desktop_passion_and_purpose_section.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
 
 class LandingViewDesktopHomeTab extends StatelessWidget {
   const LandingViewDesktopHomeTab({
@@ -70,10 +67,24 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             child: const DesktopPassionAndPurposeSection(),
           ),
         ),
+
+        // const SliverToBoxAdapter(
+        //   child: Align(
+        //     child: CustomSectionTitle(
+        //       whiteSpan: '${AppStrings.my} ',
+        //       colorfulSpan: AppStrings.myProjects,
+        //     ),
+        //   ),
+        // ),
+        // SliverPadding(
+        //   padding: EdgeInsets.symmetric(vertical: 56.h, horizontal: 100.w),
+        //   sliver: const DesktopProjectsSliverGrid(),
+        // ),
+
         const SliverToBoxAdapter(
           child: Align(
             child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.smallSelectionOf} ',
+              whiteSpan: '${AppStrings.my} ',
               colorfulSpan: AppStrings.recentProjects,
             ),
           ),
@@ -93,23 +104,13 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 24.w,
-            children: [
-              SvgPicture.asset(
-                Assets.svgsExperience,
-                height: 50.h,
-                width: 50.w,
-              ),
-              const Align(
-                child: CustomSectionTitle(
-                  whiteSpan: '${AppStrings.my} ',
-                  colorfulSpan: AppStrings.workExperience,
-                ),
-              ),
-            ],
+        const SliverToBoxAdapter(
+          child: Align(
+            heightFactor: 2.5,
+            child: CustomSectionTitle(
+              whiteSpan: '${AppStrings.my} ',
+              colorfulSpan: AppStrings.workExperience,
+            ),
           ),
         ),
         SliverList.builder(
@@ -128,23 +129,20 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             );
           },
         ),
-        SliverToBoxAdapter(
-          child: Align(
-            child: Container(
-              margin: EdgeInsets.only(bottom: 60.h),
-              child: const CustomSectionTitle(
-                whiteSpan: '${AppStrings.my} ',
-                colorfulSpan: AppStrings.approach,
-              ),
-            ),
-          ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(horizontal: 90.w),
-          sliver: MyApproachSliverGrid(
-            tabletCrossAxisCount: tabletApproachGridCrossAxisCount,
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: Align(
+        //     child: Container(
+        //       margin: EdgeInsets.only(top: 60.h),
+        //       child: const CustomSectionTitle(
+        //         whiteSpan: 'How I ',
+        //         colorfulSpan: "Work",
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // const SliverToBoxAdapter(
+        //   child: HowIWork(),
+        // ),
         const SliverToBoxAdapter(
           child: ContactMeSection(aspectRatio: 2),
         ),

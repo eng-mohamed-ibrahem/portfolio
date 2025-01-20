@@ -6,9 +6,9 @@ import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/core/utils/functions/open_url.dart';
 import 'package:portfolio/core/shared_widgets/my_sized_box.dart';
-import 'package:portfolio/models/project.dart';
+import 'package:portfolio/core/utils/functions/open_url.dart';
+import 'package:portfolio/features/experience/model/project.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem({

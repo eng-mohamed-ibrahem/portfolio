@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
@@ -10,17 +8,15 @@ import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/widget/experience_item.dart';
-import 'package:portfolio/features/home/widget/approch_widgets/approach_item.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/copy_my_email_card.dart';
 import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/prioritize_img.dart';
 import 'package:portfolio/features/home/widget/sub_info/tech_enthusiast_card.dart';
-import 'package:portfolio/models/approach.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
 
 class LandingViewMobileHomeTab extends StatelessWidget {
   const LandingViewMobileHomeTab({super.key});
@@ -70,11 +66,17 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             ),
           ),
         ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppConstants.mobileHorizontalPadVal.w,
-          ),
-          sliver: SliverToBoxAdapter(
+        SliverToBoxAdapter(
+          child: Container(
+            padding: EdgeInsets.symmetric(
+              horizontal: AppConstants.mobileHorizontalPadVal.w,
+            ),
+            margin: EdgeInsets.only(
+              top: 200.h,
+              bottom: 150.h,
+              left: 24.w,
+              right: 24.w,
+            ),
             child: OverflowBar(
               spacing: 24.h,
               children: const [
@@ -98,6 +100,39 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             ),
           ),
         ),
+        // const SliverToBoxAdapter(
+        //   child: Align(
+        //     child: CustomSectionTitle(
+        //       whiteSpan: '${AppStrings.my} ',
+        //       colorfulSpan: AppStrings.myProjects,
+        //     ),
+        //   ),
+        // ),
+
+        // SliverPadding(
+        //   padding: EdgeInsets.symmetric(
+        //     horizontal: AppConstants.mobileHorizontalPadVal.w,
+        //     vertical: 48.h,
+        //   ),
+        //   sliver: SliverList.builder(
+        //     itemCount: inject<RuntimeCache>().myProjects.length,
+        //     itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
+        //       duration: const Duration(milliseconds: 675),
+        //       position: index,
+        //       child: FadeInAnimation(
+        //         child: ScaleAnimation(
+        //           child: AspectRatio(
+        //             aspectRatio: 0.7,
+        //             child: ProjectItem(
+        //               project: inject<RuntimeCache>().myProjects[index],
+        //             ),
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+        // ),
+
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(
@@ -107,7 +142,7 @@ class LandingViewMobileHomeTab extends StatelessWidget {
               bottom: 24.h,
             ),
             child: const CustomSectionTitle(
-              whiteSpan: '${AppStrings.smallSelectionOf} ',
+              whiteSpan: '${AppStrings.my} ',
               colorfulSpan: AppStrings.recentProjects,
             ),
           ),
@@ -120,7 +155,7 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             child: Column(
               spacing: 20.h,
               children: List.generate(
-                2,
+                4,
                 (index) => AspectRatio(
                   aspectRatio: 0.7,
                   child: AnimatedProjectItem(
@@ -147,24 +182,13 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             text: AppStrings.seeMyWork,
           ),
         ),
-        SliverToBoxAdapter(
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            spacing: 24.w,
-            children: [
-              SvgPicture.asset(
-                Assets.svgsExperience,
-                height: 50.h,
-                width: 50.w,
-              ),
-              const Align(
-                child: CustomSectionTitle(
-                  whiteSpan: '${AppStrings.my} ',
-                  colorfulSpan: AppStrings.workExperience,
-                ),
-              ),
-            ],
+        const SliverToBoxAdapter(
+          child: Align(
+            heightFactor: 2.5,
+            child: CustomSectionTitle(
+              whiteSpan: '${AppStrings.my} ',
+              colorfulSpan: AppStrings.workExperience,
+            ),
           ),
         ),
         SliverList.builder(
@@ -181,38 +205,38 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             );
           },
         ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(bottom: 36.h, top: 64.h),
-            child: const CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.approach,
-            ),
-          ),
-        ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.symmetric(
-              horizontal: AppConstants.mobileHorizontalPadVal.w,
-            ),
-            child: OverflowBar(
-              overflowSpacing: 48.w,
-              alignment: MainAxisAlignment.center,
-              spacing: 40.w,
-              children: List.generate(
-                Approach.myApproach.length,
-                (index) => AspectRatio(
-                  aspectRatio: 398 / 500,
-                  child: ApproachItem(
-                    approach: Approach.myApproach[index],
-                    index: index,
-                  ),
-                ),
-                growable: false,
-              ),
-            ),
-          ),
-        ),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.only(bottom: 36.h, top: 64.h),
+        //     child: const CustomSectionTitle(
+        //       whiteSpan: '${AppStrings.my} ',
+        //       colorfulSpan: AppStrings.approach,
+        //     ),
+        //   ),
+        // ),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.symmetric(
+        //       horizontal: AppConstants.mobileHorizontalPadVal.w,
+        //     ),
+        //     child: OverflowBar(
+        //       overflowSpacing: 48.w,
+        //       alignment: MainAxisAlignment.center,
+        //       spacing: 40.w,
+        //       children: List.generate(
+        //         Approach.myApproach.length,
+        //         (index) => AspectRatio(
+        //           aspectRatio: 398 / 500,
+        //           child: ApproachItem(
+        //             approach: Approach.myApproach[index],
+        //             index: index,
+        //           ),
+        //         ),
+        //         growable: false,
+        //       ),
+        //     ),
+        //   ),
+        // ),
         SliverPadding(
           padding: EdgeInsets.symmetric(
             horizontal: AppConstants.mobileHorizontalPadVal.w,

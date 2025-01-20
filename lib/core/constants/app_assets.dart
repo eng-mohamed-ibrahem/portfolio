@@ -68,4 +68,6 @@ class Assets {
   static const String svgsWhatsappIcon = "assets/svgs/whatsapp.svg";
 
   static const String svgsPlay = "assets/svgs/play.svg";
+  static const String clientProblem = "assets/svgs/problem_client.svg";
+  static const String clientIdea = "assets/svgs/idea_client.svg";
 }

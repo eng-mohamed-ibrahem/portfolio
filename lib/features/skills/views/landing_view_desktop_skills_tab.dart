@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/features/skills/widgets/skills_progress_list.dart';
+import 'package:portfolio/features/skills/widgets/skills_tab_big_text.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
-import 'package:portfolio/features/skills/skills_progress_list.dart';
-import 'package:portfolio/features/skills/skills_tab_big_text.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 
 class LandingViewDesktopSkillsTab extends StatelessWidget {
   const LandingViewDesktopSkillsTab({super.key});

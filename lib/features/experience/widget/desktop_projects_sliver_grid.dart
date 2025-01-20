@@ -15,7 +15,7 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var experiences = inject<RuntimeCache>().myProjects;
+    var projects = inject<RuntimeCache>().myProjects;
     return SliverGrid.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
@@ -25,17 +25,17 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
       ),
       itemBuilder: (_, index) => AnimationConfiguration.staggeredGrid(
         duration: const Duration(milliseconds: 675),
-        columnCount: experiences.length,
+        columnCount: projects.length,
         position: index,
         child: FadeInAnimation(
           child: ScaleAnimation(
             child: ProjectItem(
-              project: experiences[index],
+              project: projects[index],
             ),
           ),
         ),
       ),
-      itemCount: experiences.length,
+      itemCount: projects.length,
     );
   }
 }

@@ -4,7 +4,7 @@ import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/views/landing_view_desktop_experience_tab.dart';
 import 'package:portfolio/features/home/views/landing_view_desktop_home_tab.dart';
-import 'package:portfolio/widgets/landing_view_desktop_skills_tab.dart';
+import 'package:portfolio/features/skills/views/landing_view_desktop_skills_tab.dart';
 
 class LandingViewDesktopLayout extends StatelessWidget {
   const LandingViewDesktopLayout({

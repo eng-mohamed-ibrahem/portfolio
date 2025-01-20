@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/shared_widgets/responsive_layout.dart';
-import 'package:portfolio/widgets/landing_view_desktop_layout.dart';
-import 'package:portfolio/widgets/landing_view_mobile_layout.dart';
+import 'package:portfolio/features/main_navigation/view/landing_view_desktop_layout.dart';
+import 'package:portfolio/features/main_navigation/view/landing_view_mobile_layout.dart';
 
 class LandingView extends StatelessWidget {
   const LandingView({super.key});

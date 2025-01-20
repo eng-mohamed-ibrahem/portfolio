@@ -4,7 +4,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/core/shared_widgets/project_item.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 
 import '../../../core/serivce_locator/inject.dart';
 

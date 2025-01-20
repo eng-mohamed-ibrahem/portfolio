@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_themes.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
-import 'package:portfolio/features/main_navigation/landing_view.dart';
+import 'package:portfolio/features/main_navigation/view/landing_view.dart';
 
 class RootApp extends StatelessWidget {
   const RootApp({super.key});
