@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
 
 class AppConstants {
   AppConstants._();
@@ -9,7 +9,7 @@ class AppConstants {
   static const List<String> headerTitlesKeys = [
     AppStrings.home,
     AppStrings.skills,
-    AppStrings.portfolio,
+    AppStrings.experience,
   ];
   static BoxDecoration get boxDecoration => BoxDecoration(
         borderRadius: BorderRadius.circular(13.r),

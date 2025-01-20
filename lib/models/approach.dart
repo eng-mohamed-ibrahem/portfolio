@@ -1,4 +1,4 @@
-import 'package:portfolio/core/utils/app_strings.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
 
 class Approach {
   final String name, description;

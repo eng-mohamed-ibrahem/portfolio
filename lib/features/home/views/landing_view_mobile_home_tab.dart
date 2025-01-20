@@ -1,26 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/utils/app_constants.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
-import 'package:portfolio/core/widgets/main_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/core/constants/app_assets.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
+import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
-import 'package:portfolio/models/approach.dart';
-import 'package:portfolio/models/project.dart';
-import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
+import 'package:portfolio/features/experience/widget/experience_item.dart';
 import 'package:portfolio/features/home/widget/approch_widgets/approach_item.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/copy_my_email_card.dart';
-import 'package:portfolio/widgets/custom_section_title.dart';
-import 'package:portfolio/widgets/experience_item.dart';
-import 'package:portfolio/widgets/landing_view_big_text.dart';
-import 'package:portfolio/features/home/widget/sub_info/prioritize_img.dart';
+import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
-import 'package:portfolio/widgets/tabs_nav.dart';
+import 'package:portfolio/features/home/widget/sub_info/prioritize_img.dart';
 import 'package:portfolio/features/home/widget/sub_info/tech_enthusiast_card.dart';
+import 'package:portfolio/models/approach.dart';
+import 'package:portfolio/widgets/custom_section_title.dart';
+import 'package:portfolio/widgets/landing_view_big_text.dart';
+import 'package:portfolio/widgets/tabs_nav.dart';
 
-class LandingViewMobileAboutTab extends StatelessWidget {
-  const LandingViewMobileAboutTab({super.key});
+class LandingViewMobileHomeTab extends StatelessWidget {
+  const LandingViewMobileHomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,20 +75,24 @@ class LandingViewMobileAboutTab extends StatelessWidget {
             horizontal: AppConstants.mobileHorizontalPadVal.w,
           ),
           sliver: SliverToBoxAdapter(
-            child: Column(
+            child: OverflowBar(
               spacing: 24.h,
               children: const [
                 AspectRatio(
-                  aspectRatio: 398 / 312,
+                  aspectRatio: 1.8 / 1,
                   child: AnimatedPrioritizeImg(),
                 ),
-                AspectRatio(
-                  aspectRatio: 2.3,
-                  child: AnimatedTechEnthusiastCard(),
-                ),
-                AspectRatio(
-                  aspectRatio: 2.3,
-                  child: AnimatedCopyMyEmailCard(),
+                Column(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 2.3,
+                      child: AnimatedTechEnthusiastCard(),
+                    ),
+                    AspectRatio(
+                      aspectRatio: 2.3,
+                      child: AnimatedCopyMyEmailCard(),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -117,7 +124,7 @@ class LandingViewMobileAboutTab extends StatelessWidget {
                 (index) => AspectRatio(
                   aspectRatio: 0.7,
                   child: AnimatedProjectItem(
-                    project: Project.portfolio[index],
+                    project: inject<RuntimeCache>().myProjects[index],
                     index: index,
                   ),
                 ),
@@ -137,30 +144,42 @@ class LandingViewMobileAboutTab extends StatelessWidget {
               right: AppConstants.mobileHorizontalPadVal.w,
               top: AppConstants.mobileHorizontalPadVal.h,
             ),
-            text: AppStrings.seeMyPortfolio,
+            text: AppStrings.seeMyWork,
           ),
         ),
         SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(
-              left: 64.w,
-              right: 64.w,
-              bottom: 29.h,
-            ),
-            child: const CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.workExperience,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 24.w,
+            children: [
+              SvgPicture.asset(
+                Assets.svgsExperience,
+                height: 50.h,
+                width: 50.w,
+              ),
+              const Align(
+                child: CustomSectionTitle(
+                  whiteSpan: '${AppStrings.my} ',
+                  colorfulSpan: AppStrings.workExperience,
+                ),
+              ),
+            ],
           ),
         ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(
-              left: AppConstants.mobileHorizontalPadVal.w,
-              right: AppConstants.mobileHorizontalPadVal.w,
-            ),
-            child: const ExperienceItem(),
-          ),
+        SliverList.builder(
+          itemCount: inject<RuntimeCache>().myExperience.length,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                left: AppConstants.mobileHorizontalPadVal.w,
+                right: AppConstants.mobileHorizontalPadVal.w,
+              ),
+              child: ExperienceItem(
+                experience: inject<RuntimeCache>().myExperience[index],
+              ),
+            );
+          },
         ),
         SliverToBoxAdapter(
           child: Container(

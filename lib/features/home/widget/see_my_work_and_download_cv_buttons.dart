@@ -3,10 +3,9 @@ import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show ByteData, Uint8List, rootBundle;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/utils/app_assets.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
-import 'package:portfolio/core/utils/functions/open_url.dart';
-import 'package:portfolio/core/widgets/main_button.dart';
+import 'package:portfolio/core/constants/app_assets.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
 
 class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
   const SeeMyWorkAndDownloadCVButtons({
@@ -28,14 +27,14 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
         overflowSpacing: 16.h,
         spacing: 24.w,
         children: [
-          MainButton.icon(
-            context: context,
-            labelText: AppStrings.seeMyWork,
-            svgIcon: Assets.svgsLinkArrow,
-            gradient: gradient,
-            width: areExpanded ? double.infinity : null,
-            onPressed: () async => await openUrl(AppStrings.gitHubUrl),
-          ),
+          // MainButton.icon(
+          //   context: context,
+          //   labelText: AppStrings.seeMyWork,
+          //   svgIcon: Assets.svgsLinkArrow,
+          //   gradient: gradient,
+          //   width: areExpanded ? double.infinity : null,
+          //   onPressed: () async => await openUrl(AppStrings.gitHubUrl),
+          // ),
           MainButton.icon(
             context: context,
             labelText: AppStrings.downloadCV,

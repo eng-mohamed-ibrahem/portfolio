@@ -17,11 +17,7 @@ class Assets {
   static const String imagesFooterGridPattern =
       "assets/images/footer-grid-pattern.png";
 
-  static const String imagesIcareIcon = "assets/images/icare_icon.png";
-
   static const String svgsExperience = "assets/svgs/experience.svg";
-
-  static const String imagesLinkupIcon = "assets/images/linkup_icon.png";
 
   static const String imagesMobileGridPattern =
       "assets/images/mobile-grid-pattern.png";
@@ -32,18 +28,29 @@ class Assets {
   static const String imagesProjectItemBackground =
       "assets/images/project-item-background.png";
 
-  static const String imagesRoomeIcon = "assets/images/roome_icon.png";
-
   static const String imagesStartSpotlight =
       "assets/images/start_spotlight.png";
-
-  static const String imagesStoreifyIcon = "assets/images/storeify_icon.png";
 
   static const String imagesTechEnthusiastBackground =
       "assets/images/tech-enthusiast-background.png";
 
   static const String imagesTechEnthusiastBoxImg =
       "assets/images/tech-enthusiast-box-img.png";
+
+  // projects images
+  static const String hawkamah = 'assets/images/hawkamah_home.png';
+  static const String betterOne = "assets/images/better_one.png";
+  static const String huml = "assets/images/huml.png";
+  static const String humlDriver = "assets/images/huml_provider.png";
+  static const String echo = "assets/images/echo.png";
+  static const String b2b = "assets/images/b2b.png";
+  static const String emergencyCare = "assets/images/emergency_care.png";
+
+  // company logos
+  static const String companyDefautLogo = "assets/images/company.png";
+  static const String cadCompanyLogo = "assets/images/cad.jpeg";
+  static const String anysolutionCompanyLogo = "assets/images/anysolution.jpeg";
+  static const String freelancerLogo = "assets/images/freelancer.png";
 
   static const String svgsCopyIcon = "assets/svgs/copy-icon.svg";
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/models/project.dart';
+import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
 
 class SmallSelectionSliverGrid extends StatelessWidget {
@@ -20,7 +21,7 @@ class SmallSelectionSliverGrid extends StatelessWidget {
       children: List.generate(
         2,
         (index) => AnimatedProjectItem(
-          project: Project.portfolio[index],
+          project: inject<RuntimeCache>().myProjects[index],
           index: index,
         ),
         growable: false,

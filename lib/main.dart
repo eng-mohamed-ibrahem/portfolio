@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/core/serivce_locator/setup_dependencies.dart';
 import 'package:portfolio/core/utils/bloc_observer.dart';
 import 'package:portfolio/root_app.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -10,5 +11,6 @@ void main() async {
   VisibilityDetectorController.instance.updateInterval = Duration.zero;
   Bloc.observer = MyBlocObserver();
   await ScreenUtil.ensureScreenSize();
+  setUpDepdencies();
   runApp(const RootApp());
 }

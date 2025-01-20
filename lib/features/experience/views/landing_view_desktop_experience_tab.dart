@@ -3,8 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/widgets/desktop_projects_sliver_grid.dart';
 import 'package:portfolio/widgets/tabs_nav.dart';
 
-class LandingViewDesktopPortfolioTab extends StatelessWidget {
-  const LandingViewDesktopPortfolioTab({
+class LandingViewDesktopExperienceTab extends StatelessWidget {
+  const LandingViewDesktopExperienceTab({
     super.key,
     this.tabletProjectAspectRatio,
   });

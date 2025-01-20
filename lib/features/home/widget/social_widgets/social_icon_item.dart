@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/core/utils/functions/open_url.dart';
 import 'package:portfolio/models/social_icon_model.dart';
 

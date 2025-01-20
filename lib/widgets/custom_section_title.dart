@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
-import 'package:portfolio/core/themes/app_text_styles.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
+import 'package:portfolio/config/themes/app_text_styles.dart';
 
 class CustomSectionTitle extends StatelessWidget {
   const CustomSectionTitle({

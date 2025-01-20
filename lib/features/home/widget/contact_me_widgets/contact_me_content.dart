@@ -1,12 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
-import 'package:portfolio/core/themes/app_text_styles.dart';
-import 'package:portfolio/core/utils/app_assets.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
+import 'package:portfolio/config/themes/app_text_styles.dart';
+import 'package:portfolio/core/constants/app_assets.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/utils/functions/open_url.dart';
-import 'package:portfolio/core/widgets/main_button.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/features/home/widget/social_widgets/social_icons_section.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 

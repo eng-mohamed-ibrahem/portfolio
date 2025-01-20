@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/themes/app_themes.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
+import 'package:portfolio/config/themes/app_themes.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/main_navigation/landing_view.dart';
 

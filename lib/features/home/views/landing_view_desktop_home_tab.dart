@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
-import 'package:portfolio/core/widgets/main_button.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:portfolio/core/constants/app_assets.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
+import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
+import 'package:portfolio/features/experience/widget/experience_item.dart';
+import 'package:portfolio/features/home/widget/approch_widgets/my_approach_sliver_grid.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
+import 'package:portfolio/features/home/widget/project_widgets/small_selection_sliver_grid.dart';
+import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/desktop_passion_and_purpose_section.dart';
-import 'package:portfolio/widgets/experience_item.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
-import 'package:portfolio/features/home/widget/approch_widgets/my_approach_sliver_grid.dart';
-import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
-import 'package:portfolio/features/home/widget/project_widgets/small_selection_sliver_grid.dart';
 import 'package:portfolio/widgets/tabs_nav.dart';
 
-class LandingViewDesktopAboutTab extends StatelessWidget {
-  const LandingViewDesktopAboutTab({
+class LandingViewDesktopHomeTab extends StatelessWidget {
+  const LandingViewDesktopHomeTab({
     super.key,
     this.tabletLayoutProjectAspectRatio,
     this.tabletApproachGridCrossAxisCount,
@@ -85,28 +89,44 @@ class LandingViewDesktopAboutTab extends StatelessWidget {
             child: MainButton(
               margin: EdgeInsets.only(bottom: 150.h),
               onPressed: () => context.read<LandingCubit>().selectTabNav(2),
-              text: AppStrings.seeMyPortfolio,
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: Align(
-            child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.workExperience,
+              text: AppStrings.seeMyworks,
             ),
           ),
         ),
         SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(
-              top: 70.h,
-              bottom: 130.h,
-              left: 90.w,
-              right: 90.w,
-            ),
-            child: const ExperienceItem(),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            spacing: 24.w,
+            children: [
+              SvgPicture.asset(
+                Assets.svgsExperience,
+                height: 50.h,
+                width: 50.w,
+              ),
+              const Align(
+                child: CustomSectionTitle(
+                  whiteSpan: '${AppStrings.my} ',
+                  colorfulSpan: AppStrings.workExperience,
+                ),
+              ),
+            ],
           ),
+        ),
+        SliverList.builder(
+          itemCount: inject<RuntimeCache>().myExperience.length,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                top: 20.h,
+                bottom: 30.h,
+                left: 90.w,
+                right: 90.w,
+              ),
+              child: ExperienceItem(
+                experience: inject<RuntimeCache>().myExperience[index],
+              ),
+            );
+          },
         ),
         SliverToBoxAdapter(
           child: Align(

@@ -1,13 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
-import 'package:portfolio/core/themes/app_text_styles.dart';
-import 'package:portfolio/core/utils/app_assets.dart';
-import 'package:portfolio/core/utils/app_strings.dart';
-import 'package:portfolio/core/widgets/main_button.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
+import 'package:portfolio/config/themes/app_text_styles.dart';
+import 'package:portfolio/core/constants/app_assets.dart';
+import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
+import 'package:portfolio/core/utils/functions/open_url.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class CopyMyEmailCard extends StatelessWidget {
@@ -38,38 +37,51 @@ class CopyMyEmailCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               spacing: 24.h,
               children: [
-                Text(
-                  AppStrings.wantToStartProjectTogether,
-                  style: AppTextStyles.font24Bold(context),
-                  textAlign: TextAlign.center,
-                ),
-                MainButton(
-                  onPressed: () async {
-                    await Clipboard.setData(
-                      const ClipboardData(text: AppStrings.myGmail),
-                    );
-                  },
-                  gradient: const LinearGradient(
-                    colors: [
-                      Color(0xff161A31),
-                      Color(0xff06091F),
-                    ],
-                    stops: [0, 1],
-                    begin: AlignmentDirectional.centerStart,
-                    end: AlignmentDirectional.centerEnd,
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    spacing: 5.w,
-                    children: [
-                      SvgPicture.asset(Assets.svgsCopyIcon),
-                      Text(
-                        AppStrings.copyMyEmailAddress,
-                        style: AppTextStyles.font14Medium(context),
-                      ),
-                    ],
+                Flexible(
+                  child: Text(
+                    AppStrings.wantToStartProjectTogether,
+                    style: AppTextStyles.font24Bold(context),
+                    textAlign: TextAlign.center,
                   ),
                 ),
+                ElasticIn(
+                  child: MainButton.icon(
+                    context: context,
+                    svgIcon: Assets.svgsLinkArrow,
+                    labelText: AppStrings.contactMeNow,
+                    onPressed: () async => await openUrl(
+                      AppStrings.myGmail,
+                      isEmail: true,
+                    ),
+                  ),
+                ),
+                // MainButton(
+                //   onPressed: () async {
+                //     await Clipboard.setData(
+                //       const ClipboardData(text: AppStrings.myGmail),
+                //     );
+                //   },
+                //   gradient: const LinearGradient(
+                //     colors: [
+                //       Color(0xff161A31),
+                //       Color(0xff06091F),
+                //     ],
+                //     stops: [0, 1],
+                //     begin: AlignmentDirectional.centerStart,
+                //     end: AlignmentDirectional.centerEnd,
+                //   ),
+                //   child: Row(
+                //     mainAxisSize: MainAxisSize.min,
+                //     spacing: 5.w,
+                //     children: [
+                //       SvgPicture.asset(Assets.svgsCopyIcon),
+                //       Text(
+                //         AppStrings.copyMyEmailAddress,
+                //         style: AppTextStyles.font14Medium(context),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),

@@ -9,7 +9,7 @@ class AppStrings {
   static const String myGmail = "mohamed.data13@gmail.com";
   static const String fontFamily = 'Cairo';
   static const String home = "Home";
-  static const String portfolio = "Portfolio";
+  static const String experience = "Experience";
   static const String skills = "Skills";
   static const String dynamicAppMagic = "Dynamic App Mastery with Flutter";
   static const String transformingConceptsInto = "Transforming Concepts into";
@@ -38,9 +38,6 @@ class AppStrings {
   static const String downloadApp = 'Download App';
   static const String my = 'My';
   static const String workExperience = 'Work Experience';
-  static const String flutterDevIntern = 'Flutter Developer Intern';
-  static const String myInternDescription =
-      "• Developed and integrated AI-driven features into Flutter mobile apps using various AI APIs.\n• Collaborated with a team of developers using Agile methodology, participating in weekly sprint meetings.\n• Built and tested responsive UIs for mobile applications, ensuring seamless performance on multiple devices.\n• Worked on debugging and optimizing Flutter applications to improve user experience and performance.\n• Assisted in the development and maintenance of Flutter-based apps for multiple clients, delivering high-quality solutions within deadlines.\n• Collaborated in code reviews and shared best practices to improve the overall quality of the team’s Flutter applications.";
   static const String approach = 'Approach';
   static const String approach1Name = 'Planning and Requirement Gathering';
   static const String approach1Description =
@@ -66,7 +63,7 @@ class AppStrings {
   static const String reachMeOut =
       "Reach out to me and let's discuss how I can help you achieve your goals.";
   static const String contactMeNow = 'Contact Me Now';
-  static const String seeMyPortfolio = 'See My Portfolio';
+  static const String seeMyworks = 'See My Works';
   static const String seeThePromo = 'See the Promo';
   static const String masteringTheArtOfFlutter =
       'Mastering the Art of Flutter Development';

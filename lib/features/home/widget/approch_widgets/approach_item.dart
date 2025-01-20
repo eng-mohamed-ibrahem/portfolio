@@ -1,10 +1,10 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/themes/app_colors.dart';
-import 'package:portfolio/core/themes/app_text_styles.dart';
-import 'package:portfolio/core/utils/app_constants.dart';
-import 'package:portfolio/core/widgets/my_sized_box.dart';
+import 'package:portfolio/config/themes/app_colors.dart';
+import 'package:portfolio/config/themes/app_text_styles.dart';
+import 'package:portfolio/core/constants/app_constants.dart';
+import 'package:portfolio/core/shared_widgets/my_sized_box.dart';
 import 'package:portfolio/models/approach.dart';
 
 class ApproachItem extends StatefulWidget {
