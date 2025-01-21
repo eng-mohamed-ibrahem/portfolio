@@ -18,6 +18,8 @@ import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
+import '../widget/animated_personal_info.dart';
+
 class LandingViewMobileHomeTab extends StatelessWidget {
   const LandingViewMobileHomeTab({super.key});
 
@@ -43,15 +45,18 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             child: const LandingViewBigText(),
           ),
         ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 24.h, horizontal: 56.w),
-            child: const FittedBox(
-              child: HeaderDescriptionText(
-                text: AppStrings.introduction,
-              ),
-            ),
-          ),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.symmetric(vertical: 24.h, horizontal: 56.w),
+        //     child: const FittedBox(
+        //       child: HeaderDescriptionText(
+        //         text: AppStrings.introduction,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        const SliverToBoxAdapter(
+          child: AnimatedPersonalInfo(),
         ),
         SliverToBoxAdapter(
           child: Container(

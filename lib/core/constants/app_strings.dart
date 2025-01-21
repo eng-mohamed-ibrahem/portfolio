@@ -16,8 +16,14 @@ class AppStrings {
   static const String transformingConceptsInto = "Transforming Concepts into";
   static const String seamless = 'Seamless';
   static const String userExperience = 'User Experiences';
-  static const String introduction =
-      "Hi! I’m Mohamed Ibrahem, a Software Engineer & Flutter Developer";
+  static const String introduction = "Hi! I’m Mohamed Ibrahem";
+  static const String iam = "I am";
+  static const String iamSoftwareEngineer = "Software Engineer";
+  static const String iamFlutterDeveloper = "Flutter Developer";
+  static const String iamCrossPlatformDeveloper = "Cross-Platform Developer";
+  static const String iamDartProgrammer = "Dart Programmer";
+  static const String iamUIUXAppDeveloper = "UI/UX App Developer";
+
   static const String seeMyWork = 'See my work';
   static const String downloadCV = 'Download CV';
   static const String iPrioritizeClient =

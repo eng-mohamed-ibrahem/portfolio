@@ -7,6 +7,7 @@ import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/widget/experience_item.dart';
+import 'package:portfolio/features/home/widget/animated_personal_info.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/project_widgets/small_selection_sliver_grid.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
@@ -45,13 +46,18 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             child: LandingViewBigText(),
           ),
         ),
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.symmetric(vertical: 30.h),
-            child: const HeaderDescriptionText(
-              text: AppStrings.introduction,
-            ),
-          ),
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
+        //     alignment: Alignment.center,
+        //     child: Text(
+        //       '${AppStrings.introduction} ',
+        //       style: AppTextStyles.font24Regular(context),
+        //     ),
+        //   ),
+        // ),
+        const SliverToBoxAdapter(
+          child: AnimatedPersonalInfo(),
         ),
         const SliverToBoxAdapter(
           child: SeeMyWorkAndDownloadCVButtons(),

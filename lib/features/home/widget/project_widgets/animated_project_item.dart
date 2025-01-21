@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:portfolio/features/experience/model/project.dart';
 import 'package:portfolio/core/shared_widgets/project_item.dart';
+import 'package:portfolio/features/experience/model/project.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AnimatedProjectItem extends StatefulWidget {
@@ -31,7 +31,7 @@ class _AnimatedProjectItemState extends State<AnimatedProjectItem> {
         }
       },
       child: _isVisible
-          ? (widget.index.isEven
+          ? widget.index.isEven
               ? FadeInLeft(
                   duration: const Duration(milliseconds: 500),
                   child: ProjectItem(
@@ -44,11 +44,8 @@ class _AnimatedProjectItemState extends State<AnimatedProjectItem> {
                   key: ValueKey('small_selection_sliver_grid_${widget.index}'),
                   duration: const Duration(milliseconds: 500),
                   child: ProjectItem(project: widget.project),
-                ))
-          : Opacity(
-              opacity: 0,
-              child: ProjectItem(project: widget.project),
-            ),
+                )
+          : const SizedBox.shrink(),
     );
   }
 }
