@@ -5,6 +5,9 @@ class AppStrings {
   static const String resumeName = 'mohamed_ibrahem_flutter_developer_resume';
   static const String resumeUrl =
       'https://firebasestorage.googleapis.com/v0/b/better-one-5913d.appspot.com/o/mohamed_ibrahem_flutter_developer_resume.pdf?alt=media';
+
+  static const String resumeUrlAccessToken =
+      '4c498bda-391a-4980-a3d2-733250a824c6';
   static const String gitHubUrl = 'https://github.com/eng-mohamed-ibrahem';
   static const String linkedInUrl =
       'https://www.linkedin.com/in/mohamed-ibrahem13/';

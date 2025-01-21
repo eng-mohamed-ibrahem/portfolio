@@ -59,7 +59,13 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
     // );
 
     // Step 1: Download the file
-    final response = await http.get(Uri.parse(AppStrings.resumeUrl));
+    final response = await http.get(
+      Uri.parse(AppStrings.resumeUrl),
+      headers: {
+        'Content-Type': 'application/pdf',
+        'Authorization': 'Bearer ${AppStrings.resumeUrlAccessToken}',
+      },
+    );
     if (response.statusCode == 200) {
       // Step 2: Save the file using the file_saver package
       await FileSaver.instance.saveFile(
