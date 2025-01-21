@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 
 class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
   const SeeMyWorkAndDownloadCVButtons({
@@ -59,21 +60,29 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
     // );
 
     // Step 1: Download the file
-    final response = await http.get(
-      Uri.parse(AppStrings.resumeUrl),
-      headers: {
-        'Content-Type': 'application/pdf',
-        'Authorization': 'Bearer ${AppStrings.resumeUrlAccessToken}',
-      },
-    );
-    if (response.statusCode == 200) {
-      // Step 2: Save the file using the file_saver package
-      await FileSaver.instance.saveFile(
-        name: AppStrings.resumeName,
-        bytes: response.bodyBytes,
-        ext: 'pdf',
-        mimeType: MimeType.pdf,
+    try {
+      final response = await http.get(
+        Uri.parse(AppStrings.resumeUrl),
+        // headers: {
+        //   'Content-Type': 'application/pdf',
+        //   'Authorization': 'Bearer ${AppStrings.resumeUrlAccessToken}',
+        // },
       );
+      if (response.statusCode == 200) {
+        // Step 2: Save the file using the file_saver package
+        await FileSaver.instance.saveFile(
+          name: AppStrings.resumeName,
+          bytes: response.bodyBytes,
+          ext: 'pdf',
+          mimeType: MimeType.pdf,
+        );
+      } else {
+        await Sentry.captureException(
+          Exception('Failed to download CV: ${response.statusCode}'),
+        );
+      }
+    } catch (e, stackTrace) {
+      await Sentry.captureException(e, stackTrace: stackTrace);
     }
   }
 }

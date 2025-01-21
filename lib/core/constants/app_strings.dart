@@ -4,7 +4,7 @@ class AppStrings {
   static const String appTitle = 'Mohamed Ibrahem';
   static const String resumeName = 'mohamed_ibrahem_flutter_developer_resume';
   static const String resumeUrl =
-      'https://firebasestorage.googleapis.com/v0/b/better-one-5913d.appspot.com/o/mohamed_ibrahem_flutter_developer_resume.pdf?alt=media';
+      'https://firebasestorage.googleapis.com/v0/b/better-one-5913d.appspot.com/o/mohamed_ibrahem_flutter_developer_resume.pdf?alt=media&token=4c498bda-391a-4980-a3d2-733250a824c6';
 
   static const String resumeUrlAccessToken =
       '4c498bda-391a-4980-a3d2-733250a824c6';
