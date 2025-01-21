@@ -4,7 +4,7 @@ class AppStrings {
   static const String appTitle = 'Mohamed Ibrahem';
   static const String resumeName = 'mohamed_ibrahem_flutter_developer_resume';
   static const String resumeUrl =
-      'https://drive.google.com/file/d/1iE5afYE0nIKZd7wdteuMnycwPWruYWK4/view?usp=sharing';
+      'https://drive.google.com/drive/folders/1iL3FGCUDLW7CrhxRFu_OZByKbj9mrfa8';
   static const String gitHubUrl = 'https://github.com/eng-mohamed-ibrahem';
   static const String linkedInUrl =
       'https://www.linkedin.com/in/mohamed-ibrahem13/';
