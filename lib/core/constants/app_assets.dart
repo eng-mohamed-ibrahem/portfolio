@@ -1,7 +1,8 @@
 class Assets {
   Assets._();
 
-  static const String cv = "assets/files/mohamed_ibrahem_flutter_developer.pdf";
+  static const String cv =
+      "assets/files/mohamed_ibrahem_flutter_developer_resume.pdf";
 
   static const String imagesBackgroundGridPattern =
       "assets/images/background_grid-pattern.png";
