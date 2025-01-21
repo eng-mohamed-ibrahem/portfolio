@@ -52,7 +52,7 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
     final ByteData data = await rootBundle.load(Assets.cv);
     final Uint8List bytes = data.buffer.asUint8List();
     await FileSaver.instance.saveFile(
-      name: AppStrings.appTitle, // The name of the file
+      name: AppStrings.resumeName, // The name of the file
       bytes: bytes, // The bytes data to be saved
       ext: 'pdf', // The extension of the file
       mimeType: MimeType.pdf,
@@ -60,7 +60,6 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
 
     // Step 1: Download the file
     // final response = await http.get(Uri.parse(AppStrings.resumeUrl));
-
     // if (response.statusCode == 200) {
     //   // Step 2: Save the file using the file_saver package
     //   await FileSaver.instance.saveFile(
