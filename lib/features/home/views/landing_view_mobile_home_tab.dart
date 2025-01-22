@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
-import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
-import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/widget/experience_item.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/copy_my_email_card.dart';
@@ -82,7 +80,7 @@ class LandingViewMobileHomeTab extends StatelessWidget {
               left: 24.w,
               right: 24.w,
             ),
-            child: OverflowBar(
+            child: Wrap(
               spacing: 24.h,
               children: const [
                 AspectRatio(
@@ -105,88 +103,89 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             ),
           ),
         ),
-        // const SliverToBoxAdapter(
-        //   child: Align(
-        //     child: CustomSectionTitle(
-        //       whiteSpan: '${AppStrings.my} ',
-        //       colorfulSpan: AppStrings.myProjects,
-        //     ),
-        //   ),
-        // ),
-
-        // SliverPadding(
-        //   padding: EdgeInsets.symmetric(
-        //     horizontal: AppConstants.mobileHorizontalPadVal.w,
-        //     vertical: 48.h,
-        //   ),
-        //   sliver: SliverList.builder(
-        //     itemCount: inject<RuntimeCache>().myProjects.length,
-        //     itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
-        //       duration: const Duration(milliseconds: 675),
-        //       position: index,
-        //       child: FadeInAnimation(
-        //         child: ScaleAnimation(
-        //           child: AspectRatio(
-        //             aspectRatio: 0.7,
-        //             child: ProjectItem(
-        //               project: inject<RuntimeCache>().myProjects[index],
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //     ),
-        //   ),
-        // ),
-
-        SliverToBoxAdapter(
-          child: Container(
-            margin: EdgeInsets.only(
-              left: 64.w,
-              right: 64.w,
-              top: 64.h,
-              bottom: 24.h,
-            ),
-            child: const CustomSectionTitle(
+        const SliverToBoxAdapter(
+          child: Align(
+            child: CustomSectionTitle(
               whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.recentProjects,
+              colorfulSpan: AppStrings.myProjects,
             ),
           ),
         ),
+
         SliverPadding(
           padding: EdgeInsets.symmetric(
             horizontal: AppConstants.mobileHorizontalPadVal.w,
+            vertical: 48.h,
           ),
-          sliver: SliverToBoxAdapter(
-            child: Column(
-              spacing: 20.h,
-              children: List.generate(
-                4,
-                (index) => AspectRatio(
-                  aspectRatio: 0.7,
-                  child: AnimatedProjectItem(
-                    project: inject<RuntimeCache>().myProjects[index],
-                    index: index,
+          sliver: SliverList.builder(
+            itemCount: inject<RuntimeCache>().myProjects.length,
+            itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
+              duration: const Duration(milliseconds: 675),
+              position: index,
+              child: FadeInAnimation(
+                child: ScaleAnimation(
+                  child: AspectRatio(
+                    aspectRatio: 0.7,
+                    child: AnimatedProjectItem(
+                      project: inject<RuntimeCache>().myProjects[index],
+                      index: index,
+                    ),
                   ),
                 ),
-                growable: false,
               ),
             ),
           ),
         ),
-        SliverToBoxAdapter(
-          child: MainButton(
-            width: double.infinity,
-            onPressed: () => context.read<LandingCubit>().selectTabNav(2),
-            gradient: AppConstants.boxSecondaryLinearGradient,
-            margin: EdgeInsets.only(
-              bottom: 64.h,
-              left: AppConstants.mobileHorizontalPadVal.w,
-              right: AppConstants.mobileHorizontalPadVal.w,
-              top: AppConstants.mobileHorizontalPadVal.h,
-            ),
-            text: AppStrings.seeMyWork,
-          ),
-        ),
+
+        // SliverToBoxAdapter(
+        //   child: Container(
+        //     margin: EdgeInsets.only(
+        //       left: 64.w,
+        //       right: 64.w,
+        //       top: 64.h,
+        //       bottom: 24.h,
+        //     ),
+        //     child: const CustomSectionTitle(
+        //       whiteSpan: '${AppStrings.my} ',
+        //       colorfulSpan: AppStrings.recentProjects,
+        //     ),
+        //   ),
+        // ),
+        // SliverPadding(
+        //   padding: EdgeInsets.symmetric(
+        //     horizontal: AppConstants.mobileHorizontalPadVal.w,
+        //   ),
+        //   sliver: SliverToBoxAdapter(
+        //     child: Column(
+        //       spacing: 20.h,
+        //       children: List.generate(
+        //         4,
+        //         (index) => AspectRatio(
+        //           aspectRatio: 0.7,
+        //           child: AnimatedProjectItem(
+        //             project: inject<RuntimeCache>().myProjects[index],
+        //             index: index,
+        //           ),
+        //         ),
+        //         growable: false,
+        //       ),
+        //     ),
+        //   ),
+        // ),
+        // SliverToBoxAdapter(
+        //   child: MainButton(
+        //     width: double.infinity,
+        //     onPressed: () => context.read<LandingCubit>().selectTabNav(2),
+        //     gradient: AppConstants.boxSecondaryLinearGradient,
+        //     margin: EdgeInsets.only(
+        //       bottom: 64.h,
+        //       left: AppConstants.mobileHorizontalPadVal.w,
+        //       right: AppConstants.mobileHorizontalPadVal.w,
+        //       top: AppConstants.mobileHorizontalPadVal.h,
+        //     ),
+        //     text: AppStrings.seeMyWork,
+        //   ),
+        // ),
         const SliverToBoxAdapter(
           child: Align(
             heightFactor: 2.5,

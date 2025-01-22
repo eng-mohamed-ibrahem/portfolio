@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/helpers/extensions.dart';
 
 class AnimatedPersonalInfo extends StatelessWidget {
   const AnimatedPersonalInfo({super.key});
@@ -16,49 +17,50 @@ class AnimatedPersonalInfo extends StatelessWidget {
       alignment: Alignment.center,
       child: FadeInDown(
         delay: const Duration(milliseconds: 700),
-        child: Row(
+        child: Wrap(
           spacing: 5.h,
-          mainAxisAlignment: MainAxisAlignment.center,
+          runSpacing: 5.h,
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          direction: context.isMobile ? Axis.vertical : Axis.horizontal,
           children: [
             Text(
               '${AppStrings.introduction} ',
-              style: AppTextStyles.font24Regular(context),
+              style: AppTextStyles.font24Bold(context),
             ),
-            Flexible(
-              child: DefaultTextStyle(
+            DefaultTextStyle(
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: AppTextStyles.font24Bold(context).copyWith(
+                color: AppColors.colorCBACF9,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-                style: AppTextStyles.font24Regular(context).copyWith(
-                  color: AppColors.colorCBACF9,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                child: AnimatedTextKit(
-                  repeatForever: true,
-                  isRepeatingAnimation: true,
-                  animatedTexts: [
-                    TyperAnimatedText(
-                      AppStrings.iamSoftwareEngineer,
-                      speed: const Duration(milliseconds: 60),
-                    ),
-                    TyperAnimatedText(
-                      AppStrings.iamFlutterDeveloper,
-                      speed: const Duration(milliseconds: 60),
-                    ),
-                    TyperAnimatedText(
-                      AppStrings.iamCrossPlatformDeveloper,
-                      speed: const Duration(milliseconds: 60),
-                    ),
-                    TyperAnimatedText(
-                      AppStrings.iamDartProgrammer,
-                      speed: const Duration(milliseconds: 60),
-                    ),
-                    TyperAnimatedText(
-                      AppStrings.iamUIUXAppDeveloper,
-                      speed: const Duration(milliseconds: 60),
-                    ),
-                  ],
-                  onTap: null,
-                ),
+              ),
+              child: AnimatedTextKit(
+                repeatForever: true,
+                isRepeatingAnimation: true,
+                animatedTexts: [
+                  TyperAnimatedText(
+                    AppStrings.iamSoftwareEngineer,
+                    speed: const Duration(milliseconds: 60),
+                  ),
+                  TyperAnimatedText(
+                    AppStrings.iamFlutterDeveloper,
+                    speed: const Duration(milliseconds: 60),
+                  ),
+                  TyperAnimatedText(
+                    AppStrings.iamCrossPlatformDeveloper,
+                    speed: const Duration(milliseconds: 60),
+                  ),
+                  TyperAnimatedText(
+                    AppStrings.iamDartProgrammer,
+                    speed: const Duration(milliseconds: 60),
+                  ),
+                  TyperAnimatedText(
+                    AppStrings.iamUIUXAppDeveloper,
+                    speed: const Duration(milliseconds: 60),
+                  ),
+                ],
+                onTap: null,
               ),
             ),
           ],

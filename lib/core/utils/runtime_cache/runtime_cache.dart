@@ -65,7 +65,7 @@ class RuntimeCache {
     const Project(
       name: "Better One",
       description:
-          "Storeify is a powerful and dynamic e-commerce Flutter application designed to provide users with a seamless and engaging shopping experience.\nWith robust features and a user-centric interface, Storeify combines functionality and performance to deliver an all-in-one e-commerce solution.",
+          "The app is designed to motivate users to work by notifying them about their progress and allowing others to encourage them.Send notifications to other users when tasks are completed. Interact with task comments.",
       image: Assets.betterOne,
       githubUrl: "https://github.com/eng-mohamed-ibrahem/better_one",
       downloadUrl:
