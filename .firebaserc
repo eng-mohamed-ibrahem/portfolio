@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "portfolio-183d1"
-  }
+  },
+  "targets": {
+    "portfolio-183d1": {
+      "hosting": {
+        "mohamed-portfolio-v2": [
+          "mohamed-portfolio-v2"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
