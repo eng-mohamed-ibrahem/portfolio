@@ -12,7 +12,7 @@ import 'package:portfolio/features/home/widget/project_widgets/animated_project_
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/prioritize_img.dart';
 import 'package:portfolio/features/home/widget/sub_info/tech_enthusiast_card.dart';
-import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
+import 'package:portfolio/features/skills/views/landing_view_mobile_skills_tab.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
@@ -25,12 +25,12 @@ class LandingViewMobileHomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        SliverPadding(
-          padding: EdgeInsets.symmetric(
-            horizontal: AppConstants.mobileHorizontalPadVal.w,
-          ),
-          sliver: const SliverToBoxAdapter(child: TabsNav()),
-        ),
+        // SliverPadding(
+        //   padding: EdgeInsets.symmetric(
+        //     horizontal: AppConstants.mobileHorizontalPadVal.w,
+        //   ),
+        //   sliver: const SliverToBoxAdapter(child: TabsNav()),
+        // ),
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 40.h, bottom: 20.h),
@@ -75,7 +75,7 @@ class LandingViewMobileHomeTab extends StatelessWidget {
               horizontal: AppConstants.mobileHorizontalPadVal.w,
             ),
             margin: EdgeInsets.only(
-              top: 200.h,
+              top: 100.h,
               bottom: 150.h,
               left: 24.w,
               right: 24.w,
@@ -103,6 +103,31 @@ class LandingViewMobileHomeTab extends StatelessWidget {
             ),
           ),
         ),
+        const SliverToBoxAdapter(
+          child: Align(
+            heightFactor: 2.5,
+            child: CustomSectionTitle(
+              whiteSpan: '${AppStrings.my} ',
+              colorfulSpan: AppStrings.workExperience,
+            ),
+          ),
+        ),
+        SliverList.builder(
+          itemCount: inject<RuntimeCache>().myExperience.length,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                left: AppConstants.mobileHorizontalPadVal.w,
+                right: AppConstants.mobileHorizontalPadVal.w,
+              ),
+              child: ExperienceItem(
+                experience: inject<RuntimeCache>().myExperience[index],
+              ),
+            );
+          },
+        ),
+
+        const LandingViewMobileSkillsTab(),
         const SliverToBoxAdapter(
           child: Align(
             child: CustomSectionTitle(
@@ -186,29 +211,7 @@ class LandingViewMobileHomeTab extends StatelessWidget {
         //     text: AppStrings.seeMyWork,
         //   ),
         // ),
-        const SliverToBoxAdapter(
-          child: Align(
-            heightFactor: 2.5,
-            child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.workExperience,
-            ),
-          ),
-        ),
-        SliverList.builder(
-          itemCount: inject<RuntimeCache>().myExperience.length,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.only(
-                left: AppConstants.mobileHorizontalPadVal.w,
-                right: AppConstants.mobileHorizontalPadVal.w,
-              ),
-              child: ExperienceItem(
-                experience: inject<RuntimeCache>().myExperience[index],
-              ),
-            );
-          },
-        ),
+
         // SliverToBoxAdapter(
         //   child: Container(
         //     margin: EdgeInsets.only(bottom: 36.h, top: 64.h),

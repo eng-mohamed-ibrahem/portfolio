@@ -27,4 +27,4 @@ jobs:
       - name: Preview Web to Channel
         run: |
           npm install -g firebase-tools
-          firebase hosting:channel:deploy TEST_V2 --token "${{ secrets.FIREBASE_TOKEN }}" --only mohamed-portfolio-v2
+          firebase hosting:channel:deploy PREVIEW_V2 --only mohamed-portfolio-v2

@@ -46,8 +46,6 @@ class ProjectItem extends StatelessWidget {
                           child: Image.asset(
                             Assets.imagesProjectItemBackground,
                             fit: BoxFit.cover,
-                            errorBuilder: (_, __, ___) =>
-                                const Icon(Icons.error),
                           ),
                         ),
                       ),

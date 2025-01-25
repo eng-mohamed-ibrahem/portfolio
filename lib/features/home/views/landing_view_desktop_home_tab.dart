@@ -9,7 +9,7 @@ import 'package:portfolio/features/home/widget/animated_personal_info.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
-import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
+import 'package:portfolio/features/skills/views/landing_view_desktop_skills_tab.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
@@ -27,11 +27,11 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        const SliverToBoxAdapter(
-          child: Align(
-            child: TabsNav(),
-          ),
-        ),
+        // const SliverToBoxAdapter(
+        //   child: Align(
+        //     child: TabsNav(),
+        //   ),
+        // ),
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 73.h, bottom: 22.h),
@@ -43,16 +43,6 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             child: LandingViewBigText(),
           ),
         ),
-        // SliverToBoxAdapter(
-        //   child: Container(
-        //     margin: EdgeInsets.only(top: 30.h, bottom: 5.h),
-        //     alignment: Alignment.center,
-        //     child: Text(
-        //       '${AppStrings.introduction} ',
-        //       style: AppTextStyles.font24Regular(context),
-        //     ),
-        //   ),
-        // ),
         const SliverToBoxAdapter(
           child: AnimatedPersonalInfo(),
         ),
@@ -70,6 +60,34 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             child: const DesktopPassionAndPurposeSection(),
           ),
         ),
+
+        const SliverToBoxAdapter(
+          child: Align(
+            heightFactor: 2.5,
+            child: CustomSectionTitle(
+              whiteSpan: '${AppStrings.my} ',
+              colorfulSpan: AppStrings.workExperience,
+            ),
+          ),
+        ),
+        SliverList.builder(
+          itemCount: inject<RuntimeCache>().myExperience.length,
+          itemBuilder: (context, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                top: 20.h,
+                bottom: 30.h,
+                left: 90.w,
+                right: 90.w,
+              ),
+              child: ExperienceItem(
+                experience: inject<RuntimeCache>().myExperience[index],
+              ),
+            );
+          },
+        ),
+
+        const LandingViewDesktopSkillsTab(),
 
         const SliverToBoxAdapter(
           child: Align(
@@ -109,31 +127,7 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
         //     ),
         //   ),
         // ),
-        const SliverToBoxAdapter(
-          child: Align(
-            heightFactor: 2.5,
-            child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.workExperience,
-            ),
-          ),
-        ),
-        SliverList.builder(
-          itemCount: inject<RuntimeCache>().myExperience.length,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.only(
-                top: 20.h,
-                bottom: 30.h,
-                left: 90.w,
-                right: 90.w,
-              ),
-              child: ExperienceItem(
-                experience: inject<RuntimeCache>().myExperience[index],
-              ),
-            );
-          },
-        ),
+
         // SliverToBoxAdapter(
         //   child: Align(
         //     child: Container(

@@ -73,10 +73,7 @@ class _AnimatedTechEnthusiastCardState
               delay: const Duration(milliseconds: 300),
               child: const TechEnthusiastCard(),
             )
-          : const Opacity(
-              opacity: 0,
-              child: TechEnthusiastCard(),
-            ),
+          : const SizedBox.shrink(),
     );
   }
 }

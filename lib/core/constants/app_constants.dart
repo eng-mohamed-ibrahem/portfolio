@@ -9,7 +9,7 @@ class AppConstants {
   static const List<String> headerTitlesKeys = [
     AppStrings.home,
     AppStrings.skills,
-    // AppStrings.experience,
+    AppStrings.experience,
   ];
   static BoxDecoration get boxDecoration => BoxDecoration(
         borderRadius: BorderRadius.circular(13.r),

@@ -19,14 +19,6 @@ class MyBlocObserver extends BlocObserver {
   }
 
   @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    if (kDebugMode) {
-      print('onError -- ${bloc.runtimeType}, $error');
-    }
-    super.onError(bloc, error, stackTrace);
-  }
-
-  @override
   void onClose(BlocBase bloc) {
     super.onClose(bloc);
     if (kDebugMode) {
