@@ -10,9 +10,11 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
   const DesktopProjectsSliverGrid({
     super.key,
     this.childAspectRatio,
+    this.isHome = false,
   });
 
   final double? childAspectRatio;
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
               ),
             ),
             separatorBuilder: (_, __) => SizedBox(height: 32.h),
-            itemCount: projects.length,
+            itemCount: isHome ? 4 : projects.length,
           )
         : SliverGrid.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -54,7 +56,7 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
                 ),
               ),
             ),
-            itemCount: projects.length,
+            itemCount: isHome ? 4 : projects.length,
           );
   }
 }

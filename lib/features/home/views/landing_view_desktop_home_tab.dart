@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
+import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/widget/desktop_projects_sliver_grid.dart';
 import 'package:portfolio/features/experience/widget/experience_item.dart';
 import 'package:portfolio/features/home/widget/animated_personal_info.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
-import 'package:portfolio/features/skills/views/landing_view_desktop_skills_tab.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
@@ -63,6 +65,30 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
 
         const SliverToBoxAdapter(
           child: Align(
+            child: CustomSectionTitle(
+              whiteSpan: '${AppStrings.my} ',
+              colorfulSpan: AppStrings.myProjects,
+            ),
+          ),
+        ),
+        SliverPadding(
+          padding: EdgeInsets.symmetric(vertical: 56.h, horizontal: 100.w),
+          sliver: const DesktopProjectsSliverGrid(
+            childAspectRatio: 1 / 1.15,
+            isHome: true,
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Align(
+            child: MainButton(
+              margin: EdgeInsets.only(bottom: 150.h),
+              onPressed: () => context.read<LandingCubit>().selectTabNav(2),
+              text: AppStrings.seeMyworks,
+            ),
+          ),
+        ),
+        const SliverToBoxAdapter(
+          child: Align(
             heightFactor: 2.5,
             child: CustomSectionTitle(
               whiteSpan: '${AppStrings.my} ',
@@ -86,24 +112,6 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             );
           },
         ),
-
-        const LandingViewDesktopSkillsTab(),
-
-        const SliverToBoxAdapter(
-          child: Align(
-            child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.myProjects,
-            ),
-          ),
-        ),
-        SliverPadding(
-          padding: EdgeInsets.symmetric(vertical: 56.h, horizontal: 100.w),
-          sliver: const DesktopProjectsSliverGrid(
-            childAspectRatio: 1 / 1.15,
-          ),
-        ),
-
         // const SliverToBoxAdapter(
         //   child: Align(
         //     child: CustomSectionTitle(
@@ -116,15 +124,6 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
         //   padding: EdgeInsets.symmetric(vertical: 48.h, horizontal: 100.w),
         //   sliver: SmallSelectionSliverGrid(
         //     tabletLayoutChildAspectRatio: tabletLayoutProjectAspectRatio,
-        //   ),
-        // ),
-        // SliverToBoxAdapter(
-        //   child: Align(
-        //     child: MainButton(
-        //       margin: EdgeInsets.only(bottom: 150.h),
-        //       onPressed: () => context.read<LandingCubit>().selectTabNav(2),
-        //       text: AppStrings.seeMyworks,
-        //     ),
         //   ),
         // ),
 
