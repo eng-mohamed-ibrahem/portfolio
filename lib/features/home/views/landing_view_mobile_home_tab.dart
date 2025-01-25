@@ -110,8 +110,8 @@ class LandingViewMobileHomeTab extends StatelessWidget {
         const SliverToBoxAdapter(
           child: Align(
             child: CustomSectionTitle(
-              whiteSpan: '${AppStrings.my} ',
-              colorfulSpan: AppStrings.myProjects,
+              whiteSpan: '${AppStrings.smallSelectionOf} ',
+              colorfulSpan: AppStrings.recentProjects,
             ),
           ),
         ),
