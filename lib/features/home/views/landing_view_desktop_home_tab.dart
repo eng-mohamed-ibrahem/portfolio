@@ -12,6 +12,7 @@ import 'package:portfolio/features/home/widget/animated_personal_info.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
@@ -29,11 +30,11 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
-        // const SliverToBoxAdapter(
-        //   child: Align(
-        //     child: TabsNav(),
-        //   ),
-        // ),
+        const SliverToBoxAdapter(
+          child: Align(
+            child: TabsNav(),
+          ),
+        ),
         SliverToBoxAdapter(
           child: Container(
             margin: EdgeInsets.only(top: 73.h, bottom: 22.h),
