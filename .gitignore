@@ -30,6 +30,8 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+.github/workflows/deploy_flutter_web_to_preview_channel_firebase.yml
+.firebase
 
 # Symbolication related
 app.*.symbols
