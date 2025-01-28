@@ -113,20 +113,6 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
             );
           },
         ),
-        // const SliverToBoxAdapter(
-        //   child: Align(
-        //     child: CustomSectionTitle(
-        //       whiteSpan: '${AppStrings.my} ',
-        //       colorfulSpan: AppStrings.recentProjects,
-        //     ),
-        //   ),
-        // ),
-        // SliverPadding(
-        //   padding: EdgeInsets.symmetric(vertical: 48.h, horizontal: 100.w),
-        //   sliver: SmallSelectionSliverGrid(
-        //     tabletLayoutChildAspectRatio: tabletLayoutProjectAspectRatio,
-        //   ),
-        // ),
 
         // SliverToBoxAdapter(
         //   child: Align(

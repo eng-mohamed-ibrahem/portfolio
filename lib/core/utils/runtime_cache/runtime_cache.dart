@@ -98,7 +98,7 @@ class RuntimeCache {
     const Skill(name: 'Version Control (Git)', percent: 0.85),
     const Skill(
         name: 'Payment Getway / Socket IO / Navigator2 / FVM', percent: 0.85),
-    const Skill(name: 'CI/CD', percent: 0.8),
+    const Skill(name: 'CI/CD / Github Actions', percent: 0.8),
     const Skill(name: 'UI/UX Implementation', percent: 0.8),
     const Skill(name: 'Documenting Apps', percent: 0.8),
     const Skill(name: 'Firebase Integeration', percent: 0.85),
@@ -135,8 +135,8 @@ class RuntimeCache {
       companyLogo: Assets.cadCompanyLogo,
       companyType: "Software House",
       jobtitle: "Flutter Developer",
-      startDate: "May 2023",
-      endDate: "Feb 2024",
+      startDate: "July 2023",
+      endDate: "March 2024",
       descriptionInPoinst: [
         "Built and maintained multiple mobile applications"
             "Effectively managed the mobile application development team to ensure timely delivery",
@@ -148,8 +148,8 @@ class RuntimeCache {
       companyName: "ANY Solution",
       companyLogo: Assets.anysolutionCompanyLogo,
       companyType: "Software House",
-      jobtitle: "Flutter Developer",
-      startDate: "May 2024",
+      jobtitle: "Flutter Developer (Part Time)",
+      startDate: "March 2024",
       endDate: "Jul 2024",
       descriptionInPoinst: [
         "Create shared package as helper of platform",
@@ -162,20 +162,20 @@ class RuntimeCache {
       companyLogo: Assets.freelancerLogo,
       companyType: "freelance",
       jobtitle: "Flutter Developer",
-      startDate: "May 2024",
+      startDate: "March 2024",
       endDate: "Present",
       descriptionInPoinst: [
-        "Develope a diverse range of mobile applications",
+        "Develop a diverse range of mobile applications",
         "Integrate RESTful APIs and third-party libraries to enhance interaction with backend services",
         "Consistently delvered customized solutions that aligned with client",
-        "Create rebust and error-free applications."
+        "Create robust  and error-free applications."
       ],
     ),
     ExperienceModel(
       companyName: "New Horizon",
       companyLogo: Assets.companyDefautLogo,
       companyType: "Software Learning Center",
-      jobtitle: "Mobile Instructor",
+      jobtitle: "Mobile Instructor (Part Time)",
       startDate: "Aug 2024",
       endDate: "Oct 2024",
       descriptionInPoinst: [
