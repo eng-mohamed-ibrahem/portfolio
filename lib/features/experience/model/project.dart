@@ -1,6 +1,6 @@
 class Project {
   final String name, description, image;
-  final String? githubUrl, downloadUrl, promoUrl;
+  final String? githubUrl, downloadUrl, promoUrl, googlePlayUrl, appStoreUrl;
 
   const Project({
     required this.name,
@@ -9,5 +9,7 @@ class Project {
     this.githubUrl,
     this.downloadUrl,
     this.promoUrl,
+    this.googlePlayUrl,
+    this.appStoreUrl,
   });
 }

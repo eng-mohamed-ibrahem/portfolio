@@ -46,10 +46,12 @@ class Assets {
   static const String echo = "assets/images/echo.png";
   static const String b2b = "assets/images/b2b.png";
   static const String emergencyCare = "assets/images/emergency_care.png";
+  static const String arafat = "assets/images/arafat.png";
 
   // company logos
   static const String companyDefautLogo = "assets/images/company.png";
   static const String cadCompanyLogo = "assets/images/cad.jpeg";
+  static const String takniaSystemsLogo = "assets/images/taknia_systems.jpeg";
   static const String anysolutionCompanyLogo = "assets/images/anysolution.jpeg";
   static const String freelancerLogo = "assets/images/freelancer.png";
 

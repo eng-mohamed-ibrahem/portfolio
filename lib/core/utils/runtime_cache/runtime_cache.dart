@@ -22,6 +22,13 @@ class RuntimeCache {
 
   List<Project> myProjects = [
     const Project(
+        name: 'الدكانه',
+        description:
+            "\"الدكانه\" is E-Commerce Application that helps you to buy products by categories and sub-categories",
+        image: Assets.arafat,
+        googlePlayUrl:
+            "https://play.google.com/store/apps/details?id=com.arafat.arafat"),
+    const Project(
       name: 'Hawkamah',
       description:
           "Hawkamah is a Flutter project that helps to manage and automate the process of evaluation and support for employees in a company.",
@@ -89,6 +96,7 @@ class RuntimeCache {
     const Skill(name: 'Dart', percent: 0.90),
     const Skill(name: 'OOP', percent: .99),
     const Skill(name: 'Flutter Framework', percent: 0.8),
+    const Skill(name: 'FlutterFlow', percent: 0.70),
     const Skill(
         name: 'State Management: Riverpod / BLoc/ Provider', percent: 0.9),
     const Skill(name: 'Design Pattern', percent: 0.75),
@@ -130,6 +138,21 @@ class RuntimeCache {
   ];
 
   List<ExperienceModel> myExperience = [
+    ExperienceModel(
+      companyName: "Taknia Systems",
+      companyLogo: Assets.takniaSystemsLogo,
+      companyType: "ERP System & software industry",
+      jobtitle: "Flutter Developer",
+      startDate: "May 2025",
+      endDate: "Present",
+      descriptionInPoinst: [
+        "Create and Manage ERP Systems using Flutter",
+        "Built and maintained multiple mobile applications",
+        "Enhance app performance using profiling tools",
+        "Implementing clean coding practices to provide user experience and reusable code.",
+        "Creating Offline Mode for application"
+      ],
+    ),
     ExperienceModel(
       companyName: "CAD",
       companyLogo: Assets.cadCompanyLogo,

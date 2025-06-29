@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_assets.dart';
@@ -136,23 +137,29 @@ class ProjectItem extends StatelessWidget {
       alignment: WrapAlignment.spaceEvenly,
       runAlignment: WrapAlignment.start,
       children: [
+        if (project.googlePlayUrl != null)
+          ProjectItemTextButton(
+            url: project.googlePlayUrl!,
+            title: const Text(AppStrings.googlePlay),
+            icon: Icon(FontAwesomeIcons.googlePlay, size: 24.sp),
+          ),
         if (project.downloadUrl != null)
           ProjectItemTextButton(
             url: project.downloadUrl!,
-            titleText: AppStrings.downloadApp,
-            svgPath: Assets.svgsDownloadIcon,
+            title: const Text(AppStrings.downloadApp),
+            icon: SvgPicture.asset(Assets.svgsDownloadIcon),
           ),
         if (project.githubUrl != null)
           ProjectItemTextButton(
             url: project.githubUrl!,
-            titleText: AppStrings.viewOnGitHub,
-            svgPath: Assets.svgsGithubIcon,
+            title: const Text(AppStrings.viewOnGitHub),
+            icon: SvgPicture.asset(Assets.svgsGithubIcon),
           ),
         if (project.promoUrl != null)
           ProjectItemTextButton(
             url: project.promoUrl!,
-            titleText: AppStrings.seeThePromo,
-            svgPath: Assets.svgsPlay,
+            title: const Text(AppStrings.seeThePromo),
+            icon: SvgPicture.asset(Assets.svgsPlay),
           ),
       ],
     );
@@ -163,11 +170,12 @@ class ProjectItemTextButton extends StatelessWidget {
   const ProjectItemTextButton({
     super.key,
     required this.url,
-    required this.titleText,
-    required this.svgPath,
+    required this.title,
+    required this.icon,
   });
 
-  final String url, titleText, svgPath;
+  final String url;
+  final Widget icon, title;
 
   @override
   Widget build(BuildContext context) {
@@ -177,8 +185,8 @@ class ProjectItemTextButton extends StatelessWidget {
         foregroundColor: AppColors.colorCBACF9,
       ),
       onPressed: () async => await openUrl(url),
-      icon: Text(titleText),
-      label: SvgPicture.asset(svgPath),
+      icon: icon, // Text(titleText),
+      label: title, // SvgPicture.asset(svgPath),
     );
   }
 }
