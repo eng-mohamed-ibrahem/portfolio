@@ -141,16 +141,15 @@ class RuntimeCache {
     ExperienceModel(
       companyName: "Taknia Systems",
       companyLogo: Assets.takniaSystemsLogo,
-      companyType: "ERP System & software industry",
+      companyType: "ERP System & Software Industry",
       jobtitle: "Flutter Developer",
       startDate: "May 2025",
       endDate: "Present",
       descriptionInPoinst: [
         "Create and Manage ERP Systems using Flutter",
         "Built and maintained multiple mobile applications",
-        "Enhance app performance using profiling tools",
         "Implementing clean coding practices to provide user experience and reusable code.",
-        "Creating Offline Mode for application"
+        "Integrate SQLite along with Printing Features"
       ],
     ),
     ExperienceModel(
@@ -161,8 +160,8 @@ class RuntimeCache {
       startDate: "July 2023",
       endDate: "March 2024",
       descriptionInPoinst: [
-        "Built and maintained multiple mobile applications"
-            "Effectively managed the mobile application development team to ensure timely delivery",
+        "Built and maintained multiple mobile applications",
+        "Effectively managed the mobile application development team to ensure timely delivery",
         "Enhance app performance using profiling tools",
         "Implementing clean coding practices to provide user experience and reusable code."
       ],
