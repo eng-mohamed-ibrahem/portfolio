@@ -51,6 +51,7 @@ class AppStrings {
   static const String viewOnGitHub = 'View on GitHub';
   static const String downloadApp = 'Download App';
   static const String googlePlay = 'Google Play';
+  static const String appStore = 'App Store';
   static const String my = 'My';
   static const String workExperience = 'Work Experience';
   static const String approach = 'Approach';

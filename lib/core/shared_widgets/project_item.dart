@@ -141,7 +141,19 @@ class ProjectItem extends StatelessWidget {
           ProjectItemTextButton(
             url: project.googlePlayUrl!,
             title: const Text(AppStrings.googlePlay),
-            icon: Icon(FontAwesomeIcons.googlePlay, size: 24.sp),
+            icon: const Icon(
+              FontAwesomeIcons.googlePlay,
+              color: Colors.white,
+            ),
+          ),
+        if (project.appStoreUrl != null)
+          ProjectItemTextButton(
+            url: project.appStoreUrl!,
+            title: const Text(AppStrings.appStore),
+            icon: const Icon(
+              FontAwesomeIcons.apple,
+              color: Colors.white,
+            ),
           ),
         if (project.downloadUrl != null)
           ProjectItemTextButton(

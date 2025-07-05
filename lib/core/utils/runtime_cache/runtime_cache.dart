@@ -22,12 +22,14 @@ class RuntimeCache {
 
   List<Project> myProjects = [
     const Project(
-        name: 'الدكانه',
-        description:
-            "\"الدكانه\" is E-Commerce Application that helps you to buy products by categories and sub-categories",
-        image: Assets.arafat,
-        googlePlayUrl:
-            "https://play.google.com/store/apps/details?id=com.arafat.arafat"),
+      name: 'الدكانه',
+      description:
+          "\"الدكانه\" is E-Commerce Application that allow the customer to shop from it and order the products from different sections",
+      image: Assets.arafat,
+      appStoreUrl: 'https://apps.apple.com/eg/app/arafat-app/id6746420983',
+      googlePlayUrl:
+          "https://play.google.com/store/apps/details?id=com.arafat.arafat",
+    ),
     const Project(
       name: 'Hawkamah',
       description:
