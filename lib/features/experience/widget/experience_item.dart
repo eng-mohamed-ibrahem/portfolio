@@ -3,11 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
-import 'package:portfolio/features/home/model/experience_model.dart';
+import 'package:portfolio/features/experience/domain/entities/experience_entity.dart';
 
 class ExperienceItem extends StatelessWidget {
   const ExperienceItem({super.key, required this.experience});
-  final ExperienceModel experience;
+  final ExperienceEntity experience;
 
   @override
   Widget build(BuildContext context) {
@@ -26,61 +26,32 @@ class ExperienceItem extends StatelessWidget {
           width: 1.w,
         ),
       ),
-      child: OverflowBar(
-        spacing: 30.w,
-        overflowSpacing: 20.h,
-        alignment: MainAxisAlignment.center,
-        overflowAlignment: OverflowBarAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: Image.asset(experience.companyLogo),
-            title: Text(
-              experience.companyName,
-              style: AppTextStyles.font26Bold(context),
-            ),
-            subtitle: Text(
-              experience.companyType,
-              style: AppTextStyles.font16Medium(context).copyWith(
-                color: AppColors.colorBEC1DD,
-              ),
+          Text(
+            experience.title,
+            style: AppTextStyles.font26Bold(context),
+          ),
+          SizedBox(height: 12.h),
+          Text(
+            experience.company,
+            style: AppTextStyles.font20Medium(context),
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            experience.duration,
+            style: AppTextStyles.font16Medium(context).copyWith(
+              color: AppColors.colorBEC1DD,
             ),
           ),
-          Column(
-            spacing: 12.h,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                '${experience.startDate} - ${experience.endDate}',
-                style: AppTextStyles.font26Bold(context),
-              ),
-              Text(
-                experience.jobtitle,
-                style: AppTextStyles.font24Bold(context),
-              ),
-              ...List.generate(
-                experience.descriptionInPoinst.length,
-                (index) => Row(
-                  spacing: 10.w,
-                  children: [
-                    Icon(
-                      Icons.brightness_1,
-                      color: AppColors.colorCBACF9,
-                      size: 6.r,
-                    ),
-                    Flexible(
-                      child: Text(
-                        experience.descriptionInPoinst[index],
-                        style: AppTextStyles.font16Medium(context).copyWith(
-                          color: AppColors.colorBEC1DD,
-                        ),
-                        textAlign: TextAlign.justify,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          SizedBox(height: 20.h),
+          Text(
+            experience.description,
+            style: AppTextStyles.font16Medium(context).copyWith(
+              color: AppColors.colorBEC1DD,
+            ),
+            textAlign: TextAlign.justify,
           ),
         ],
       ),

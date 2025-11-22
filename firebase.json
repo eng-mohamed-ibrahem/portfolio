@@ -1,17 +1,1 @@
-{
-  "hosting": {
-    "public": "build/web",
-    "target": "mohamed-portfolio-v2",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  }
-}
+{"hosting":{"public":"build/web","target":"mohamed-portfolio-v2","ignore":["firebase.json","**/.*","**/node_modules/**"],"rewrites":[{"source":"**","destination":"/index.html"}]},"flutter":{"platforms":{"dart":{"lib/firebase_options.dart":{"projectId":"portfolio-183d1","configurations":{"web":"1:110599375818:web:cbc9a10d5c59bb19cedd33"}}}}}}
