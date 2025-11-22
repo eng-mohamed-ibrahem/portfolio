@@ -5,7 +5,7 @@ import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
 import 'package:portfolio/features/experience/presentation/cubit/experience_cubit.dart';
-import 'package:portfolio/features/experience/widget/experience_item.dart';
+import 'package:portfolio/features/experience/presentation/widget/experience_item.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 
 class LandingViewMobileExperienceTab extends StatelessWidget {

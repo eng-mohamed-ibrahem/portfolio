@@ -1,20 +1,20 @@
-import 'package:portfolio/features/experience/domain/entities/experience_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/serivce_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
-import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
-import 'package:portfolio/features/experience/widget/desktop_projects_sliver_grid.dart';
-import 'package:portfolio/features/experience/widget/experience_item.dart';
+import 'package:portfolio/features/experience/presentation/cubit/experience_cubit.dart';
+import 'package:portfolio/features/experience/presentation/widget/desktop_projects_sliver_grid.dart';
+import 'package:portfolio/features/experience/presentation/widget/experience_item.dart';
 import 'package:portfolio/features/home/presentation/cubit/home_cubit.dart';
 import 'package:portfolio/features/home/widget/animated_personal_info.dart';
 import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
 import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
 import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
+import 'package:portfolio/features/projects/presentation/cubit/projects_cubit.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
 import 'package:portfolio/widgets/landing_view_big_text.dart';
 
@@ -83,9 +83,35 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                 SliverPadding(
                   padding:
                       EdgeInsets.symmetric(vertical: 56.h, horizontal: 100.w),
-                  sliver: const DesktopProjectsSliverGrid(
-                    childAspectRatio: 1 / 1.15,
-                    isHome: true,
+                  sliver: BlocProvider<ProjectsCubit>(
+                    create: (context) =>
+                        inject<ProjectsCubit>()..loadProjects(),
+                    child: BlocBuilder<ProjectsCubit, ProjectsState>(
+                      builder: (context, projectsState) {
+                        if (projectsState is ProjectsLoading ||
+                            projectsState is ProjectsInitial) {
+                          return const SliverToBoxAdapter(
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        } else if (projectsState is ProjectsLoaded) {
+                          return DesktopProjectsSliverGrid(
+                            projects: projectsState.projects,
+                            childAspectRatio: 1 / 1.15,
+                            isHome: true,
+                          );
+                        } else if (projectsState is ProjectsError) {
+                          return SliverToBoxAdapter(
+                            child: Center(
+                              child: Text(projectsState.message),
+                            ),
+                          );
+                        } else {
+                          return const SliverToBoxAdapter(child: SizedBox());
+                        }
+                      },
+                    ),
                   ),
                 ),
                 SliverToBoxAdapter(
@@ -107,22 +133,47 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                     ),
                   ),
                 ),
-                SliverList.builder(
-                  itemCount: inject<RuntimeCache>().myExperience.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                        top: 20.h,
-                        bottom: 30.h,
-                        left: 90.w,
-                        right: 90.w,
-                      ),
-                      child: ExperienceItem(
-                        experience: inject<RuntimeCache>().myExperience[index]
-                            as ExperienceEntity,
-                      ),
-                    );
-                  },
+                BlocProvider<ExperienceCubit>(
+                  create: (context) =>
+                      inject<ExperienceCubit>()..fetchExperience(),
+                  child: BlocBuilder<ExperienceCubit, ExperienceState>(
+                    builder: (context, experienceState) {
+                      if (experienceState is ExperienceLoading ||
+                          experienceState is ExperienceInitial) {
+                        return const SliverToBoxAdapter(
+                          child: Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                        );
+                      } else if (experienceState is ExperienceLoaded) {
+                        return SliverList.builder(
+                          itemCount: experienceState.experienceList.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.only(
+                                top: 20.h,
+                                bottom: 30.h,
+                                left: 90.w,
+                                right: 90.w,
+                              ),
+                              child: ExperienceItem(
+                                experience:
+                                    experienceState.experienceList[index],
+                              ),
+                            );
+                          },
+                        );
+                      } else if (experienceState is ExperienceError) {
+                        return SliverToBoxAdapter(
+                          child: Center(
+                            child: Text(experienceState.message),
+                          ),
+                        );
+                      } else {
+                        return const SliverToBoxAdapter(child: SizedBox());
+                      }
+                    },
+                  ),
                 ),
                 const SliverToBoxAdapter(
                   child: ContactMeSection(aspectRatio: 2),

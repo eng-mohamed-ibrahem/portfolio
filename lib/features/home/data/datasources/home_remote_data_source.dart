@@ -1,4 +1,5 @@
 import 'package:portfolio/features/home/data/models/home_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 abstract class HomeRemoteDataSource {
   Future<HomeModel> getHomeData();
@@ -7,13 +8,8 @@ abstract class HomeRemoteDataSource {
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<HomeModel> getHomeData() async {
-    // TODO: Implement Firebase logic
-    return Future.value(
-      const HomeModel(
-        name: 'Mohamed Ibrahem',
-        title: 'Flutter Developer',
-        summary: 'I am a passionate Flutter developer with a strong focus on creating beautiful and high-performance applications.',
-      ),
-    );
+    final snapshot = await FirebaseFirestore.instance.collection('profile').doc('data').get();
+    final profileData = snapshot.data();
+    return HomeModel.fromJson(profileData!);
   }
 }

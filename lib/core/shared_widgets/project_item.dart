@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +10,7 @@ import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/shared_widgets/my_sized_box.dart';
 import 'package:portfolio/core/utils/functions/open_url.dart';
-import 'package:portfolio/features/experience/model/project.dart';
+import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
 
 class ProjectItem extends StatelessWidget {
   const ProjectItem({
@@ -18,7 +19,7 @@ class ProjectItem extends StatelessWidget {
     this.isTablet = false,
   });
 
-  final Project project;
+  final ProjectEntity project;
   final bool isTablet;
 
   @override
@@ -52,7 +53,19 @@ class ProjectItem extends StatelessWidget {
                       ),
                       AspectRatio(
                         aspectRatio: 1.7,
-                        child: Image.asset(project.image),
+                        child: CachedNetworkImage(
+                          imageUrl: project.imageUrl.isNotEmpty
+                              ? project.imageUrl.first
+                              : '',
+                          fit: BoxFit.cover,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) => const Icon(
+                            Icons.error,
+                            color: Colors.red,
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -102,7 +115,19 @@ class ProjectItem extends StatelessWidget {
                     ),
                     AspectRatio(
                       aspectRatio: 1.7,
-                      child: Image.asset(project.image),
+                      child: CachedNetworkImage(
+                        imageUrl: project.imageUrl.isNotEmpty
+                            ? project.imageUrl.first
+                            : '',
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                        errorWidget: (context, url, error) => const Icon(
+                          Icons.error,
+                          color: Colors.red,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -130,49 +155,44 @@ class ProjectItem extends StatelessWidget {
     );
   }
 
-  Widget _buildProjectLinks({required Project project}) {
+  Widget _buildProjectLinks({required ProjectEntity project}) {
     return Wrap(
       spacing: 16.w,
       direction: Axis.horizontal,
       alignment: WrapAlignment.spaceEvenly,
       runAlignment: WrapAlignment.start,
       children: [
-        if (project.googlePlayUrl != null)
-          ProjectItemTextButton(
-            url: project.googlePlayUrl!,
-            title: const Text(AppStrings.googlePlay),
-            icon: const Icon(
-              FontAwesomeIcons.googlePlay,
-              color: Colors.white,
-            ),
+        ProjectItemTextButton(
+          url: project.googlePlayUrl,
+          title: const Text(AppStrings.googlePlay),
+          icon: const Icon(
+            FontAwesomeIcons.googlePlay,
+            color: Colors.white,
           ),
-        if (project.appStoreUrl != null)
-          ProjectItemTextButton(
-            url: project.appStoreUrl!,
-            title: const Text(AppStrings.appStore),
-            icon: const Icon(
-              FontAwesomeIcons.apple,
-              color: Colors.white,
-            ),
+        ),
+        ProjectItemTextButton(
+          url: project.appStoreUrl,
+          title: const Text(AppStrings.appStore),
+          icon: const Icon(
+            FontAwesomeIcons.apple,
+            color: Colors.white,
           ),
-        if (project.downloadUrl != null)
-          ProjectItemTextButton(
-            url: project.downloadUrl!,
-            title: const Text(AppStrings.downloadApp),
-            icon: SvgPicture.asset(Assets.svgsDownloadIcon),
-          ),
-        if (project.githubUrl != null)
-          ProjectItemTextButton(
-            url: project.githubUrl!,
-            title: const Text(AppStrings.viewOnGitHub),
-            icon: SvgPicture.asset(Assets.svgsGithubIcon),
-          ),
-        if (project.promoUrl != null)
-          ProjectItemTextButton(
-            url: project.promoUrl!,
-            title: const Text(AppStrings.seeThePromo),
-            icon: SvgPicture.asset(Assets.svgsPlay),
-          ),
+        ),
+        ProjectItemTextButton(
+          url: project.downloadUrl,
+          title: const Text(AppStrings.downloadApp),
+          icon: SvgPicture.asset(Assets.svgsDownloadIcon),
+        ),
+        ProjectItemTextButton(
+          url: project.githubUrl,
+          title: const Text(AppStrings.viewOnGitHub),
+          icon: SvgPicture.asset(Assets.svgsGithubIcon),
+        ),
+        ProjectItemTextButton(
+          url: project.promoUrl,
+          title: const Text(AppStrings.seeThePromo),
+          icon: SvgPicture.asset(Assets.svgsPlay),
+        ),
       ],
     );
   }

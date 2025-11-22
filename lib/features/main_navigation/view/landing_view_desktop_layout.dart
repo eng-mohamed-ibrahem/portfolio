@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
-import 'package:portfolio/features/experience/views/landing_view_desktop_experience_tab.dart';
+import 'package:portfolio/features/experience/presentation/views/landing_view_desktop_experience_tab.dart';
 import 'package:portfolio/features/home/views/landing_view_desktop_home_tab.dart';
 import 'package:portfolio/features/projects/presentation/view/projects_view.dart';
-import 'package:portfolio/features/skills/views/landing_view_desktop_skills_tab.dart';
-import 'package:portfolio/features/works/presentation/view/works_view.dart';
+import 'package:portfolio/features/skills/presentation/views/landing_view_desktop_skills_tab.dart';
 
 class LandingViewDesktopLayout extends StatelessWidget {
   const LandingViewDesktopLayout({
@@ -53,7 +52,7 @@ class LandingViewDesktopLayout extends StatelessWidget {
               case 3:
                 return const ProjectsView();
               case 4:
-                return const WorksView();
+                return const LandingViewDesktopExperienceTab();
 
               default:
                 return const LandingViewDesktopHomeTab();

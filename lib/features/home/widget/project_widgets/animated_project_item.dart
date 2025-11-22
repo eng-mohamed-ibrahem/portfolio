@@ -1,7 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/shared_widgets/project_item.dart';
-import 'package:portfolio/features/experience/model/project.dart';
+import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
 class AnimatedProjectItem extends StatefulWidget {
@@ -11,7 +11,7 @@ class AnimatedProjectItem extends StatefulWidget {
     required this.index,
   });
 
-  final Project project;
+  final ProjectEntity project;
   final int index;
 
   @override

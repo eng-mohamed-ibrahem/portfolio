@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/serivce_locator/inject.dart';
-import 'package:portfolio/core/utils/runtime_cache/runtime_cache.dart';
 import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
+import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
 
 class SmallSelectionSliverGrid extends StatelessWidget {
   const SmallSelectionSliverGrid({
     super.key,
     this.tabletLayoutChildAspectRatio,
+    required this.projects,
   });
 
   final double? tabletLayoutChildAspectRatio;
+  final List<ProjectEntity> projects;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class SmallSelectionSliverGrid extends StatelessWidget {
       childAspectRatio: tabletLayoutChildAspectRatio ?? 1,
       mainAxisSpacing: 32.h,
       children: List.generate(
-        inject<RuntimeCache>().myProjects.length,
+        projects.length,
         (index) => AnimatedProjectItem(
-          project: inject<RuntimeCache>().myProjects[index],
+          project: projects[index],
           index: index,
         ),
         growable: false,

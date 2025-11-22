@@ -2,27 +2,42 @@ import 'package:portfolio/features/projects/domain/entities/project_entity.dart'
 
 class ProjectModel extends ProjectEntity {
   const ProjectModel({
-    required super.title,
+    required super.appStoreUrl,
+    required super.createdAt,
     required super.description,
+    required super.downloadUrl,
+    required super.githubUrl,
+    required super.googlePlayUrl,
     required super.imageUrl,
-    required super.projectUrl,
+    required super.name,
+    required super.promoUrl,
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     return ProjectModel(
-      title: json['title'],
-      description: json['description'],
-      imageUrl: json['imageUrl'],
-      projectUrl: json['projectUrl'],
+      appStoreUrl: json['appStoreUrl'] ?? '',
+      createdAt: DateTime.parse(json['createdAt'] ?? ''),
+      description: json['description'] ?? '',
+      downloadUrl: json['downloadUrl'] ?? '',
+      githubUrl: json['githubUrl'] ?? '',
+      googlePlayUrl: json['googlePlayUrl'] ?? '',
+      imageUrl: List<String>.from(json['imageUrl'] ?? []),
+      name: json['name'] ?? '',
+      promoUrl: json['promoUrl'] ?? '',
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'title': title,
+      'appStoreUrl': appStoreUrl,
+      'createdAt': createdAt.toIso8601String(),
       'description': description,
+      'downloadUrl': downloadUrl,
+      'githubUrl': githubUrl,
+      'googlePlayUrl': googlePlayUrl,
       'imageUrl': imageUrl,
-      'projectUrl': projectUrl,
+      'name': name,
+      'promoUrl': promoUrl,
     };
   }
 }

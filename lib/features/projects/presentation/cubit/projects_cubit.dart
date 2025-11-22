@@ -11,7 +11,7 @@ class ProjectsCubit extends Cubit<ProjectsState> {
 
   ProjectsCubit({required this.getProjects}) : super(ProjectsInitial());
 
-  Future<void> fetchProjects() async {
+  Future<void> loadProjects() async {
     emit(ProjectsLoading());
     final failureOrProjects = await getProjects(NoParams());
     failureOrProjects.fold(
