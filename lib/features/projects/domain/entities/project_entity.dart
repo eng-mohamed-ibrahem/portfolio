@@ -7,7 +7,7 @@ class ProjectEntity extends Equatable {
   final String downloadUrl;
   final String githubUrl;
   final String googlePlayUrl;
-  final List<String> imageUrl;
+  final String imageUrl;
   final String name;
   final String promoUrl;
 

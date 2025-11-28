@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/rendering.dart';
 import 'package:portfolio/features/experience/data/models/experience_model.dart';
 
 abstract class ExperienceRemoteDataSource {
@@ -15,8 +16,8 @@ class ExperienceRemoteDataSourceImpl implements ExperienceRemoteDataSource {
           .map((doc) => ExperienceModel.fromJson(doc.data()))
           .toList();
     } catch (e) {
-      print(e.toString());
-      return [];
+      debugPrint(e.toString());
+      rethrow;
     }
   }
 }

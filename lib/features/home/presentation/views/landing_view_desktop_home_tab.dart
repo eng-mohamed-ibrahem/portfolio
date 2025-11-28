@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/helpers/responsive_padding.dart';
+import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/presentation/cubit/experience_cubit.dart';
 import 'package:portfolio/features/experience/presentation/widget/desktop_projects_sliver_grid.dart';
 import 'package:portfolio/features/experience/presentation/widget/experience_item.dart';
 import 'package:portfolio/features/home/presentation/cubit/home_cubit.dart';
-import 'package:portfolio/features/home/widget/animated_personal_info.dart';
-import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
-import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
-import 'package:portfolio/features/home/widget/sub_info/desktop_passion_and_purpose_section.dart';
+import 'package:portfolio/features/home/presentation/widget/animated_personal_info.dart';
+import 'package:portfolio/features/home/presentation/widget/contact_me_widgets/contact_me_section.dart';
+import 'package:portfolio/features/home/presentation/widget/see_my_work_and_download_cv_buttons.dart';
+import 'package:portfolio/features/home/presentation/widget/sub_info/desktop_passion_and_purpose_section.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/projects/presentation/cubit/projects_cubit.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
@@ -39,24 +40,29 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
           } else if (state is HomeLoaded) {
             return CustomScrollView(
               slivers: [
-                const SliverToBoxAdapter(
-                  child: Align(
-                    child: TabsNav(),
-                  ),
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  pinned: true,
+                  floating: true,
+                  flexibleSpace: const TabsNav(),
+                  collapsedHeight: 200.h,
+                  expandedHeight: 200.h,
+                  centerTitle: true,
                 ),
                 SliverToBoxAdapter(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 73.h, bottom: 22.h),
-                    child: HeaderSmallText(text: state.homeEntity.title),
-                  ),
+                  child: AnimatedPersonalInfo(homeEntity: state.homeEntity),
                 ),
                 SliverToBoxAdapter(
                   child: Align(
-                    child: HeaderDescriptionText(text: state.homeEntity.name),
+                    child:
+                        HeaderDescriptionText(text: state.homeEntity.summary),
                   ),
                 ),
                 const SliverToBoxAdapter(
-                  child: AnimatedPersonalInfo(),
+                  child: SizedBox(
+                    height: 10,
+                  ),
                 ),
                 const SliverToBoxAdapter(
                   child: SeeMyWorkAndDownloadCVButtons(),
@@ -66,8 +72,8 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                     margin: EdgeInsets.only(
                       top: 206.h,
                       bottom: 150.h,
-                      left: 24.w,
-                      right: 24.w,
+                      left: ResponsivePadding.horizontal(context),
+                      right: ResponsivePadding.horizontal(context),
                     ),
                     child: const DesktopPassionAndPurposeSection(),
                   ),
@@ -81,8 +87,10 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                   ),
                 ),
                 SliverPadding(
-                  padding:
-                      EdgeInsets.symmetric(vertical: 56.h, horizontal: 100.w),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 56.h,
+                    horizontal: ResponsivePadding.horizontal(context),
+                  ),
                   sliver: BlocProvider<ProjectsCubit>(
                     create: (context) =>
                         inject<ProjectsCubit>()..loadProjects(),
@@ -153,8 +161,8 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                               margin: EdgeInsets.only(
                                 top: 20.h,
                                 bottom: 30.h,
-                                left: 90.w,
-                                right: 90.w,
+                                left: ResponsivePadding.horizontal(context),
+                                right: ResponsivePadding.horizontal(context),
                               ),
                               child: ExperienceItem(
                                 experience:

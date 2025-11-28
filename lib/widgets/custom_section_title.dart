@@ -20,13 +20,22 @@ class CustomSectionTitle extends StatelessWidget {
           TextSpan(
             text: whiteSpan,
             style: AppTextStyles.font48Bold(context).copyWith(
-              color: Colors.white,
+              color: AppColors.textPrimary,
             ),
           ),
-          TextSpan(
-            text: colorfulSpan,
-            style: AppTextStyles.font48Bold(context).copyWith(
-              color: AppColors.colorCBACF9,
+          WidgetSpan(
+            child: ShaderMask(
+              shaderCallback: (bounds) => const LinearGradient(
+                colors: AppColors.primaryGradient,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ).createShader(bounds),
+              child: Text(
+                colorfulSpan,
+                style: AppTextStyles.font48Bold(context).copyWith(
+                  color: Colors.white,
+                ),
+              ),
             ),
           ),
         ],

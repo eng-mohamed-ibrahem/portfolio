@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
+import 'package:portfolio/core/helpers/responsive_padding.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/projects/presentation/cubit/projects_cubit.dart';
 import 'package:portfolio/features/projects/presentation/widgets/project_card.dart';
 
@@ -27,13 +29,43 @@ class _ProjectsViewState extends State<ProjectsView> {
         if (state is ProjectsLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is ProjectsLoaded) {
-          return ListView.separated(
-            padding: EdgeInsets.all(24.w),
-            itemCount: state.projects.length,
-            separatorBuilder: (context, index) => SizedBox(height: 24.h),
-            itemBuilder: (context, index) {
-              return ProjectCard(project: state.projects[index]);
-            },
+          final int crossAxisCount = ResponsiveSize.gridCrossAxisCount(
+            context,
+            mobile: 1,
+            smallTablet: 1,
+            largeTablet: 2,
+            desktop: 3,
+          );
+
+          return CustomScrollView(
+            slivers: [
+              const SliverAppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                pinned: true,
+                flexibleSpace: TabsNav(),
+                collapsedHeight: kToolbarHeight,
+                expandedHeight: kToolbarHeight,
+                centerTitle: true,
+              ),
+              SliverPadding(
+                padding: EdgeInsets.all(ResponsivePadding.horizontal(context)),
+                sliver: SliverGrid(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: crossAxisCount,
+                    crossAxisSpacing: 24.w,
+                    mainAxisSpacing: 24.h,
+                    childAspectRatio: 1 / 1.2,
+                  ),
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      return ProjectCard(project: state.projects[index]);
+                    },
+                    childCount: state.projects.length,
+                  ),
+                ),
+              ),
+            ],
           );
         } else if (state is ProjectsError) {
           return Center(

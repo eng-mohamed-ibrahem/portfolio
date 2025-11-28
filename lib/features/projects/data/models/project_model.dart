@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
 
 class ProjectModel extends ProjectEntity {
@@ -16,12 +17,12 @@ class ProjectModel extends ProjectEntity {
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     return ProjectModel(
       appStoreUrl: json['appStoreUrl'] ?? '',
-      createdAt: DateTime.parse(json['createdAt'] ?? ''),
+      createdAt: (json['createdAt'] as Timestamp).toDate(),
       description: json['description'] ?? '',
       downloadUrl: json['downloadUrl'] ?? '',
       githubUrl: json['githubUrl'] ?? '',
       googlePlayUrl: json['googlePlayUrl'] ?? '',
-      imageUrl: List<String>.from(json['imageUrl'] ?? []),
+      imageUrl: json['imageUrl'] ?? '',
       name: json['name'] ?? '',
       promoUrl: json['promoUrl'] ?? '',
     );
@@ -30,7 +31,7 @@ class ProjectModel extends ProjectEntity {
   Map<String, dynamic> toJson() {
     return {
       'appStoreUrl': appStoreUrl,
-      'createdAt': createdAt.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
       'description': description,
       'downloadUrl': downloadUrl,
       'githubUrl': githubUrl,

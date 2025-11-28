@@ -6,9 +6,11 @@ import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/helpers/extensions.dart';
+import 'package:portfolio/features/home/domain/entities/home_entity.dart';
 
 class AnimatedPersonalInfo extends StatelessWidget {
-  const AnimatedPersonalInfo({super.key});
+  const AnimatedPersonalInfo({super.key, required this.homeEntity});
+  final HomeEntity homeEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class AnimatedPersonalInfo extends StatelessWidget {
           direction: context.isMobile ? Axis.vertical : Axis.horizontal,
           children: [
             Text(
-              '${AppStrings.introduction} ',
+              'Hi, I am ${homeEntity.name} ',
               style: AppTextStyles.font24Bold(context),
             ),
             DefaultTextStyle(

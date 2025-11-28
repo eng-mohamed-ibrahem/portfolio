@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portfolio/features/skills/domain/entities/skill_entity.dart';
 
 class SkillModel extends SkillEntity {
@@ -10,7 +11,7 @@ class SkillModel extends SkillEntity {
 
   factory SkillModel.fromJson(Map<String, dynamic> json) {
     return SkillModel(
-      createdAt: DateTime.parse(json['createdAt']),
+      createdAt: (json['createdAt'] as Timestamp).toDate(),
       level: json['level'],
       name: json['name'],
       percent: (json['percent'] as num).toDouble(),
@@ -19,7 +20,7 @@ class SkillModel extends SkillEntity {
 
   Map<String, dynamic> toJson() {
     return {
-      'createdAt': createdAt.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
       'level': level,
       'name': name,
       'percent': percent,

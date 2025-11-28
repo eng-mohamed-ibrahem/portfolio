@@ -15,7 +15,7 @@ class AppStrings {
   static const String myGmail = "mohamed.data13@gmail.com";
   static const String fontFamily = 'Cairo';
   static const String home = "Home";
-  static const String experience = "Experience";
+  static const String projects = "Projects";
   static const String skills = "Skills";
   static const String dynamicAppMagic =
       "Mastering dynamic app development with Flutter";

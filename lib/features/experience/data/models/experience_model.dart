@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:portfolio/features/experience/domain/entities/experience_entity.dart';
 
 class ExperienceModel extends ExperienceEntity {
@@ -17,7 +18,7 @@ class ExperienceModel extends ExperienceEntity {
       companyLogoUrl: json['companyLogoUrl'],
       companyName: json['companyName'],
       companyType: json['companyType'],
-      createdAt: DateTime.parse(json['createdAt']),
+      createdAt: (json['createdAt'] as Timestamp).toDate(),
       descriptionInPoints: List<String>.from(json['descriptionInPoints']),
       endDate: json['endDate'],
       jobTitle: json['jobTitle'],
@@ -30,7 +31,7 @@ class ExperienceModel extends ExperienceEntity {
       'companyLogoUrl': companyLogoUrl,
       'companyName': companyName,
       'companyType': companyType,
-      'createdAt': createdAt.toIso8601String(),
+      'createdAt': Timestamp.fromDate(createdAt),
       'descriptionInPoints': descriptionInPoints,
       'endDate': endDate,
       'jobTitle': jobTitle,

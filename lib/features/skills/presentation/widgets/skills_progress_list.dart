@@ -28,9 +28,11 @@ class SkillsProgressList extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                skill.name,
-                style: AppTextStyles.font20Medium(context),
+              Expanded(
+                child: Text(
+                  skill.name,
+                  style: AppTextStyles.font20Medium(context),
+                ),
               ),
               Text(
                 skill.level,
@@ -44,7 +46,7 @@ class SkillsProgressList extends StatelessWidget {
             animation: true,
             lineHeight: 16.h,
             animationDuration: 2000,
-            percent: skill.percent / 100, // Convert 0-100 to 0-1
+            percent: skill.percent, // Convert 0-100 to 0-1
             linearGradient: const LinearGradient(
               colors: [Color(0xffFF00C1), Color(0xffF4AC24)],
               stops: [0, 1],

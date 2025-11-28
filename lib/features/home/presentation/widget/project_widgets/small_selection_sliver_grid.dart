@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
+import 'package:portfolio/features/home/presentation/widget/project_widgets/animated_project_item.dart';
 import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
 
 class SmallSelectionSliverGrid extends StatelessWidget {

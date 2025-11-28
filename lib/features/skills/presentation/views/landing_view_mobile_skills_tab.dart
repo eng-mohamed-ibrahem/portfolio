@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/skills/presentation/cubit/skills_cubit.dart';
 import 'package:portfolio/features/skills/presentation/widgets/skills_progress_list.dart';
@@ -24,11 +24,14 @@ class LandingViewMobileSkillsTab extends StatelessWidget {
           } else if (state is SkillsLoaded) {
             return CustomScrollView(
               slivers: <Widget>[
-                SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.mobileHorizontalPadVal.w,
-                  ),
-                  sliver: const SliverToBoxAdapter(child: TabsNav()),
+                const SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  pinned: true,
+                  flexibleSpace: TabsNav(),
+                  collapsedHeight: kToolbarHeight,
+                  expandedHeight: kToolbarHeight,
+                  centerTitle: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(

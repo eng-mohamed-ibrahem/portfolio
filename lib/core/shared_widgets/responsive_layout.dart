@@ -18,13 +18,36 @@ class ResponsiveLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
+        // Determine which layout to show
+        Widget currentLayout;
         if (constraints.maxWidth > SizeConfig.tabletBreakPoint) {
-          return desktopLayout(context);
+          currentLayout = desktopLayout(context);
         } else if (constraints.maxWidth > SizeConfig.mobileBreakPoint) {
-          return tabletLayout(context);
+          currentLayout = tabletLayout(context);
         } else {
-          return mobileLayout(context);
+          currentLayout = mobileLayout(context);
         }
+
+        // Wrap in AnimatedSwitcher for smooth transitions
+        return AnimatedSwitcher(
+          duration: const Duration(milliseconds: 400),
+          switchInCurve: Curves.easeInOut,
+          switchOutCurve: Curves.easeInOut,
+          transitionBuilder: (Widget child, Animation<double> animation) {
+            return FadeTransition(
+              opacity: animation,
+              child: child,
+            );
+          },
+          child: KeyedSubtree(
+            key: ValueKey(constraints.maxWidth > SizeConfig.tabletBreakPoint
+                ? 'desktop'
+                : constraints.maxWidth > SizeConfig.mobileBreakPoint
+                    ? 'tablet'
+                    : 'mobile'),
+            child: currentLayout,
+          ),
+        );
       },
     );
   }

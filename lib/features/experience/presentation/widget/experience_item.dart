@@ -42,10 +42,10 @@ class ExperienceItem extends StatelessWidget {
                 height: 60.h,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
-                  color: Colors.white,
+                  color: Colors.transparent,
                   image: DecorationImage(
                     image: NetworkImage(experience.companyLogoUrl),
-                    fit: BoxFit.contain,
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),

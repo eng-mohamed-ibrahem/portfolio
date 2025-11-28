@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/config/themes/app_themes.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/main_navigation/view/landing_view.dart';
 
 class RootApp extends StatelessWidget {
@@ -15,15 +13,12 @@ class RootApp extends StatelessWidget {
       designSize: const Size(1440, 944),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_, __) => BlocProvider<LandingCubit>(
-        create: (_) => LandingCubit(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: AppStrings.appTitle,
-          theme: AppThemes.dark,
-          themeMode: ThemeMode.dark,
-          home: const LandingView(),
-        ),
+      builder: (_, __) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: AppStrings.appTitle,
+        theme: AppThemes.dark,
+        themeMode: ThemeMode.dark,
+        home: const LandingView(),
       ),
     );
   }

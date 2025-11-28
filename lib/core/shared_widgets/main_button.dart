@@ -3,10 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/config/themes/app_colors.dart';
 import 'package:portfolio/config/themes/app_text_styles.dart';
-import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/utils/functions/get_responsive_font_size.dart';
 
-class MainButton extends StatelessWidget {
+class MainButton extends StatefulWidget {
   const MainButton({
     super.key,
     this.text,
@@ -38,44 +37,7 @@ class MainButton extends StatelessWidget {
   final Gradient? gradient;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: width?.w,
-      height: height?.h,
-      margin: margin,
-      decoration: AppConstants.boxDecoration.copyWith(
-        borderRadius: BorderRadius.circular(borderRadius ?? 13.r),
-        color: backgroundColor,
-        border: Border.all(
-          color: borderColor ?? AppColors.color6971A2.withAlpha(41),
-        ),
-        gradient: gradient ?? AppConstants.boxPrimaryLinearGradient,
-      ),
-      child: MaterialButton(
-        padding: padding ??
-            EdgeInsets.symmetric(
-              horizontal: 40.w,
-              vertical: 24.h,
-            ),
-        onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadiusDirectional.circular(
-            borderRadius?.r ?? 13.0.r,
-          ),
-        ),
-        child: child ??
-            Text(
-              text!,
-              style: textStyle ??
-                  AppTextStyles.font18Medium(context).copyWith(
-                    fontSize: getResponsiveFontSize(context,
-                        fontSize: fontSize ?? 18),
-                    color: Colors.white,
-                  ),
-            ),
-      ),
-    );
-  }
+  State<MainButton> createState() => _MainButtonState();
 
   factory MainButton.icon({
     required BuildContext context,
@@ -113,4 +75,78 @@ class MainButton extends StatelessWidget {
           ],
         ),
       );
+}
+
+class _MainButtonState extends State<MainButton> {
+  bool _isHovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeOut,
+        width: widget.width?.w,
+        height: widget.height?.h,
+        margin: widget.margin,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(widget.borderRadius ?? 16.r),
+          gradient: widget.gradient ??
+              const LinearGradient(
+                colors: AppColors.primaryGradient,
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+          boxShadow: [
+            BoxShadow(
+              color: _isHovered
+                  ? AppColors.glowPrimary.withValues(alpha: 0.4)
+                  : AppColors.glowPrimary.withValues(alpha: 0.2),
+              blurRadius: _isHovered ? 24 : 16,
+              offset: const Offset(0, 8),
+            ),
+          ],
+          border: Border.all(
+            color: widget.borderColor ?? AppColors.glassBorder,
+            width: 1,
+          ),
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: widget.onPressed,
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 16.r),
+            child: Container(
+              padding: widget.padding ??
+                  EdgeInsets.symmetric(
+                    horizontal: 32.w,
+                    vertical: 16.h,
+                  ),
+              child: Center(
+                child: AnimatedScale(
+                  duration: const Duration(milliseconds: 200),
+                  scale: _isHovered ? 1.05 : 1.0,
+                  child: widget.child ??
+                      Text(
+                        widget.text!,
+                        style: widget.textStyle ??
+                            AppTextStyles.font18Medium(context).copyWith(
+                              fontSize: getResponsiveFontSize(
+                                context,
+                                fontSize: widget.fontSize ?? 18,
+                              ),
+                              color: AppColors.textPrimary,
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

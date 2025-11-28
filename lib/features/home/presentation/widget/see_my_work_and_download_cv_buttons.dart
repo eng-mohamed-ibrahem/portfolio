@@ -1,16 +1,14 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:file_saver/file_saver.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_assets.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/features/resume/presentation/cubit/resume_cubit.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
-import 'package:http/http.dart' as http;
 
 class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
   const SeeMyWorkAndDownloadCVButtons({
@@ -62,19 +60,12 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
 
   Future<void> _downloadCV(String url) async {
     try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        await FileSaver.instance.saveFile(
-          name: AppStrings.resumeName,
-          bytes: response.bodyBytes,
-          ext: 'pdf',
-          mimeType: MimeType.pdf,
-        );
-      } else {
-        await Sentry.captureException(
-          Exception('Failed to download CV: ${response.statusCode}'),
-        );
-      }
+      await FileSaver.instance.saveFile(
+        name: AppStrings.resumeName,
+        link: LinkDetails(link: url),
+        ext: 'pdf',
+        mimeType: MimeType.pdf,
+      );
     } catch (e, stackTrace) {
       await Sentry.captureException(e, stackTrace: stackTrace);
     }

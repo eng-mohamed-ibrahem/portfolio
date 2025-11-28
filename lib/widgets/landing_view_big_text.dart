@@ -14,30 +14,41 @@ class LandingViewBigText extends StatelessWidget {
     return FadeInDown(
       delay: const Duration(milliseconds: 500),
       child: FittedBox(
-        child: RichText(
-          textAlign: TextAlign.center,
-          text: TextSpan(
-            children: textSpans ??
-                [
-                  TextSpan(
-                    text: '${AppStrings.transformingConceptsInto}\n',
-                    style: AppTextStyles.font72Bold(context).copyWith(
-                      color: Colors.white,
+        child: ShaderMask(
+          shaderCallback: (bounds) => const LinearGradient(
+            colors: [
+              AppColors.textPrimary,
+              AppColors.textSecondary,
+              ...AppColors.primaryGradient,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ).createShader(bounds),
+          child: RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: textSpans ??
+                  [
+                    TextSpan(
+                      text: '${AppStrings.transformingConceptsInto}\n',
+                      style: AppTextStyles.font72Bold(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: '${AppStrings.seamless} ',
-                    style: AppTextStyles.font72Bold(context).copyWith(
-                      color: Colors.white,
+                    TextSpan(
+                      text: '${AppStrings.seamless} ',
+                      style: AppTextStyles.font72Bold(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: AppStrings.userExperience,
-                    style: AppTextStyles.font72Bold(context).copyWith(
-                      color: AppColors.colorCBACF9,
+                    TextSpan(
+                      text: AppStrings.userExperience,
+                      style: AppTextStyles.font72Bold(context).copyWith(
+                        color: Colors.white,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+            ),
           ),
         ),
       ),
@@ -59,7 +70,9 @@ class HeaderSmallText extends StatelessWidget {
       delay: const Duration(milliseconds: 300),
       child: Text(
         text,
-        style: AppTextStyles.font16Regular(context),
+        style: AppTextStyles.font16Regular(context).copyWith(
+          color: AppColors.textSecondary,
+        ),
         textAlign: TextAlign.center,
       ),
     );
@@ -80,7 +93,9 @@ class HeaderDescriptionText extends StatelessWidget {
       delay: const Duration(milliseconds: 700),
       child: Text(
         text,
-        style: AppTextStyles.font24Regular(context),
+        style: AppTextStyles.font24Regular(context).copyWith(
+          color: AppColors.textSecondary,
+        ),
         textAlign: TextAlign.center,
       ),
     );

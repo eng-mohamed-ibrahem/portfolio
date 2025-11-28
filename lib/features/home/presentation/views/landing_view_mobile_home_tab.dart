@@ -4,18 +4,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
-import 'package:portfolio/core/serivce_locator/inject.dart';
+import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
 import 'package:portfolio/features/experience/presentation/cubit/experience_cubit.dart';
 import 'package:portfolio/features/experience/presentation/widget/experience_item.dart';
 import 'package:portfolio/features/home/presentation/cubit/home_cubit.dart';
-import 'package:portfolio/features/home/widget/contact_me_widgets/contact_me_section.dart';
-import 'package:portfolio/features/home/widget/copy_my_email_card.dart';
-import 'package:portfolio/features/home/widget/project_widgets/animated_project_item.dart';
-import 'package:portfolio/features/home/widget/see_my_work_and_download_cv_buttons.dart';
-import 'package:portfolio/features/home/widget/sub_info/prioritize_img.dart';
-import 'package:portfolio/features/home/widget/sub_info/tech_enthusiast_card.dart';
+import 'package:portfolio/features/home/presentation/widget/contact_me_widgets/contact_me_section.dart';
+import 'package:portfolio/features/home/presentation/widget/copy_my_email_card.dart';
+import 'package:portfolio/features/home/presentation/widget/project_widgets/animated_project_item.dart';
+import 'package:portfolio/features/home/presentation/widget/see_my_work_and_download_cv_buttons.dart';
+import 'package:portfolio/features/home/presentation/widget/sub_info/prioritize_img.dart';
+import 'package:portfolio/features/home/presentation/widget/sub_info/tech_enthusiast_card.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/projects/presentation/cubit/projects_cubit.dart';
 import 'package:portfolio/widgets/custom_section_title.dart';
@@ -37,26 +37,29 @@ class LandingViewMobileHomeTab extends StatelessWidget {
           } else if (state is HomeLoaded) {
             return CustomScrollView(
               slivers: [
-                SliverPadding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.mobileHorizontalPadVal.w,
-                  ),
-                  sliver: const SliverToBoxAdapter(child: TabsNav()),
+                const SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  pinned: true,
+                  flexibleSpace: TabsNav(),
+                  collapsedHeight: kToolbarHeight,
+                  expandedHeight: kToolbarHeight,
+                  centerTitle: true,
                 ),
                 SliverToBoxAdapter(
-                  child: Container(
-                    margin: EdgeInsets.only(top: 40.h, bottom: 20.h),
-                    child: HeaderSmallText(text: state.homeEntity.title),
-                  ),
+                  child: AnimatedPersonalInfo(homeEntity: state.homeEntity),
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 56.w),
-                    child: HeaderDescriptionText(text: state.homeEntity.name),
+                    child:
+                        HeaderDescriptionText(text: state.homeEntity.summary),
                   ),
                 ),
                 const SliverToBoxAdapter(
-                  child: AnimatedPersonalInfo(),
+                  child: SizedBox(
+                    height: 10,
+                  ),
                 ),
                 SliverToBoxAdapter(
                   child: Container(
