@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
-import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/helpers/responsive_padding.dart';
 import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/core/shared_widgets/main_button.dart';
 import 'package:portfolio/cubit/landing_cubit.dart';
@@ -37,11 +37,16 @@ class LandingViewMobileHomeTab extends StatelessWidget {
           } else if (state is HomeLoaded) {
             return CustomScrollView(
               slivers: [
-                const SliverAppBar(
+                SliverAppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   pinned: true,
-                  flexibleSpace: TabsNav(),
+                  floating: true,
+                  snap: true,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(80.h),
+                    child: const TabsNav(),
+                  ),
                   collapsedHeight: kToolbarHeight,
                   expandedHeight: kToolbarHeight,
                   centerTitle: true,
@@ -51,7 +56,9 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 56.w),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: ResponsivePadding.horizontal(context),
+                    ),
                     child:
                         HeaderDescriptionText(text: state.homeEntity.summary),
                   ),
@@ -64,29 +71,28 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                     margin: EdgeInsets.only(
-                      left: AppConstants.mobileHorizontalPadVal.w,
-                      right: AppConstants.mobileHorizontalPadVal.w,
-                      bottom: 64.h,
+                      left: ResponsivePadding.horizontal(context),
+                      right: ResponsivePadding.horizontal(context),
+                      bottom: ResponsivePadding.section(context) * 0.5,
                     ),
                     child: const SeeMyWorkAndDownloadCVButtons(
                       areExpanded: true,
-                      gradient: AppConstants.boxSecondaryLinearGradient,
                     ),
                   ),
                 ),
                 SliverToBoxAdapter(
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: AppConstants.mobileHorizontalPadVal.w,
+                      horizontal: ResponsivePadding.horizontal(context),
                     ),
                     margin: EdgeInsets.only(
-                      top: 100.h,
-                      bottom: 150.h,
-                      left: 24.w,
-                      right: 24.w,
+                      top: ResponsivePadding.section(context) * 0.8,
+                      bottom: ResponsivePadding.section(context),
+                      left: ResponsiveSize.spacing(context, base: 24.0),
+                      right: ResponsiveSize.spacing(context, base: 24.0),
                     ),
                     child: Wrap(
-                      spacing: 24.h,
+                      spacing: ResponsiveSize.spacing(context, base: 24.0),
                       children: const [
                         AspectRatio(
                           aspectRatio: 1.8 / 1,
@@ -118,8 +124,8 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.mobileHorizontalPadVal.w,
-                    vertical: 48.h,
+                    horizontal: ResponsivePadding.horizontal(context),
+                    vertical: ResponsivePadding.vertical(context) * 1.5,
                   ),
                   sliver: BlocProvider<ProjectsCubit>(
                     create: (context) =>
@@ -134,11 +140,17 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                                 AnimationConfiguration.staggeredList(
                               duration: const Duration(milliseconds: 675),
                               position: index,
-                              child: const FadeInAnimation(
+                              child: FadeInAnimation(
                                 child: ScaleAnimation(
-                                  child: AspectRatio(
-                                    aspectRatio: 0.7,
-                                    child: Center(
+                                  child: Container(
+                                    height: 400.h,
+                                    margin: EdgeInsets.only(
+                                      bottom: ResponsiveSize.spacing(
+                                        context,
+                                        base: 24.0,
+                                      ),
+                                    ),
+                                    child: const Center(
                                       child: CircularProgressIndicator(),
                                     ),
                                   ),
@@ -158,8 +170,13 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                               position: index,
                               child: FadeInAnimation(
                                 child: ScaleAnimation(
-                                  child: AspectRatio(
-                                    aspectRatio: 0.7,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      bottom: ResponsiveSize.spacing(
+                                        context,
+                                        base: 24.0,
+                                      ),
+                                    ),
                                     child: AnimatedProjectItem(
                                       project: projects[index],
                                       index: index,
@@ -183,18 +200,25 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                   ),
                 ),
                 SliverToBoxAdapter(
-                  child: MainButton(
-                    width: double.infinity,
-                    onPressed: () =>
-                        context.read<LandingCubit>().selectTabNav(2),
-                    gradient: AppConstants.boxSecondaryLinearGradient,
-                    margin: EdgeInsets.only(
-                      bottom: 64.h,
-                      left: AppConstants.mobileHorizontalPadVal.w,
-                      right: AppConstants.mobileHorizontalPadVal.w,
-                      top: AppConstants.mobileHorizontalPadVal.h,
+                  child: Center(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: 600.w,
+                        minWidth: 300.w,
+                      ),
+                      child: MainButton(
+                        width: double.infinity,
+                        onPressed: () =>
+                            context.read<LandingCubit>().selectTabNav(2),
+                        margin: EdgeInsets.only(
+                          bottom: ResponsivePadding.section(context) * 0.5,
+                          left: ResponsivePadding.horizontal(context),
+                          right: ResponsivePadding.horizontal(context),
+                          top: ResponsivePadding.vertical(context),
+                        ),
+                        text: AppStrings.seeMyWork,
+                      ),
                     ),
-                    text: AppStrings.seeMyWork,
                   ),
                 ),
                 const SliverToBoxAdapter(
@@ -224,8 +248,8 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Container(
                               margin: EdgeInsets.only(
-                                left: AppConstants.mobileHorizontalPadVal.w,
-                                right: AppConstants.mobileHorizontalPadVal.w,
+                                left: ResponsivePadding.horizontal(context),
+                                right: ResponsivePadding.horizontal(context),
                               ),
                               child: ExperienceItem(
                                 experience:
@@ -248,8 +272,8 @@ class LandingViewMobileHomeTab extends StatelessWidget {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.mobileHorizontalPadVal.w,
-                    vertical: 12.h,
+                    horizontal: ResponsivePadding.horizontal(context),
+                    vertical: ResponsivePadding.vertical(context),
                   ),
                   sliver: const SliverToBoxAdapter(
                     child: ContactMeSection(

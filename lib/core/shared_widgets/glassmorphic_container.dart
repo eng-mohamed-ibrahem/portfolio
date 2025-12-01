@@ -66,7 +66,8 @@ class GlassmorphicContainer extends StatelessWidget {
                     end: Alignment.bottomRight,
                     colors: [
                       AppColors.glassBackground,
-                      AppColors.glassBackground.withValues(alpha: opacity * 0.5),
+                      AppColors.glassBackground
+                          .withValues(alpha: opacity * 0.5),
                     ],
                   ),
               borderRadius: BorderRadius.circular(borderRadius),

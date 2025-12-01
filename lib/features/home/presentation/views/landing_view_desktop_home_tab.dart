@@ -45,9 +45,13 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                   elevation: 0,
                   pinned: true,
                   floating: true,
-                  flexibleSpace: const TabsNav(),
-                  collapsedHeight: 200.h,
-                  expandedHeight: 200.h,
+                  snap: true,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(80.h),
+                    child: const TabsNav(),
+                  ),
+                  collapsedHeight: kToolbarHeight,
+                  expandedHeight: kToolbarHeight,
                   centerTitle: true,
                 ),
                 SliverToBoxAdapter(
@@ -70,8 +74,8 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                     margin: EdgeInsets.only(
-                      top: 206.h,
-                      bottom: 150.h,
+                      top: ResponsivePadding.section(context) * 1.7,
+                      bottom: ResponsivePadding.section(context),
                       left: ResponsivePadding.horizontal(context),
                       right: ResponsivePadding.horizontal(context),
                     ),
@@ -88,7 +92,7 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    vertical: 56.h,
+                    vertical: ResponsivePadding.vertical(context) * 1.75,
                     horizontal: ResponsivePadding.horizontal(context),
                   ),
                   sliver: BlocProvider<ProjectsCubit>(
@@ -125,7 +129,10 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Align(
                     child: MainButton(
-                      margin: EdgeInsets.only(bottom: 150.h),
+                      width: 400,
+                      margin: EdgeInsets.only(
+                        bottom: ResponsivePadding.section(context),
+                      ),
                       onPressed: () =>
                           context.read<LandingCubit>().selectTabNav(2),
                       text: AppStrings.seeMyworks,
@@ -159,8 +166,9 @@ class LandingViewDesktopHomeTab extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Container(
                               margin: EdgeInsets.only(
-                                top: 20.h,
-                                bottom: 30.h,
+                                top: ResponsivePadding.vertical(context) * 0.6,
+                                bottom:
+                                    ResponsivePadding.vertical(context) * 0.9,
                                 left: ResponsivePadding.horizontal(context),
                                 right: ResponsivePadding.horizontal(context),
                               ),

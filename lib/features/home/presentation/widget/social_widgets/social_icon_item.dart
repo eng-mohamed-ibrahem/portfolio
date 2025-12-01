@@ -25,16 +25,15 @@ class SocialIconItem extends StatelessWidget {
         ),
       ),
       child: MaterialButton(
-        onPressed: () async => await openUrl(socialIcon.url),
-        padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.r),
-        ),
-        child: SvgPicture.asset(
-                socialIcon.icon,
-                fit: BoxFit.cover,
-              )
-      ),
+          onPressed: () async => await openUrl(socialIcon.url),
+          padding: EdgeInsets.symmetric(vertical: 24.h, horizontal: 16.w),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.r),
+          ),
+          child: SvgPicture.asset(
+            socialIcon.icon,
+            fit: BoxFit.cover,
+          )),
     );
   }
 }

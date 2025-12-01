@@ -45,43 +45,19 @@ class CopyMyEmailCard extends StatelessWidget {
                   ),
                 ),
                 ElasticIn(
-                  child: MainButton.icon(
-                    context: context,
-                    svgIcon: Assets.svgsLinkArrow,
-                    labelText: AppStrings.contactMeNow,
-                    onPressed: () async => await openUrl(
-                      AppStrings.myGmail,
-                      isEmail: true,
+                  child: ConstrainedBox(
+                    constraints: BoxConstraints(maxWidth: 500.w),
+                    child: MainButton.icon(
+                      context: context,
+                      svgIcon: Assets.svgsLinkArrow,
+                      labelText: AppStrings.contactMeNow,
+                      onPressed: () async => await openUrl(
+                        AppStrings.myGmail,
+                        isEmail: true,
+                      ),
                     ),
                   ),
                 ),
-                // MainButton(
-                //   onPressed: () async {
-                //     await Clipboard.setData(
-                //       const ClipboardData(text: AppStrings.myGmail),
-                //     );
-                //   },
-                //   gradient: const LinearGradient(
-                //     colors: [
-                //       Color(0xff161A31),
-                //       Color(0xff06091F),
-                //     ],
-                //     stops: [0, 1],
-                //     begin: AlignmentDirectional.centerStart,
-                //     end: AlignmentDirectional.centerEnd,
-                //   ),
-                //   child: Row(
-                //     mainAxisSize: MainAxisSize.min,
-                //     spacing: 5.w,
-                //     children: [
-                //       SvgPicture.asset(Assets.svgsCopyIcon),
-                //       Text(
-                //         AppStrings.copyMyEmailAddress,
-                //         style: AppTextStyles.font14Medium(context),
-                //       ),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:portfolio/core/constants/size_config.dart';
 import 'package:portfolio/core/helpers/responsive_padding.dart';
 import 'package:portfolio/core/shared_widgets/project_item.dart';
 import 'package:portfolio/features/projects/domain/entities/project_entity.dart';
@@ -19,35 +20,59 @@ class DesktopProjectsSliverGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final int crossAxisCount = ResponsiveSize.gridCrossAxisCount(
-      context,
-      mobile: 1,
-      smallTablet: 1,
-      largeTablet: 2,
-      desktop: 2,
-    );
+    final screenWidth = MediaQuery.of(context).size.width;
+    final isTablet = screenWidth > SizeConfig.mobileBreakPoint &&
+        screenWidth <= SizeConfig.tabletBreakPoint;
+    final isDesktop = screenWidth > SizeConfig.tabletBreakPoint;
+    final itemCount =
+        isHome ? (projects.length >= 4 ? 4 : projects.length) : projects.length;
 
-    return SliverGrid.builder(
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: 40.w,
-        mainAxisSpacing: 32.h,
-        childAspectRatio: childAspectRatio ?? 1,
-      ),
-      itemBuilder: (_, index) => AnimationConfiguration.staggeredGrid(
-        duration: const Duration(milliseconds: 675),
-        columnCount: crossAxisCount,
-        position: index,
-        child: FadeInAnimation(
-          child: ScaleAnimation(
-            child: ProjectItem(
-              project: projects[index],
-              isTablet: crossAxisCount == 1,
+    // Use list for tablets, grid for desktop
+    if (isDesktop) {
+      return SliverGrid.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 40.w,
+          mainAxisSpacing: 40.h,
+          // childAspectRatio: childAspectRatio ?? 0.75,
+        ),
+        itemCount: itemCount,
+        itemBuilder: (_, index) => AnimationConfiguration.staggeredGrid(
+          duration: const Duration(milliseconds: 675),
+          columnCount: 2,
+          position: index,
+          child: FadeInAnimation(
+            child: ScaleAnimation(
+              child: ProjectItem(
+                project: projects[index],
+                isTablet: false,
+              ),
             ),
           ),
         ),
-      ),
-      itemCount: isHome ? 4 : projects.length,
-    );
+      );
+    } else {
+      // Tablet layout - use list with horizontal cards
+      return SliverList.builder(
+        itemCount: itemCount,
+        itemBuilder: (_, index) => AnimationConfiguration.staggeredList(
+          duration: const Duration(milliseconds: 675),
+          position: index,
+          child: FadeInAnimation(
+            child: ScaleAnimation(
+              child: Padding(
+                padding: EdgeInsets.only(
+                  bottom: ResponsiveSize.spacing(context, base: 32.0),
+                ),
+                child: ProjectItem(
+                  project: projects[index],
+                  isTablet: isTablet,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }

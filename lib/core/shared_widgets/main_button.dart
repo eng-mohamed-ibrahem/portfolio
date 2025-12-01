@@ -67,9 +67,11 @@ class MainButton extends StatefulWidget {
           spacing: 16.w,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              labelText,
-              style: textStyle ?? AppTextStyles.font18Medium(context),
+            Expanded(
+              child: Text(
+                labelText,
+                style: textStyle ?? AppTextStyles.font18Medium(context),
+              ),
             ),
             SvgPicture.asset(svgIcon),
           ],

@@ -8,7 +8,10 @@ abstract class HomeRemoteDataSource {
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<HomeModel> getHomeData() async {
-    final snapshot = await FirebaseFirestore.instance.collection('profile').doc('data').get();
+    final snapshot = await FirebaseFirestore.instance
+        .collection('profile')
+        .doc('data')
+        .get();
     final profileData = snapshot.data();
     return HomeModel.fromJson(profileData!);
   }

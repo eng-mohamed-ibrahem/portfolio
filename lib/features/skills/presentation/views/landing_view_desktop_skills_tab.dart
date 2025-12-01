@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
 import 'package:portfolio/core/helpers/responsive_padding.dart';
 import 'package:portfolio/core/service_locator/inject.dart';
+import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/skills/presentation/cubit/skills_cubit.dart';
 import 'package:portfolio/features/skills/presentation/widgets/skills_progress_list.dart';
 import 'package:portfolio/features/skills/presentation/widgets/skills_tab_big_text.dart';
@@ -23,9 +24,26 @@ class LandingViewDesktopSkillsTab extends StatelessWidget {
           } else if (state is SkillsLoaded) {
             return CustomScrollView(
               slivers: [
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  elevation: 0,
+                  pinned: true,
+                  floating: true,
+                  snap: true,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(80.h),
+                    child: const TabsNav(),
+                  ),
+                  collapsedHeight: kToolbarHeight,
+                  expandedHeight: kToolbarHeight,
+                  centerTitle: true,
+                ),
                 SliverToBoxAdapter(
                   child: Container(
-                    margin: EdgeInsets.only(top: 73.h, bottom: 22.h),
+                    margin: EdgeInsets.only(
+                      top: ResponsivePadding.section(context) * 0.6,
+                      bottom: ResponsivePadding.vertical(context),
+                    ),
                     child: const HeaderSmallText(
                       text: AppStrings.masteringTheArtOfFlutter,
                     ),
@@ -39,10 +57,10 @@ class LandingViewDesktopSkillsTab extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Container(
                     margin: EdgeInsets.only(
-                      top: 32.h,
+                      top: ResponsivePadding.vertical(context),
                       left: ResponsivePadding.horizontal(context),
                       right: ResponsivePadding.horizontal(context),
-                      bottom: 32.h,
+                      bottom: ResponsivePadding.section(context) * 0.5,
                     ),
                     child: SkillsProgressList(skills: state.skills),
                   ),

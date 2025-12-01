@@ -22,11 +22,16 @@ class LandingViewMobileExperienceTab extends StatelessWidget {
           } else if (state is ProjectsLoaded) {
             return CustomScrollView(
               slivers: [
-                const SliverAppBar(
+                SliverAppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   pinned: true,
-                  flexibleSpace: TabsNav(),
+                  floating: true,
+                  snap: true,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(80.h),
+                    child: const TabsNav(),
+                  ),
                   collapsedHeight: kToolbarHeight,
                   expandedHeight: kToolbarHeight,
                   centerTitle: true,
@@ -36,7 +41,7 @@ class LandingViewMobileExperienceTab extends StatelessWidget {
                     horizontal: AppConstants.mobileHorizontalPadVal.w,
                     vertical: 48.h,
                   ),
-                  sliver: SliverList.builder(
+                  sliver: SliverList.separated(
                     itemCount: state.projects.length,
                     itemBuilder: (_, index) =>
                         AnimationConfiguration.staggeredList(
@@ -44,15 +49,13 @@ class LandingViewMobileExperienceTab extends StatelessWidget {
                       position: index,
                       child: FadeInAnimation(
                         child: ScaleAnimation(
-                          child: AspectRatio(
-                            aspectRatio: 0.7,
-                            child: ProjectItem(
-                              project: state.projects[index],
-                            ),
+                          child: ProjectItem(
+                            project: state.projects[index],
                           ),
                         ),
                       ),
                     ),
+                    separatorBuilder: (_, __) => SizedBox(height: 24.h),
                   ),
                 ),
               ],

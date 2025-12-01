@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/core/constants/app_constants.dart';
 import 'package:portfolio/core/constants/app_strings.dart';
+import 'package:portfolio/core/helpers/responsive_padding.dart';
 import 'package:portfolio/core/service_locator/inject.dart';
 import 'package:portfolio/features/main_navigation/widget/tabs_nav.dart';
 import 'package:portfolio/features/skills/presentation/cubit/skills_cubit.dart';
@@ -24,18 +24,25 @@ class LandingViewMobileSkillsTab extends StatelessWidget {
           } else if (state is SkillsLoaded) {
             return CustomScrollView(
               slivers: <Widget>[
-                const SliverAppBar(
+                SliverAppBar(
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   pinned: true,
-                  flexibleSpace: TabsNav(),
+                  floating: true,
+                  snap: true,
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(80.h),
+                    child: const TabsNav(),
+                  ),
                   collapsedHeight: kToolbarHeight,
                   expandedHeight: kToolbarHeight,
                   centerTitle: true,
                 ),
                 SliverToBoxAdapter(
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 32.h),
+                    margin: EdgeInsets.symmetric(
+                      vertical: ResponsivePadding.vertical(context),
+                    ),
                     child: const HeaderDescriptionText(
                       text: AppStrings.masteringTheArtOfFlutter,
                     ),
@@ -43,7 +50,7 @@ class LandingViewMobileSkillsTab extends StatelessWidget {
                 ),
                 SliverPadding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.mobileHorizontalPadVal.w,
+                    horizontal: ResponsivePadding.horizontal(context),
                   ),
                   sliver: const SliverToBoxAdapter(
                     child: SkillsTabBigText(),
@@ -51,9 +58,11 @@ class LandingViewMobileSkillsTab extends StatelessWidget {
                 ),
                 SliverToBoxAdapter(
                   child: Container(
-                    margin: EdgeInsets.symmetric(
-                      horizontal: AppConstants.mobileHorizontalPadVal.w,
-                      vertical: 40.h,
+                    margin: EdgeInsets.only(
+                      top: ResponsivePadding.section(context) * 0.5,
+                      bottom: ResponsivePadding.section(context) * 0.5,
+                      left: ResponsivePadding.horizontal(context),
+                      right: ResponsivePadding.horizontal(context),
                     ),
                     child: SkillsProgressList(skills: state.skills),
                   ),

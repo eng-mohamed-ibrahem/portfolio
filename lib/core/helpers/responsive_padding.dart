@@ -163,6 +163,26 @@ class ResponsiveSize {
     }
   }
 
+  /// Get responsive grid main axis extent
+  static double gridMainAxisExtent(
+    BuildContext context, {
+    double mobile = 400.0,
+    double smallTablet = 400.0,
+    double largeTablet = 400.0,
+    double desktop = 400.0,
+  }) {
+    final width = MediaQuery.of(context).size.width;
+    if (width < 600) {
+      return mobile; // Mobile
+    } else if (width < 768) {
+      return smallTablet; // Small tablet
+    } else if (width < 1024) {
+      return largeTablet; // Large tablet
+    } else {
+      return desktop; // Desktop
+    }
+  }
+
   /// Get responsive spacing between elements
   static double spacing(BuildContext context, {double base = 16.0}) {
     final width = MediaQuery.of(context).size.width;

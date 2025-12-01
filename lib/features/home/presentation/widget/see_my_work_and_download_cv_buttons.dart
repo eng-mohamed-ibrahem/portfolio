@@ -15,10 +15,12 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
     super.key,
     this.areExpanded = false,
     this.gradient,
+    this.maxWidth = 450,
   });
 
   final bool areExpanded;
   final Gradient? gradient;
+  final double maxWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -31,21 +33,29 @@ class SeeMyWorkAndDownloadCVButtons extends StatelessWidget {
           } else if (state is ResumeLoaded) {
             return FadeInUp(
               delay: const Duration(milliseconds: 900),
-              child: OverflowBar(
-                alignment: MainAxisAlignment.center,
-                overflowAlignment: OverflowBarAlignment.center,
-                overflowSpacing: 16.h,
-                spacing: 24.w,
-                children: [
-                  MainButton.icon(
-                    context: context,
-                    labelText: AppStrings.downloadCV,
-                    svgIcon: Assets.svgsDownloadIcon,
-                    gradient: gradient,
-                    width: areExpanded ? double.infinity : null,
-                    onPressed: () async => await _downloadCV(state.resume.url),
-                  ),
-                ],
+              child: Center(
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 24.w,
+                  runSpacing: 16.h,
+                  children: [
+                    ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxWidth: maxWidth.w,
+                        minWidth: 250.w,
+                      ),
+                      child: MainButton.icon(
+                        context: context,
+                        labelText: AppStrings.downloadCV,
+                        svgIcon: Assets.svgsDownloadIcon,
+                        gradient: gradient,
+                        width: areExpanded ? double.infinity : null,
+                        onPressed: () async =>
+                            await _downloadCV(state.resume.url),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             );
           } else if (state is ResumeError) {

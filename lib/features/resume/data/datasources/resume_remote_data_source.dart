@@ -8,7 +8,10 @@ abstract class ResumeRemoteDataSource {
 class ResumeRemoteDataSourceImpl implements ResumeRemoteDataSource {
   @override
   Future<ResumeModel> getResumeUrl() async {
-    final snapshot = await FirebaseFirestore.instance.collection('profile').doc('resume').get();
+    final snapshot = await FirebaseFirestore.instance
+        .collection('profile')
+        .doc('resume')
+        .get();
     final resumeData = snapshot.data();
     return ResumeModel.fromJson(resumeData!);
   }
