@@ -26,6 +26,8 @@ class RootApp extends StatelessWidget {
         return MaterialApp(
           title: 'Mohamed Ibrahem',
           debugShowCheckedModeBanner: false,
+          themeAnimationCurve: Curves.bounceInOut,
+          themeAnimationDuration: const Duration(milliseconds: 500),
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: mode,
@@ -180,50 +182,64 @@ class _AmbientBackground extends StatelessWidget {
             ? AppTheme.darkBackgroundGradient
             : AppTheme.lightBackgroundGradient,
       ),
-      child: Stack(
-        children: [
-          Positioned(
-            top: -100,
-            right: -100,
-            child: Container(
-              width: 500,
-              height: 500,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFF4A90E2).withValues(alpha: 0.2), // Blue
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Use simpler blur on mobile for performance
+          final isMobile = constraints.maxWidth < 800;
+          final blurValue = isMobile ? 20.0 : 80.0;
+
+          return Stack(
+            children: [
+              Positioned(
+                top: -100,
+                right: -100,
+                child: Container(
+                  width: 500,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(
+                      0xFF4A90E2,
+                    ).withValues(alpha: 0.2), // Blue
+                  ),
+                ),
               ),
-            ),
-          ),
-          Positioned(
-            bottom: -100,
-            left: -100,
-            child: Container(
-              width: 500,
-              height: 500,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFF8B5CF6).withValues(alpha: 0.2), // Purple
+              Positioned(
+                bottom: -100,
+                left: -100,
+                child: Container(
+                  width: 500,
+                  height: 500,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(
+                      0xFF8B5CF6,
+                    ).withValues(alpha: 0.2), // Purple
+                  ),
+                ),
               ),
-            ),
-          ),
-          Positioned(
-            top: 200,
-            left: 100,
-            child: Container(
-              width: 300,
-              height: 300,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFF14B8A6).withValues(alpha: 0.1), // Teal
+              Positioned(
+                top: 200,
+                left: 100,
+                child: Container(
+                  width: 300,
+                  height: 300,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color(
+                      0xFF14B8A6,
+                    ).withValues(alpha: 0.1), // Teal
+                  ),
+                ),
               ),
-            ),
-          ),
-          // Blur overlay
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 80, sigmaY: 80),
-            child: Container(color: Colors.transparent),
-          ),
-        ],
+              // Blur overlay
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: blurValue, sigmaY: blurValue),
+                child: Container(color: Colors.transparent),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
