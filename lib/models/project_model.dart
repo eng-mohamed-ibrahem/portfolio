@@ -26,7 +26,9 @@ class ProjectModel {
   factory ProjectModel.fromJson(Map<String, dynamic> json) {
     return ProjectModel(
       appStoreUrl: json['appStoreUrl'] ?? '',
-      createdAt: (json['createdAt'] as Timestamp).toDate(),
+      createdAt: json['createdAt'] != null
+          ? (json['createdAt'] as Timestamp).toDate()
+          : DateTime.now(),
       description: json['description'] ?? '',
       downloadUrl: json['downloadUrl'] ?? '',
       githubUrl: json['githubUrl'] ?? '',

@@ -19,11 +19,15 @@ class ProjectsRemoteDataSourceImpl implements ProjectsRemoteDataSource {
   @override
   Future<List<ProjectModel>> getProjects() async {
     try {
-      final snapshot = await _collection.get();
-      return snapshot.docs.map((doc) {
+      final snapshot = await _collection
+          .orderBy('createdAt', descending: true)
+          .get();
+      final projects = snapshot.docs.map((doc) {
         final data = doc.data();
         return ProjectModel.fromJson(data);
       }).toList();
+      projects.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return projects;
     } catch (e) {
       throw Exception('Failed to fetch projects: $e');
     }
@@ -46,11 +50,14 @@ class ProjectsRemoteDataSourceImpl implements ProjectsRemoteDataSource {
     try {
       final snapshot = await _collection
           .where('technologies', arrayContains: technology)
+          .orderBy('createdAt', descending: true)
           .get();
-      return snapshot.docs.map((doc) {
+      final projects = snapshot.docs.map((doc) {
         final data = doc.data();
         return ProjectModel.fromJson(data);
       }).toList();
+      projects.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return projects;
     } catch (e) {
       throw Exception('Failed to fetch projects by technology: $e');
     }
